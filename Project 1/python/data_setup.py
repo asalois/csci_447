@@ -1,4 +1,5 @@
 # """ This is for reading and preparing data for runs in through our ML algorithm """
+# This file programmed by Zan Rost-Montieth
 import os                                               # used to set filepaths dynamically
 dirname = os.path.dirname(__file__)                     # finds current folder
 filepath = os.path.join(dirname, '../Datasets/')        # navigate to datasets folder
