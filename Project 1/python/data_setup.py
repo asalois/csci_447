@@ -58,4 +58,4 @@ def readInPerson():
     readInCom(input("your choice: "))
 
 
-readInPerson()
+#readInPerson()
