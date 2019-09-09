@@ -1,7 +1,7 @@
 # """ This is for reading and preparing data for runs in through our ML algorithm """
-import os
-dirname = os.path.dirname(__file__)
-filepath = os.path.join(dirname, '../Datasets/')
+import os                                               # used to set filepaths dynamically
+dirname = os.path.dirname(__file__)                     # finds current folder
+filepath = os.path.join(dirname, '../Datasets/')        # navigate to datasets folder
 
 
 def readInCom(input):
@@ -58,4 +58,4 @@ def readInPerson():
     readInCom(input("your choice: "))
 
 
-# readInPerson()
+readInPerson()
