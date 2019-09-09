@@ -24,7 +24,6 @@ def readInCom(fileNum):
                 z = z.rstrip()                          # remove \n from the end of lines 
                 if z == remove:
                     del arr[-1]
-                    print("removed line")
                     break
                 elif z.isdigit():                         # if data entry is a number convert it to an integer
                     arr[-1].append(int(z.rstrip()))     
@@ -54,8 +53,8 @@ def readInCom(fileNum):
             print("column ", z + 1, "has been normalized")      # print out what numers represnt what
             for y in range(0,len(strings)):                     
                 print(y, " = ", strings[y])
-    # for z in range(len(arr)):                       # print out the data set
-    #     print(arr[z])
+    for z in range(len(arr)):                       # print out the data set
+        print(arr[z])
 
     return arr                      #return the data set
 
