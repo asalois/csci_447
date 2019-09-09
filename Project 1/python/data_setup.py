@@ -11,7 +11,7 @@ files = ["breast-cancer-wisconsin.data","glass.data","iris.data","soybean-small.
 
 fileToOpen = filepath + files[int(choice)-1]
 
-fileIn = open (filename,"r")
+fileIn = open (fileToOpen,"r")
 for line in fileIn.readlines():
     if line != "":
         arr.append([])
