@@ -49,7 +49,7 @@ def readInCom(input):
     for z in range(len(arr)):
         print(arr[z])
 
-    print("all Done")
+    return arr
 
 
 def readInPerson():
