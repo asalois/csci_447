@@ -9,7 +9,7 @@ def readInCom(input):
 
     files = ["breast-cancer-wisconsin.data","glass.data","iris.data","soybean-small.data","house-votes-84.data"]
 
-    fileToOpen = filepath + files[int(choice)-1]
+    fileToOpen = filepath + files[int(input)-1]
 
     fileIn = open (fileToOpen,"r")
     for line in fileIn.readlines():
@@ -26,8 +26,26 @@ def readInCom(input):
                         if z != '':
                             arr[-1].append(z)
     arr = [z for z in arr if z != []]                           # removes last list in the array in case input has new line at the end 
+    for z in range(0,len(arr[0])):
+        strings = []
+        for y in range(0,len(arr)):
+            if isinstance(arr[y][z],str):
+                repeat = False
+                for x in range(0,len(strings)):
+                    if arr[y][z] == strings[x]:
+                        repeat = True
+                if repeat == False:
+                    strings.append(arr[y][z])
+        
 
-
+        if len(strings) > 0:
+            for y in range(0,len(arr)):
+                for x in range(0,len(strings)):
+                    if arr[y][z] == strings[x]:
+                        arr[y][z] = x
+            print("column ", z + 1, "has been normalized")
+            for y in range(0,len(strings)):
+                print(y, " = ", strings[y])
     for z in range(len(arr)):
         print(arr[z])
 
@@ -40,4 +58,4 @@ def readInPerson():
     readInCom(input("your choice: "))
 
 
-readInPerson()
+# readInPerson()
