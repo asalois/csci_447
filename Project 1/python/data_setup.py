@@ -5,20 +5,28 @@ dirname = os.path.dirname(__file__)                     # finds current folder
 filepath = os.path.join(dirname, '../Datasets/')        # navigate to datasets folder
 
 
-def readInCom(input):
+def readInCom(fileNum):
     arr = []                                            # list to hold all out data
+    remove =""
 
     files = ["breast-cancer-wisconsin.data","glass.data","iris.data","soybean-small.data","house-votes-84.data"] # list of data files so they can be chosen dynamically
 
-    fileToOpen = filepath + files[int(input)-1]         # creates file path to numbered data file numbered naturally 1-5 
+    fileToOpen = filepath + files[int(fileNum)-1]         # creates file path to numbered data file numbered naturally 1-5 
 
-    fileIn = open (fileToOpen,"r")                      
+    fileIn = open (fileToOpen,"r")  
+
+    remove = input("please input the value used to denote a missing value: ")  
+
     for line in fileIn.readlines():                     
         if line != "":                                  # if line is not empty
             arr.append([])                              # start a new list for a new data entry
             for z in line.split(","):                   # split the data entries
                 z = z.rstrip()                          # remove \n from the end of lines 
-                if z.isdigit():                         # if data entry is a number convert it to an integer
+                if z == remove:
+                    del arr[-1]
+                    print("removed line")
+                    break
+                elif z.isdigit():                         # if data entry is a number convert it to an integer
                     arr[-1].append(int(z.rstrip()))     
                 else:
                     try:
@@ -46,16 +54,16 @@ def readInCom(input):
             print("column ", z + 1, "has been normalized")      # print out what numers represnt what
             for y in range(0,len(strings)):                     
                 print(y, " = ", strings[y])
-    for z in range(len(arr)):                       # print out the data set
-        print(arr[z])
+    # for z in range(len(arr)):                       # print out the data set
+    #     print(arr[z])
 
     return arr                      #return the data set
 
 
 def readInPerson():
     print("pls choose which file you would like\n 1: for Breast Cancer Data\n 2: for Glass Data\n 3: for Iris Data\n 4: for Soybean Data\n 5: for Vote Data ")
-
-    readInCom(input("your choice: "))
+    choice = input("your choice: ")
+    readInCom(choice)
 
 
 readInPerson()
