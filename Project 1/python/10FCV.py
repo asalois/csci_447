@@ -1,6 +1,6 @@
 """ This is for performing 10-fold crossvalidation of the ML algorithm """
 # This file brought to you by Ethan
-
+import numpy
 import random
 import data_setup
 import copy
@@ -17,17 +17,23 @@ used as test sets in 10fold cross validation
 The general concept for this function was aquired from
 https://stackoverflow.com/questions/2130016/splitting-a-list-into-n-parts-of-approximately-equal-length
 '''
-def splitter(samples):
-    OG = samples
-    shuf_samples = random.shuffle(samples)
+'''def splitter(samples):
+    OG = copy.copy(samples)
+    random.shuffle(samples)
     average_len = len(samples) / 10
     split_array = []
     start = 0
-    while start < len(shuf_samples):
-        split_array.append(seq[first:(first + average_len)])
+    while start < len(samples):
+        split_array.append(seq[start:(start + average_len)])
         start += average_len
 
-    return split_array
+    return split_array'''
+
+def splitter(samples):
+    OG = copy.copy(samples)
+    random.shuffle(samples)
+    numpy.array_split(numpy.asarray(samples),10)
+    return samples
 
 
 '''
@@ -39,15 +45,49 @@ def get_list(input):
     return base_data
 
 
-def list_printer(ls):
+''' Removes the class attribute from the input portion of the dataset to be used for validation of the model'''
+def make_test_set(input):
+    for i in range(len(input)):
+        del input[i][len(input[i])]
+
+
+''' Takes 10% of the columns in the dataset, and scrambles them '''
+def single_column_scramble(input):
+    total_cols = len(input[0]) - 1 # Total columns, minus the class attribute
+    num_to_scramble = numpy.ceil(total_cols * 0.1) # Takes 10% of the columns, rounded up
+    for i in range(num_to_scramble):
+        cols_to_scramble.append(random.randint(0,total_cols))
+
+
+def 10fold(dataset):
+    #backup = copy.copy(dataset)
+    for i in range(10):
+        temp = copy.copy(dataset)
+        to_test = make_test_set(dataset[i])
+        del temp[i]
+        learn(temp) # this will call the learner algo
+        test(to_test, dataset[i]) # This tests our model with previously known classes
+
+
+
+'''def array_printer(ls):
     for i in range(len(ls)):
+        print("\n")
         for j in range(len(ls[i])):
-            print(ls[i][j])
+            for k in range(len(ls[i][j])):
+                print(ls[i][j][k])'''
 
 
 def work_it():
     og_data = get_list(1)
     new_data = copy.copy(og_data)
-    new_data = randomizer(new_data)
+#    new_data = randomizer(new_data)
     new_data = splitter(new_data)
-    list_printer(new_data)
+    print(new_data)
+    10fold(new_data) # does 10fold CV with the original dataset, no scrambled attributes
+    #array_printer(new_data)
+
+
+
+
+work_it()

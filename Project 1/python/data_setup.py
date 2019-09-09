@@ -66,4 +66,4 @@ def readInPerson():
     readInCom(choice)
 
 
-readInPerson()
+#readInPerson()
