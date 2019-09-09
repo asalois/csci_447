@@ -37,7 +37,7 @@ def readInCom(input):
                         repeat = True
                 if repeat == False:
                     strings.append(arr[y][z])       # if it is a new unique string add is to the reference list
-        
+        strings.sort()
         if len(strings) > 0:                        # if we have a list of strings this will assign numerical values
             for y in range(0,len(arr)):
                 for x in range(0,len(strings)):
