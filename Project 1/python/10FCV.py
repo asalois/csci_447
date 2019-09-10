@@ -32,7 +32,7 @@ https://stackoverflow.com/questions/2130016/splitting-a-list-into-n-parts-of-app
 def splitter(samples):
     OG = copy.copy(samples)
     random.shuffle(samples)
-    numpy.array_split(samples, 10)
+    samples = numpy.array_split(samples, 10)
     array_printer(samples)
     return samples
 
@@ -70,15 +70,19 @@ def cross_validate(dataset):
 
 
 def array_printer(ls):
-    for i in range(len(ls)):
-        for j in range(len(ls[i])):
+    for i in ls:
+        for j in i:
+            print(j)
+            #for k in j:
+                # print(k)
+        ''' for j in range(len(ls[i])):
             for k in range(len(ls[i][j])):
                 print(ls[i][j][k])
-        print('\n')
+        print('\n') '''
 
 
 def work_it():
-    og_data = get_list(1)
+    og_data = get_list('5')
     new_data = numpy.asarray(og_data)       #<-this is messing up the array
 #    new_data = randomizer(new_data)
     new_data = splitter(new_data)
