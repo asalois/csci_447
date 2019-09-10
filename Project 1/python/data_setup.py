@@ -56,9 +56,12 @@ def readInCom(fileNum, remove):
             for y in range(0,len(strings)):                     
                 print(y, " = ", strings[y])
 
-    if fileNum == 1:
-        for z in range(len(arr)):
-            arr[z].pop(0)
+    print(fileNum)
+    if fileNum == '1':
+        for z in arr:
+            #w = h
+            # arr[z].pop(0)
+            del z[0]
     for z in range(len(arr)):                       # print out the data set
         print(arr[z])
 
@@ -74,4 +77,4 @@ def readInPerson():
     remove = input("please input the value used to denote a missing value: ")  
     readInCom(choice, remove)
 
-# readInPerson()
+readInPerson()
