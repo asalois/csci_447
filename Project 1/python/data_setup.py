@@ -64,7 +64,7 @@ def readInCom(fileNum, remove):
             del z[0]
     elif fileNum == '5':
         for z in arr:
-            z.insert(0,z.pop(16))
+            z.insert(17,z.pop(0))
     for z in range(len(arr)):                       # print out the data set
         print(arr[z])
 
@@ -80,4 +80,4 @@ def readInPerson():
     remove = input("please input the value used to denote a missing value: ")  
     readInCom(choice, remove)
 
-# readInPerson()
+readInPerson()
