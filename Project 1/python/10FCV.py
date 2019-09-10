@@ -75,10 +75,6 @@ def array_printer(ls):
             print(j)
             #for k in j:
                 # print(k)
-        ''' for j in range(len(ls[i])):
-            for k in range(len(ls[i][j])):
-                print(ls[i][j][k])
-        print('\n') '''
 
 
 def work_it():
