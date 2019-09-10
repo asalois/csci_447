@@ -4,8 +4,10 @@ import os                                               # used to set filepaths 
 dirname = os.path.dirname(__file__)                     # finds current folder
 filepath = os.path.join(dirname, '../Datasets/')        # navigate to datasets folder
 
-
-def readInCom(fileNum):
+# TODO move last column of votes to the first column
+# TODO remove id numbers from breast cancer data
+#  
+def readInCom(fileNum, remove):
     arr = []                                            # list to hold all out data
     remove =""
 
@@ -14,8 +16,6 @@ def readInCom(fileNum):
     fileToOpen = filepath + files[int(fileNum)-1]         # creates file path to numbered data file numbered naturally 1-5 
 
     fileIn = open (fileToOpen,"r")  
-
-    remove = input("please input the value used to denote a missing value: ")  
     numRemoved = 0
 
     for line in fileIn.readlines():                     
@@ -55,6 +55,10 @@ def readInCom(fileNum):
             print("column ", z + 1, "has been normalized")      # print out what numers represnt what
             for y in range(0,len(strings)):                     
                 print(y, " = ", strings[y])
+
+    if fileNum == 1:
+        for z in range(len(arr)):
+            arr[z].pop(0)
     for z in range(len(arr)):                       # print out the data set
         print(arr[z])
 
@@ -66,7 +70,8 @@ def readInCom(fileNum):
 def readInPerson():
     print("pls choose which file you would like\n 1: for Breast Cancer Data\n 2: for Glass Data\n 3: for Iris Data\n 4: for Soybean Data\n 5: for Vote Data ")
     choice = input("your choice: ")
-    readInCom(choice)
 
+    remove = input("please input the value used to denote a missing value: ")  
+    readInCom(choice, remove)
 
-readInPerson()
+# readInPerson()
