@@ -32,7 +32,8 @@ https://stackoverflow.com/questions/2130016/splitting-a-list-into-n-parts-of-app
 def splitter(samples):
     OG = copy.copy(samples)
     random.shuffle(samples)
-    numpy.array_split(numpy.asarray(samples),10)
+    numpy.array_split(samples, 10)
+    array_printer(samples)
     return samples
 
 
@@ -41,25 +42,23 @@ This also doesn't need its own function, but we're lazy people
 Calls the data read function from data_setup.py
 '''
 def get_list(input):
-    base_data = data_setup.readInCom(input)
+    base_data = data_setup.readInCom(input,'?')
     return base_data
 
 
 ''' Removes the class attribute from the input portion of the dataset to be used for validation of the model'''
 def make_test_set(input):
     for i in range(len(input)):
-        del input[i][len(input[i])]
+        del input[i][len(input[i])-1]
 
 
 ''' Takes 10% of the columns in the dataset, and scrambles them '''
 def single_column_scramble(input):
     total_cols = len(input[0]) - 1 # Total columns, minus the class attribute
     num_to_scramble = numpy.ceil(total_cols * 0.1) # Takes 10% of the columns, rounded up
-    for i in range(num_to_scramble):
-        cols_to_scramble.append(random.randint(0,total_cols))
 
 
-def 10fold(dataset):
+def cross_validate(dataset):
     #backup = copy.copy(dataset)
     for i in range(10):
         temp = copy.copy(dataset)
@@ -70,22 +69,22 @@ def 10fold(dataset):
 
 
 
-'''def array_printer(ls):
+def array_printer(ls):
     for i in range(len(ls)):
-        print("\n")
         for j in range(len(ls[i])):
             for k in range(len(ls[i][j])):
-                print(ls[i][j][k])'''
+                print(ls[i][j][k])
+        print('\n')
 
 
 def work_it():
     og_data = get_list(1)
-    new_data = copy.copy(og_data)
+    new_data = numpy.asarray(og_data)       #<-this is messing up the array
 #    new_data = randomizer(new_data)
     new_data = splitter(new_data)
-    print(new_data)
-    10fold(new_data) # does 10fold CV with the original dataset, no scrambled attributes
-    #array_printer(new_data)
+    # print(new_data)
+    # cross_validate(new_data) # does 10fold CV with the original dataset, no scrambled attributes
+    array_printer(new_data)
 
 
 
