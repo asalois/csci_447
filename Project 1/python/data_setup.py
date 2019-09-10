@@ -16,6 +16,7 @@ def readInCom(fileNum):
     fileIn = open (fileToOpen,"r")  
 
     remove = input("please input the value used to denote a missing value: ")  
+    numRemoved = 0
 
     for line in fileIn.readlines():                     
         if line != "":                                  # if line is not empty
@@ -24,6 +25,7 @@ def readInCom(fileNum):
                 z = z.rstrip()                          # remove \n from the end of lines 
                 if z == remove:
                     del arr[-1]
+                    numRemoved += 1
                     break
                 elif z.isdigit():                         # if data entry is a number convert it to an integer
                     arr[-1].append(int(z.rstrip()))     
@@ -56,6 +58,8 @@ def readInCom(fileNum):
     for z in range(len(arr)):                       # print out the data set
         print(arr[z])
 
+    print("removed ", numRemoved, "data points")
+
     return arr                      #return the data set
 
 
@@ -65,4 +69,4 @@ def readInPerson():
     readInCom(choice)
 
 
-#readInPerson()
+readInPerson()
