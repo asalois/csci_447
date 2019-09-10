@@ -42,7 +42,7 @@ This also doesn't need its own function, but we're lazy people
 Calls the data read function from data_setup.py
 '''
 def get_list(input):
-    base_data = data_setup.readInCom(input)
+    base_data = data_setup.readInCom(input,'?')
     return base_data
 
 
@@ -79,7 +79,7 @@ def array_printer(ls):
 
 def work_it():
     og_data = get_list(1)
-    new_data = numpy.asarray(og_data)
+    new_data = numpy.asarray(og_data)       #<-this is messing up the array
 #    new_data = randomizer(new_data)
     new_data = splitter(new_data)
     # print(new_data)
