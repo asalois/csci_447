@@ -80,4 +80,4 @@ def readInPerson():
     remove = input("please input the value used to denote a missing value: ")  
     readInCom(choice, remove)
 
-readInPerson()
+# readInPerson()
