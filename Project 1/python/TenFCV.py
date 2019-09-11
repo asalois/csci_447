@@ -52,7 +52,9 @@ def cross_validate(dataset):
 		to_learn = copy.copy(dataset)
 		to_test = make_test_set(to_learn.pop(i))
 		to_learn = flatten_list(to_learn)
+		print('tester')
 		array_printer_2d(to_test)
+		print('learner')
 		array_printer_2d(to_learn)
 		# learn(temp) # this will call the learner algo
         # test(to_test, dataset[i]) # This tests our model with previously known classes
@@ -70,9 +72,9 @@ def flatten_list(three_dim_list):
 
 
 def array_printer_3d(ls):
-    for i in ls:
-        for j in i:
-            print(j)
+	for i in ls:
+		for j in i:
+			print(j)
             #for k in j:
                 # print(k)
 
