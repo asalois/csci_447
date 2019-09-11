@@ -43,5 +43,6 @@ def difference(classO, classM):
 
 x = [0,0,0,0,1,1,1,1]
 y = [0,1,0,1,0,1,0,1]
-print(makeConfMatrix(x, y))
-
+matrix = makeConfMatrix(x, y)
+print('The Confusion  Matrix is ',matrix)
+print('The error is ', errorCalc(matrix[0], matrix[1], matrix[2], matrix[3]))
