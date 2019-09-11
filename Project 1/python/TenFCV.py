@@ -6,7 +6,10 @@ import data_setup
 import copy
 
 ''' We don't need a function to do just this, but we added one anyway '''
-def randomizer(samples):
+def ten_percent_scrambler(samples):
+    scrambled = []
+    for i in range(len(samples)/10): # takes the first 10% of the array, scrambles data row by row, ignoring the class attribute
+
     return random.shuffle(samples)
 
 
