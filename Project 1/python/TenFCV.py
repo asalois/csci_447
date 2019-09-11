@@ -31,11 +31,10 @@ def get_list(input, chara):
 
 ''' Removes the class attribute from the input portion of the dataset to be used for validation of the model'''
 def make_test_set(input):
+    #to_return = [len(input)]
+    input = numpy.ndarray.tolist(input) # ensures that the soon-to-be test set is a basic python list so we can remove the class attribute with del
     for i in input:
-        # print(i)
-        i = i[:-1]
-        # print(i)
-
+        del i[-1]
     return input
 
 
@@ -47,16 +46,17 @@ def single_column_scramble(input):
 
 
 def cross_validate(dataset):
-	to_compare = []
-	for i in range(10):
-		to_learn = copy.copy(dataset)
-		to_test = make_test_set(to_learn.pop(i))
-		to_learn = flatten_list(to_learn)
-		print('tester')
-		array_printer_2d(to_test)
-		print('learner')
-		array_printer_2d(to_learn)
-		# learn(temp) # this will call the learner algo
+    to_compare = []
+    for i in range(10):
+        to_learn = copy.copy(dataset)
+        to_test = make_test_set(to_learn.pop(i))
+        to_learn = flatten_list(to_learn)
+        print('tester')
+        array_printer_2d(to_test)
+        print('learner')
+        array_printer_2d(to_learn)
+        print(len(to_learn))
+        # learn(temp) # this will call the learner algo
         # test(to_test, dataset[i]) # This tests our model with previously known classes
 
 
@@ -65,22 +65,22 @@ def flatten_list(three_dim_list):
     for two_dim_list in three_dim_list:
         for list in two_dim_list:
             flattened.append(list)
-            print(list)
+            # print(list)
     return flattened
 
 
 
 
 def array_printer_3d(ls):
-	for i in ls:
-		for j in i:
-			print(j)
+    for i in ls:
+        for j in i:
+            print(j)
             #for k in j:
                 # print(k)
 
 def array_printer_2d(ls):
-	for i in ls:
-		print(i)
+    for i in ls:
+        print(i)
 
 
 def work_it():
