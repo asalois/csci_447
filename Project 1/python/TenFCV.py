@@ -5,14 +5,22 @@ import random
 import data_setup
 import copy
 
-''' We don't need a function to do just this, but we added one anyway '''
+''' 
+Takes a dataset, scrambles the values of 10% (rounded up) of the rows 
+This feeds directly into the 10-fold cross-validation function for our second run of the learner
+'''
 def ten_percent_scrambler(samples):
     scrambled = []
-    for i in range(len(samples)/10): # takes the first 10% of the array, scrambles data row by row, ignoring the class attribute
+    for i in range(int(numpy.ceil(len(samples)/10))): # takes the first 10% of the array (rounded up), scrambles data row by row, ignoring the class attribute
+        temp = samples[i][:-1]
+        random.shuffle(temp)
+        samples[i][:-1] = temp
+    return samples # returns list otherwise unharmed to be scrambled by the cross-validation function
 
-    return random.shuffle(samples)
-
-
+'''
+Splits the input list into 10 (mostly) equal-sized sublists to be fed into the 10-fold cross-validation function
+also scrambles the list before splitting
+'''
 def splitter(samples):
     samples = numpy.asarray(samples) # temporarily converts the list to a numpy array so it can be run through the splitter
     OG = copy.copy(samples)
@@ -24,7 +32,7 @@ def splitter(samples):
 
 
 '''
-This also doesn't need its own function, but we're lazy people
+This doesn't need its own function, but we're lazy people here at 'Team'
 Calls the data read function from data_setup.py
 '''
 def get_list(input, chara):
@@ -35,7 +43,8 @@ def get_list(input, chara):
 ''' Removes the class attribute from the input portion of the dataset to be used for validation of the model'''
 def make_test_set(input):
     #to_return = [len(input)]
-    input = numpy.ndarray.tolist(input) # ensures that the soon-to-be test set is a basic python list so we can remove the class attribute with del
+    if type(input) == numpy.ndarray:
+        input = numpy.ndarray.tolist(input) # ensures that the soon-to-be test set is a basic python list so we can remove the class attribute with del
     for i in input:
         del i[-1]
     return input
@@ -48,8 +57,11 @@ def single_column_scramble(input):
 
 
 
-def cross_validate(dataset):
-    to_compare = []
+def cross_validate(dataset, scramBool):
+    backup_data = copy.copy(dataset)
+    if scramBool:
+        dataset = ten_percent_scrambler(dataset)
+    dataset = splitter(dataset)
     for i in range(10):
         to_learn = copy.copy(dataset)
         to_test = make_test_set(to_learn.pop(i))
@@ -63,6 +75,10 @@ def cross_validate(dataset):
         # test(to_test, dataset[i]) # This tests our model with previously known classes
 
 
+def tenP_scrambled_cv(dataset):
+    dataset = ten_percent_scrambler(dataset)
+    cross_validate(dataset, True)
+
 def flatten_list(three_dim_list):
     flattened = []
     for two_dim_list in three_dim_list:
@@ -70,7 +86,6 @@ def flatten_list(three_dim_list):
             flattened.append(list)
             # print(list)
     return flattened
-
 
 
 
@@ -87,14 +102,14 @@ def array_printer_2d(ls):
 
 
 def work_it():
-    og_data = get_list('3', '?')
-    #new_data = numpy.asarray(og_data)      This converts the list to an array so it can be properly
-#    new_data = randomizer(new_data)
-    new_data = splitter(og_data)
+    data = get_list('3', '?')
+    unscrambled_data = copy.copy(data)
+    # new_data = numpy.asarray(og_data)      This converts the list to an array so it can be properly
+    # new_data = randomizer(new_data)
+    # new_data = splitter(og_data)
     # print(new_data)
-    cross_validate(new_data) # does 10fold CV with the original dataset, no scrambled attributes
-    # array_printer(new_data)
-
+    # cross_validate(unscrambled_data, False) # does 10fold CV with the original dataset, no scrambled attributes
+    tenP_scrambled_cv(unscrambled_data) # Does 10fold cv with 10% (rounded up) of the data scrambled within its row
 
 
 

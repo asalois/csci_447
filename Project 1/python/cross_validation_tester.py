@@ -53,4 +53,6 @@ a = [
     ]
 ]
 
-TenFCV.cross_validate(a)
+# TenFCV.cross_validate(a)
+a = TenFCV.flatten_list(a)
+TenFCV.tenP_scrambled_cv(a)
