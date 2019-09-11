@@ -50,6 +50,7 @@ def cross_validate(dataset):
     for i in range(10):
         temp = copy.copy(dataset)
         to_test = make_test_set(temp[i])
+        to_learn = []
         array_printer(to_test)
         # del temp[i]
         if i == 0:
