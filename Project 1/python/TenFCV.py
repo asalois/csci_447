@@ -45,31 +45,19 @@ def single_column_scramble(input):
     num_to_scramble = numpy.ceil(total_cols * 0.1) # Takes 10% of the columns, rounded up
 
 
-def cross_validate(dataset):
-    #backup = copy.copy(dataset)
-    for i in range(10):
-        temp = copy.copy(dataset)
-        to_test = make_test_set(temp[i])
-        to_learn = []
-        array_printer(to_test)
-        # del temp[i]
-        if i == 0:
-                to_learn = temp[1:]
-        elif i == 10:
-                to_learn = temp[:9]
-        else:
-                to_learn.append(temp[0:i-1])
-                to_learn.append(temp[i+1:0])
 
-        # to_learn = flatten_list(to_learn)
-        array_printer(to_learn)
-        # learn(temp) # this will call the learner algo
+def cross_validate(dataset):
+	to_compare = []
+	for i in range(10):
+		to_learn = copy.copy(dataset)
+		to_test = make_test_set(to_learn.pop(i))
+		to_learn = flatten_list(to_learn)
+		array_printer_2d(to_test)
+		array_printer_2d(to_learn)
+		# learn(temp) # this will call the learner algo
         # test(to_test, dataset[i]) # This tests our model with previously known classes
 
-def cv2(dataset):
-        temp = copy.copy(dataset)
 
-'''
 def flatten_list(three_dim_list):
     flattened = []
     for two_dim_list in three_dim_list:
@@ -77,16 +65,20 @@ def flatten_list(three_dim_list):
             flattened.append(list)
             print(list)
     return flattened
-'''
 
 
 
-def array_printer(ls):
+
+def array_printer_3d(ls):
     for i in ls:
         for j in i:
             print(j)
             #for k in j:
                 # print(k)
+
+def array_printer_2d(ls):
+	for i in ls:
+		print(i)
 
 
 def work_it():
@@ -94,7 +86,6 @@ def work_it():
     #new_data = numpy.asarray(og_data)      This converts the list to an array so it can be properly
 #    new_data = randomizer(new_data)
     new_data = splitter(og_data)
-    new_data
     # print(new_data)
     cross_validate(new_data) # does 10fold CV with the original dataset, no scrambled attributes
     # array_printer(new_data)
@@ -102,4 +93,4 @@ def work_it():
 
 
 
-# work_it()
+work_it()
