@@ -13,16 +13,21 @@ def errorCalc(tp,fp,fn,tn):# True+, False+, False-, True-
 # simple binary confusion Matrix builder
 def makeConfMatrix(classO, classM):
     conf = [0,0,0,0] # [True+ False+ False- True-]
-    if classO == classM:
-        if classO == 1:
-            conf[0] += 1
-        else:
-            conf[3] += 1
+    if len(classO) == len(classM):
+        for i in range(len(classO)):
+            if classO[i] == classM[i]:
+                if classO[i] == 1:
+                    conf[0] += 1
+                else:
+                    conf[3] += 1
+            else:
+                if classO[i] == 1:
+                    conf[2] += 1
+                else:
+                    conf[1] += 1
     else:
-        if classO == 1:
-            conf[2] += 1
-        else:
-            conf[1] += 1
+        print("Not going to work")
+
     return conf
 
 
@@ -36,7 +41,7 @@ def difference(classO, classM):
         print("somethings wrong")
 
 
-x = [0, 0, 0, 0, 0, 0]
-y = [0, 1, 0, 1, 0, 1]
-print(makeConfMatrix(1, 1))
+x = [0,0,0,0,1,1,1,1]
+y = [0,1,0,1,0,1,0,1]
+print(makeConfMatrix(x, y))
 
