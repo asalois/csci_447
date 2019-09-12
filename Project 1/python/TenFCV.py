@@ -50,20 +50,14 @@ def make_test_set(input):
     return input
 
 
-''' Takes 10% of the columns in the dataset, and scrambles them '''
-def single_column_scramble(input):
-    total_cols = len(input[0]) - 1 # Total columns, minus the class attribute
-    num_to_scramble = numpy.ceil(total_cols * 0.1) # Takes 10% of the columns, rounded up
-
-
-
 def cross_validate(dataset, scramBool):
     backup_data = copy.copy(dataset)
+    test_results = []
     if scramBool:
         dataset = ten_percent_scrambler(dataset)
     dataset = splitter(dataset)
-    for i in range(10):
-        to_learn = copy.copy(dataset)
+    for i in range(10): # iterates through passing each of the 10 subsets of our now scrambled and split dataset
+        to_learn = copy.copy(dataset) # Grabs a fresh copy of the dataset each time, since the to_learn list pops deletes a tenth of the data in each loop
         to_test = make_test_set(to_learn.pop(i))
         to_learn = flatten_list(to_learn)
         print('tester')
@@ -72,13 +66,19 @@ def cross_validate(dataset, scramBool):
         array_printer_2d(to_learn)
         print(len(to_learn))
         # learn(temp) # this will call the learner algo
-        # test(to_test, dataset[i]) # This tests our model with previously known classes
+        # test_results.append(test(to_test, dataset[i])) # This tests our model with the current tenth of the dataset
 
-
+'''
+Efficiency is overrated, so I implemented this function to do what could instead be done with an 'if' statement
+'''
 def tenP_scrambled_cv(dataset):
     dataset = ten_percent_scrambler(dataset)
     cross_validate(dataset, True)
 
+'''
+This removes a dimension from an input list. This is used before sending data into Naive Bayes so the algorithm 
+can read from a continuous 2d list, as opposed to the list of 2d lists created by the splitter() function
+'''
 def flatten_list(three_dim_list):
     flattened = []
     for two_dim_list in three_dim_list:
