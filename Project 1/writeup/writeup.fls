@@ -70,20 +70,12 @@ INPUT /usr/local/texlive/2018/texmf-dist/tex/latex/hyperref/nameref.sty
 INPUT /usr/local/texlive/2018/texmf-dist/tex/latex/hyperref/nameref.sty
 INPUT /usr/local/texlive/2018/texmf-dist/tex/generic/oberdiek/gettitlestring.sty
 INPUT /usr/local/texlive/2018/texmf-dist/tex/generic/oberdiek/gettitlestring.sty
-INPUT /Users/ethanfison/Documents/Machine Learning/Project 1/writeup/writeup.out
-INPUT /Users/ethanfison/Documents/Machine Learning/Project 1/writeup/writeup.out
-INPUT /Users/ethanfison/Documents/Machine Learning/Project 1/writeup/writeup.out
-INPUT /Users/ethanfison/Documents/Machine Learning/Project 1/writeup/writeup.out
-OUTPUT /Users/ethanfison/Documents/Machine Learning/Project 1/writeup/writeup.pdf
-INPUT /Users/ethanfison/Documents/Machine Learning/Project 1/writeup/writeup.out
-INPUT /Users/ethanfison/Documents/Machine Learning/Project 1/writeup/writeup.out
 OUTPUT /Users/ethanfison/Documents/Machine Learning/Project 1/writeup/writeup.out
+OUTPUT /Users/ethanfison/Documents/Machine Learning/Project 1/writeup/writeup.pdf
 INPUT /usr/local/texlive/2018/texmf-dist/fonts/tfm/public/cm/cmr12.tfm
 INPUT /usr/local/texlive/2018/texmf-dist/fonts/tfm/public/cm/cmbx12.tfm
 INPUT /usr/local/texlive/2018/texmf-dist/fonts/tfm/public/cm/cmbx10.tfm
 INPUT /usr/local/texlive/2018/texmf-dist/fonts/tfm/public/cm/cmbx10.tfm
-INPUT /usr/local/texlive/2018/texmf-dist/fonts/tfm/public/cm/cmcsc10.tfm
-INPUT /usr/local/texlive/2018/texmf-dist/fonts/tfm/public/cm/cmti10.tfm
 INPUT /usr/local/texlive/2018/texmf-dist/fonts/tfm/public/cm/cmr12.tfm
 INPUT /usr/local/texlive/2018/texmf-dist/fonts/tfm/public/cm/cmbx12.tfm
 INPUT /usr/local/texlive/2018/texmf-dist/fonts/tfm/public/cm/cmti10.tfm
@@ -115,8 +107,7 @@ INPUT /usr/local/texlive/2018/texmf-dist/fonts/tfm/public/cm/cmsy10.tfm
 INPUT /usr/local/texlive/2018/texmf-dist/fonts/tfm/public/cm/cmex10.tfm
 INPUT /usr/local/texlive/2018/texmf-dist/fonts/tfm/public/amsfonts/symbols/msam10.tfm
 INPUT /usr/local/texlive/2018/texmf-dist/fonts/tfm/public/amsfonts/symbols/msbm10.tfm
-INPUT /Users/ethanfison/Documents/Machine Learning/Project 1/writeup/writeup.bbl
-INPUT /Users/ethanfison/Documents/Machine Learning/Project 1/writeup/writeup.bbl
+INPUT /usr/local/texlive/2018/texmf-dist/fonts/tfm/public/cm/cmcsc10.tfm
 INPUT /Users/ethanfison/Documents/Machine Learning/Project 1/writeup/writeup.aux
 INPUT /Users/ethanfison/Documents/Machine Learning/Project 1/writeup/writeup.out
 INPUT /Users/ethanfison/Documents/Machine Learning/Project 1/writeup/writeup.out

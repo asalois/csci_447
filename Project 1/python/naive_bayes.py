@@ -78,6 +78,7 @@ def calculateF(): # calculates the relative percentages for each attribute
 
 def classify(dataList): # classifies data which is passed in without classes, likely class appended, data returned
     print("No classifying yet")
+    global freqTable
 
 
 a = [[4, 0, 3], [1, 2, 4], [6,1,3], [0,3,4]]
