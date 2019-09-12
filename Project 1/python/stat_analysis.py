@@ -1,33 +1,32 @@
 """ Functions for performing statistical analysis of our data and results """
 # make a function that checks from an orginal data set
-
+import numpy
+import data_setup
+import copy
+import random
 # clalculates the error base upon a confusion matrix
-def errorCalc(tp,fp,fn,tn):# True+, False+, False-, True-
-    err =  (fp + fn) / (tp + fp + fn + tp)
-    precision = tp / (tp + fp)
-    recall = tp / ( tp + fn)
-    error = [err, precision, recall]
-    return error
+def clacError():
+    top = a
+
+
+# make totals around the Confusion Matrix
+def totals(confMatrix):
+    classNum = len(confMatrix)
+    totals = numpy.full((classNum + 1, classNum + 1),0)
+    for i in range(classNum):
+        for j in range(classNum):
+            totals[i][j] = confMatrix[i][j]
+            totals[i][-1] += confMatrix[i][j]
+            totals[-1][i] += confMatrix[j][i]
+        totals[-1][-1] += totals[-1][i] 
+    return totals
 
 
 # simple binary confusion Matrix builder
-def makeConfMatrix(classO, classM):
-    conf = [0,0,0,0] # [True+ False+ False- True-]
-    if len(classO) == len(classM):
-        for i in range(len(classO)):
-            if classO[i] == classM[i]:
-                if classO[i] == 1:
-                    conf[0] += 1
-                else:
-                    conf[3] += 1
-            else:
-                if classO[i] == 1:
-                    conf[2] += 1
-                else:
-                    conf[1] += 1
-    else:
-        print("Not going to work")
-
+def makeConfMatrix(actual, predicted, numClasses):
+    conf = numpy.full((numClasses, numClasses),0)
+    for i in range(len(actual)):
+            conf[actual[i][-1]][predicted[i][-1]] += 1
     return conf
 
 
@@ -40,9 +39,21 @@ def difference(classO, classM):
     else:
         print("somethings wrong")
 
-
+irisData0 = data_setup.readInCom('3', '?')
+irisData1 = data_setup.readInCom('3', '?')
+irisData2 = copy.copy(irisData1)
+irisData2.reverse()
+irisData3 = copy.copy(irisData2)
+random.shuffle(irisData3)
 x = [0,0,0,0,1,1,1,1]
 y = [0,1,0,1,0,1,0,1]
-matrix = makeConfMatrix(x, y)
-print('The Confusion  Matrix is ',matrix)
-print('The error is ', errorCalc(matrix[0], matrix[1], matrix[2], matrix[3]))
+matrix0 = makeConfMatrix(irisData0, irisData1, 3)
+matrix1 = makeConfMatrix(irisData0, irisData2, 3)
+matrix2 = makeConfMatrix(irisData0, irisData3, 3)
+totals0 = totals(matrix0)
+totals1 = totals(matrix1)
+totals2 = totals(matrix2)
+print('The Confusion  Matrix is ')
+print(totals0)
+print(totals1)
+print(totals2)
