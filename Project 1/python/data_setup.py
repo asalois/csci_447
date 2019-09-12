@@ -4,13 +4,8 @@ import os                                               # used to set filepaths 
 dirname = os.path.dirname(__file__)                     # finds current folder
 filepath = os.path.join(dirname, '../Datasets/')        # navigate to datasets folder
 
-# TODO move last column of votes to the first column
-# TODO remove id numbers from breast cancer data
-#  
 def readInCom(fileNum, remove):
     arr = []                                            # list to hold all out data
-    remove =""
-
     files = ["breast-cancer-wisconsin.data","glass.data","iris.data","soybean-small.data","house-votes-84.data"] # list of data files so they can be chosen dynamically
 
     fileToOpen = filepath + files[int(fileNum)-1]         # creates file path to numbered data file numbered naturally 1-5 
@@ -24,9 +19,8 @@ def readInCom(fileNum, remove):
             for z in line.split(","):                   # split the data entries
                 z = z.rstrip()                          # remove \n from the end of lines 
                 if z == remove:
-                    del arr[-1]
-                    numRemoved += 1
-                    break
+                    print("bad news bears")
+                    arr[-1].append("@")
                 elif z.isdigit():                         # if data entry is a number convert it to an integer
                     arr[-1].append(int(z.rstrip()))     
                 else:
@@ -39,7 +33,7 @@ def readInCom(fileNum, remove):
     for z in range(0,len(arr[0])):                  # go through the file to edit data
         strings = []                                # list to hold all unique strings in a column
         for y in range(0,len(arr)):
-            if isinstance(arr[y][z],str):           
+            if isinstance(arr[y][z],str) and arr[y][z]!="@":           
                 repeat = False
                 for x in range(0,len(strings)):
                     if arr[y][z] == strings[x]:
@@ -59,8 +53,6 @@ def readInCom(fileNum, remove):
     print(fileNum)
     if fileNum == '1':
         for z in arr:
-            #w = h
-            # arr[z].pop(0)
             del z[0]
     elif fileNum == '5':
         for z in arr:
