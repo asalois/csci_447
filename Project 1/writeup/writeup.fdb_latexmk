@@ -1,14 +1,14 @@
 # Fdb version 3
-["bibtex writeup"] 0 "writeup.aux" "writeup.bbl" "writeup" 0
+["bibtex writeup"] 1568314367 "writeup.aux" "writeup.bbl" "writeup" 1568314454
   "/usr/local/texlive/2018/texmf-dist/bibtex/bib/gloss/sample.bib" 1480098433 2721 b88105703bd616b4f9867992219afb8a ""
   "/usr/local/texlive/2018/texmf-dist/bibtex/bst/natbib/plainnat.bst" 1480098435 26816 ffe5423d2019860bad9f54bc402fac15 ""
-  "writeup.aux" 0 -1 0 ""
+  "writeup.aux" 1568314368 861 b763c803c4e090767a5a97211407a883 ""
   (generated)
-  "writeup.bbl"
   "writeup.blg"
-["pdflatex"] 1568314238 "/Users/ethanfison/Documents/Machine Learning/Project 1/writeup/writeup.tex" "/Users/ethanfison/Documents/Machine Learning/Project 1/writeup/writeup.pdf" "writeup" 1568314238
-  "/Users/ethanfison/Documents/Machine Learning/Project 1/writeup/writeup.aux" 1568314238 8 a94a2480d3289e625eea47cd1b285758 ""
-  "/Users/ethanfison/Documents/Machine Learning/Project 1/writeup/writeup.tex" 1568314236 4343 989f680a71d0eddf18358ac1dc1b05e9 ""
+  "writeup.bbl"
+["pdflatex"] 1568314367 "/Users/ethanfison/Documents/Machine Learning/Project 1/writeup/writeup.tex" "/Users/ethanfison/Documents/Machine Learning/Project 1/writeup/writeup.pdf" "writeup" 1568314454
+  "/Users/ethanfison/Documents/Machine Learning/Project 1/writeup/writeup.aux" 1568314368 861 b763c803c4e090767a5a97211407a883 ""
+  "/Users/ethanfison/Documents/Machine Learning/Project 1/writeup/writeup.tex" 1568314454 4416 c01df295264f6fbe279433d865d6308a ""
   "/usr/local/texlive/2018/texmf-dist/fonts/map/fontname/texfonts.map" 1511824771 3332 103109f5612ad95229751940c61aada0 ""
   "/usr/local/texlive/2018/texmf-dist/fonts/tfm/public/amsfonts/cmextra/cmex7.tfm" 1480098698 1004 54797486969f23fa377b128694d548df ""
   "/usr/local/texlive/2018/texmf-dist/fonts/tfm/public/amsfonts/cmextra/cmex8.tfm" 1480098698 988 bdf658c3bfc2d96d3c8b02cfc1c94c20 ""
@@ -85,14 +85,14 @@
   "/usr/local/texlive/2018/texmf-var/web2c/pdftex/pdflatex.fmt" 1523934516 4220280 10cab8fbd7c5a7c52aba9917e190d018 ""
   "/usr/local/texlive/2018/texmf.cnf" 1523934483 577 0b39adfd7c93507ff20c9c14c2f1a33f ""
   "jmlr2e.sty" 1568218343 14082 a1e3bcbdd00aafb7fae9367e056973d1 ""
-  "writeup.aux" 0 -1 0 ""
-  "writeup.bbl" 0 -1 0 "bibtex writeup"
-  "writeup.out" 0 -1 0 ""
-  "writeup.tex" 1568314236 4343 989f680a71d0eddf18358ac1dc1b05e9 ""
+  "writeup.aux" 1568314368 861 b763c803c4e090767a5a97211407a883 ""
+  "writeup.bbl" 1568314367 275 de5ffaf5b665b622658d80bed97ba2a5 "bibtex writeup"
+  "writeup.out" 1568314368 47 a02d95553e30b97ff125b1aa17cf9044 ""
+  "writeup.tex" 1568314454 4416 c01df295264f6fbe279433d865d6308a ""
   (generated)
-  "writeup.log"
   "writeup.pdf"
-  "writeup.out"
   "/Users/ethanfison/Documents/Machine Learning/Project 1/writeup/writeup.log"
-  "/Users/ethanfison/Documents/Machine Learning/Project 1/writeup/writeup.pdf"
+  "writeup.out"
+  "writeup.log"
   "writeup.aux"
+  "/Users/ethanfison/Documents/Machine Learning/Project 1/writeup/writeup.pdf"

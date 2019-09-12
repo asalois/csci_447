@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.19 (TeX Live 2018) (preloaded format=pdflatex 2018.4.16)  12 SEP 2019 12:50
+This is pdfTeX, Version 3.14159265-2.6-1.40.19 (TeX Live 2018) (preloaded format=pdflatex 2018.4.16)  12 SEP 2019 12:52
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -225,89 +225,70 @@ Package: gettitlestring 2016/05/16 v1.5 Cleanup title references (HO)
 LaTeX Info: Redefining \ref on input line 27.
 LaTeX Info: Redefining \pageref on input line 27.
 LaTeX Info: Redefining \nameref on input line 27.
+ (/Users/ethanfison/Documents/Machine Learning/Project 1/writeup/writeup.out) (/Users/ethanfison/Documents/Machine Learning/Project 1/writeup/writeup.out)
 \@outlinefile=\write3
 \openout3 = `writeup.out'.
 
 
-Runaway argument?
-{\name Ethan Fison \email ethanfison@gmail.com \\ \name Zan Monteith \ETC.
-/Users/ethanfison/Documents/Machine Learning/Project 1/writeup/writeup.tex:36: Paragraph ended before \author was complete.
-<to be read again> 
-                   \par 
-l.36 
-     
-I suspect you've forgotten a `}', causing me to apply this
-control sequence to too much text. How can we recover?
-My plan is to forget the whole thing and hope for the best.
+
+Package natbib Warning: Citation `pearl:88' on page 1 undefined on input line 63.
 
 
-LaTeX Warning: No \author given.
-
-
-Package natbib Warning: Citation `pearl:88' on page 1 undefined on input line 60.
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 57--67
+Underfull \hbox (badness 10000) in paragraph at lines 60--70
 
  []
 
-LaTeX Font Info:    Try loading font information for OMS+cmr on input line 80.
+LaTeX Font Info:    Try loading font information for OMS+cmr on input line 83.
 (/usr/local/texlive/2018/texmf-dist/tex/latex/base/omscmr.fd
 File: omscmr.fd 2014/09/29 v2.5h Standard LaTeX font definitions
 )
 LaTeX Font Info:    Font shape `OMS/cmr/m/n' in size <8> not available
-(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 80.
-LaTeX Font Info:    Try loading font information for U+msa on input line 80.
+(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 83.
+LaTeX Font Info:    Try loading font information for U+msa on input line 83.
  (/usr/local/texlive/2018/texmf-dist/tex/latex/amsfonts/umsa.fd
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
-LaTeX Font Info:    Try loading font information for U+msb on input line 80.
+LaTeX Font Info:    Try loading font information for U+msb on input line 83.
  (/usr/local/texlive/2018/texmf-dist/tex/latex/amsfonts/umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 ) [1{/usr/local/texlive/2018/texmf-var/fonts/map/pdftex/updmap/pdftex.map}
 
 ]
-Underfull \hbox (badness 10000) in paragraph at lines 112--116
+Underfull \hbox (badness 10000) in paragraph at lines 115--119
 
  []
 
-No file writeup.bbl.
+(/Users/ethanfison/Documents/Machine Learning/Project 1/writeup/writeup.bbl
+
+Package natbib Warning: Empty `thebibliography' environment on input line 8.
+
+)
 
 Package natbib Warning: There were undefined citations.
 
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 123.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 126.
 [2]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 123.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 126.
  (/Users/ethanfison/Documents/Machine Learning/Project 1/writeup/writeup.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 123.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 123.
-
-
-Package rerunfilecheck Warning: File `writeup.out' has changed.
-(rerunfilecheck)                Rerun to get outlines right
-(rerunfilecheck)                or use package `bookmark'.
-
-Package rerunfilecheck Info: Checksums for `writeup.out':
-(rerunfilecheck)             Before: <no file>
-(rerunfilecheck)             After:  A02D95553E30B97FF125B1AA17CF9044;47.
-
-LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
-
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 123.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 126.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 126.
+Package rerunfilecheck Info: File `writeup.out' has not changed.
+(rerunfilecheck)             Checksum: A02D95553E30B97FF125B1AA17CF9044;47.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 126.
  ) 
 Here is how much of TeX's memory you used:
- 5731 strings out of 492649
- 83636 string characters out of 6129622
- 171455 words of memory out of 5000000
- 9568 multiletter control sequences out of 15000+600000
- 11574 words of font info for 44 fonts, out of 8000000 for 9000
+ 5743 strings out of 492649
+ 84139 string characters out of 6129622
+ 172593 words of memory out of 5000000
+ 9573 multiletter control sequences out of 15000+600000
+ 12221 words of font info for 46 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  39i,10n,29p,289b,417s stack positions out of 5000i,500n,10000p,200000b,80000s
 </usr/local/texlive/2018/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb></usr/local/texlive/2018/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></usr/local/texlive/2018/texmf-dist/fonts/type1/public/amsfonts/cm/cmcsc10.pfb></usr/local/texlive/2018/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/local/texlive/2018/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/local/texlive/2018/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi6.pfb></usr/local/texlive/2018/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb></usr/local/texlive/2018/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/local/texlive/2018/texmf-dist/fonts/type1/public/amsfonts/cm/cmr6.pfb></usr/local/texlive/2018/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/local/texlive/2018/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/local/texlive/2018/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb></usr/local/texlive/2018/texmf-dist/fonts/type1/public/amsfonts/cm/cmti10.pfb></usr/local/texlive/2018/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt8.pfb>
-Output written on "/Users/ethanfison/Documents/Machine Learning/Project 1/writeup/writeup.pdf" (2 pages, 150422 bytes).
+Output written on "/Users/ethanfison/Documents/Machine Learning/Project 1/writeup/writeup.pdf" (2 pages, 158081 bytes).
 PDF statistics:
- 77 PDF objects out of 1000 (max. 8388607)
- 58 compressed objects within 1 object stream
- 5 named destinations out of 1000 (max. 500000)
- 1 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 82 PDF objects out of 1000 (max. 8388607)
+ 63 compressed objects within 1 object stream
+ 6 named destinations out of 1000 (max. 500000)
+ 9 words of extra memory for PDF output out of 10000 (max. 10000000)
 
