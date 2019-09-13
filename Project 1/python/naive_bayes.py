@@ -34,6 +34,9 @@ def makeTable(dataList):
         if cIndex == -1: # either no existing matching class or table is empty (make a new row)
             freqTable.append([]) # create a new row to add the class data
             for elem in range(len(dataList[row])-1): # for all the attributes in the row of data
+                if dataList[row][elem] == "@" : # if the character represents a missing value
+                    freqTable[len(freqTable)-1].append([]) # add an empty spot for the attribute
+                    continue # skip to the next attribute
                 freqTable[len(freqTable)-1].append([[dataList[row][elem],1]]) # add the attribute and set the number of instances to 1
             freqTable[len(freqTable)-1].append(dataList[row][len(dataList[row])-1]) # add the class to the list 
             freqTable[len(freqTable)-1].append([1]) # add another list to hold the total number of class instances and later, Q
@@ -42,6 +45,8 @@ def makeTable(dataList):
 
         # reaching this point means a matching class was found in the frequency table
         for attr in range(len(dataList[row])-1): # go through each attribute in this line of the data
+            if dataList[row][attr] == "@" : # if the character represents a missing value
+                continue # skip to the next attribute
             attribute = dataList[row][attr] # store the attribute
             aIndex = -1 # used to determine if an a matching value exists
             for a in range(len(freqTable[cIndex][attr])): # go through existing values for this attribute
@@ -86,7 +91,7 @@ b = [[5,2],[2,3]]
 c = [[[[2.5,1]],"c1"]]
 d = 90
 
-e=[[1,8,3,50],[1,9,1,50],[3,6,9,49],[2,6,9,49]]
+e=[["@",6,9,49],[1,8,3,50],[1,9,1,50],[3,"@",9,49]]
 train(e)
 print(freqTable)
 #print(numExamples)
