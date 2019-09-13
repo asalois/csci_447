@@ -77,7 +77,7 @@ def calculateF(): # calculates the relative percentages for each attribute
             for aVal in range(len(freqTable[row][attr])) : # for each row (attribute value)
                 numerator = 1 + freqTable[row][attr][aVal][1] # the number of examples that match the attribute value + 1
                 denominator = numAttr + freqTable[row][len(freqTable[row])-1][0] # number of attributes + number of examples in the class
-                freqTable[row][attr][aVal].append((numerator/denominator)) # append the relative probability. 
+                freqTable[row][attr][aVal].append((numerator/denominator)) # append the relative probability.
                 
 
 

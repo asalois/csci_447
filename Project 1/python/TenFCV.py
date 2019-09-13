@@ -103,7 +103,7 @@ def discretize_data(dataset,num_classes):
                 # row[i] = j + 1
             average = temp/len(new_array[j])
             for row in new_array[j]:
-                row[i] = average
+                row[i] = average+1 # adding one here ensures no values of 0, which will cause classification problems down the line
         new_array = flatten_list(new_array) # returns array to 2d form before starting next iteration
     return new_array
 
@@ -161,7 +161,7 @@ This serves as the driver for our program
 '''
 def work_it():
     global num_classes
-    set_to_use = '3'
+    set_to_use = '2'
     data = get_list(set_to_use, '?')
     if set_to_use == '1':
         num_classes = 2
@@ -176,6 +176,7 @@ def work_it():
     if set_to_use == '2' or set_to_use == '3' or set_to_use == '4':
         data = discretize_data(data, num_classes)
     unscrambled_data = copy.copy(data)
+    # array_printer_2d(unscrambled_data)
     # new_data = numpy.asarray(og_data)      This converts the list to an array so it can be properly
     # new_data = randomizer(new_data)
     # new_data = splitter(og_data)
