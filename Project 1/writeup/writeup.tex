@@ -119,6 +119,15 @@ The next pass will run a dataset with 10\% of its entries changed.
 
 \subsection{Naïve Bayes Implementation}
 
+The Naïve Bayes algorithm was implemented with two major components: train and classify. 
+During the training part of the algorithm a 2 dimensional list of training data is passed in.
+From this data a frequency table is constructed that holds the frequency of each attribute value for each attribute for each class, and the frequency of each class. 
+This table used to calculate the probability of each attribute value for each class, and the probability of each individual class.\\
+To classify a 2 dimensional list of data is passed in, but without the last column, which would normally hold the class.
+The probility of each possible class is calculated for each example in the data to be classified, 
+and the most likely class is appended to each example (row). 
+The classified data is then returned for statistical analysis of its accuracy.
+
 \subsection{Statistical Analysis}
 
 
