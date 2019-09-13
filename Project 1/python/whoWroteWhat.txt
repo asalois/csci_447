@@ -1,0 +1,4 @@
+Data Setup was implemented by Zan
+Ten-fold cross-validation (and a number of other smaller functions within that file) was implemented by Ethan
+Naive Bayes was primarily implemented by Sage, with some tweaks by Ethan
+Stat analysis was implemented by Alex
