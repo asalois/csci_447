@@ -59,6 +59,7 @@ def cross_validate(dataset, scramBool):
     backup_data = copy.copy(dataset)
     test_results = []
     stats = []
+    full_set_stats = []
     if scramBool:
         dataset = ten_percent_scrambler(dataset)
     backup_data = splitter(backup_data)
@@ -74,7 +75,7 @@ def cross_validate(dataset, scramBool):
         #array_printer_3d(nb.freqTable)
         # array_printer_2d(to_learn)
         to_test = nb.classify(to_test)
-        #test_results.append(to_test)
+        test_results.append(to_test)
         # print("classified data")
         # array_printer_2d(to_test)
         stats.append(analyze(backup_data[i], to_test, num_classes))
@@ -82,7 +83,9 @@ def cross_validate(dataset, scramBool):
         # learn(temp) # this will call the learner algo
         # test_results.append(test(to_test, dataset[i])) # This tests our model with the current tenth of the dataset
     array_printer_2d(stats)
-    # array_printer_3d(test_results)
+    full_set_stats = analyze(flatten_list(backup_data), flatten_list(test_results), num_classes)
+    array_printer_2d(full_set_stats,)
+    #array_printer_3d(test_results)
 
 '''
 This function discretizes the data for sets sent in with do_this having a value of 'True'. Discretization is done by way 
@@ -162,30 +165,28 @@ This serves as the driver for our program
 '''
 def work_it():
     global num_classes
-    set_to_use = '2'
-    data = get_list(set_to_use, '?') # We don't have any way of programatically finding the number of classes 
-    if set_to_use == '1':
-        num_classes = 6
-    elif set_to_use == '2':
-        num_classes = 7
-    elif set_to_use == '3':
-        num_classes = 3
-    elif set_to_use == '4':
-        num_classes = 4
-    elif set_to_use == '5':
-        num_classes = 2
-    if set_to_use == '2' or set_to_use == '3' or set_to_use == '4':
-        data = discretize_data(data, num_classes)
-    unscrambled_data = copy.copy(data)
-    # array_printer_2d(unscrambled_data)
-    # new_data = numpy.asarray(og_data)      This converts the list to an array so it can be properly
-    # new_data = randomizer(new_data)
-    # new_data = splitter(og_data)
-    # print(new_data)
-    '''Uncomment this line to perform cross-validation on the base data'''
-    #cross_validate(unscrambled_data, False) # does 10fold CV with the original dataset, no scrambled attributes
-    '''Uncomment the next line to perform cross-validation on the dataset with a scrambled segment of data'''
-    tenP_scrambled_cv(unscrambled_data) # Does 10fold cv with 10% (rounded up) of the data scrambled within its row
+    sets = ['1','2','3','4','5'] # List of sets for easy iteration when running tests.
+    for set_to_use in sets:
+        data = get_list(set_to_use, '?') # We don't have any way of programatically finding the number of classes 
+        if set_to_use == '1':
+            num_classes = 6
+        elif set_to_use == '2':
+            num_classes = 7
+        elif set_to_use == '3':
+            num_classes = 3
+        elif set_to_use == '4':
+            num_classes = 4
+        elif set_to_use == '5':
+            num_classes = 2
+        if set_to_use == '2' or set_to_use == '3' or set_to_use == '4':
+            data = discretize_data(data, num_classes)
+        unscrambled_data = copy.copy(data)
+        '''Uncomment this line to perform cross-validation on the base data'''
+        print("Tests with unscrambled data")
+        cross_validate(unscrambled_data, False) # does 10fold CV with the original dataset, no scrambled attributes
+        '''Uncomment the next line to perform cross-validation on the dataset with a scrambled segment of data'''
+        print("Tests with scrambled data")
+        tenP_scrambled_cv(unscrambled_data) # Does 10fold cv with 10% (rounded up) of the data scrambled within its row
 
 
 

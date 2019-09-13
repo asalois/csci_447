@@ -88,7 +88,7 @@ When scrambling data, we expect there to be a measurable increase in error for e
 
 This section will discuss the design choices made in the development of each major 
 python file in the project, in addition to a description of the functionality of 
-the file
+the associated file(s).
 
 \subsection{File Input}
 
@@ -106,7 +106,8 @@ split the datasetinto ten (mostly) equally-sized arrays, then sequentially feed 
 into the learner function within the algorithm, followed by feeding the remaining array, 
 now with class attributes removed, into the classifier function. The results given by 
 the classifer are then fed into our statistical analysis functions along with the original 
-segment of the reclassified data for comparison.
+segment of the reclassified data for comparison.\\
+The next pass will run a dataset with 10\% of its entries changed.
 
 \subsection{Naïve Bayes Implementation}
 
