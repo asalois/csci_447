@@ -8,6 +8,9 @@
 % is archived at http://www.jmlr.org/format/natbib.pdf
 
 \usepackage{jmlr2e}
+\usepackage{utf8}{inputenc}
+\usepackage{natbib}
+\bibliographystyle{unsrtnat}
 
 % Definitions of handy macros can go here
 
@@ -73,7 +76,9 @@ generated in that run.\\
 
 For each set, we assume the null hypothesis. That is, we assume that there will be no 
 significant change between the original values and reclassified values for any given test
-set sent into our model.
+set sent into our model.\\
+
+When scrambling data, we expect there to be a measurable increase in error for each classification.
 
 \emph{this needs better wording. pls help}\\
 \section{Implementation Decisions}
@@ -160,6 +165,6 @@ by $H$. We aim to show that $\fracpartial{I_{uv}}{P_{v0}} < 0$....\\
 
 
 \vskip 0.2in
-\bibliography{sample}
+\bibliography{}
 
 \end{document}

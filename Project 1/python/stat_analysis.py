@@ -4,8 +4,8 @@ import numpy
 import data_setup
 import copy
 import random
-# clalculates the error base upon a confusion matrix
-def clacError(filled):
+# calculates the error base upon a confusion matrix
+def calcError(filled):
     error =  numpy.full((3,len(filled)),0.0)
     for i in range(len(filled) -1):
         fp = filled[i][-1] -  filled[i][i]

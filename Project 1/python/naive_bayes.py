@@ -79,7 +79,7 @@ def calculateF(): # calculates the relative percentages for each attribute
             for aVal in range(len(freqTable[row][attr])) : # for each row (attribute value)
                 numerator = 1 + freqTable[row][attr][aVal][1] # the number of examples that match the attribute value + 1
                 denominator = numAttr + freqTable[row][len(freqTable[row])-1][0] # number of attributes + number of examples in the class
-                freqTable[row][attr][aVal].append(numerator/denominator) # append the relative probability
+                freqTable[row][attr][aVal].append((numerator/denominator)) # append the relative probability.
                 
 
 
@@ -104,7 +104,7 @@ def classify(dataList): # classifies data which is passed in without classes, li
                 if aValFound == False :
                     chanceC = 0 
                     break # move on to the next class and append 0
-            classChances.append(chanceC) # add the chance of this class before moving on to testing the next one
+            classChances.append(chanceC) # add the chance of this class before moving on to testing the next one.
         # find and the most likely class and append it to the end of the row of data
         ma = max(classChances)
         if ma == 0 : # then equal (0%) chance of any given class
