@@ -1,19 +1,21 @@
 """ Functions for performing statistical analysis of our data and results """
 # make a function that checks from an orginal data set
+# Programmed by Alex, cleared up by Ethan
 import numpy
 import data_setup
 import copy
 import random
 # calculates the error base upon a confusion matrix
-def calcError(filled, num_classes):
+# Note that when 'nan' is returned, this is due to a lack of either false positives or false negatives for that particular class
+def calcError(filled):
     error =  numpy.full((3,len(filled)),0.0)
     for i in range(len(filled) -1):
         fp = filled[i][-1] -  filled[i][i]
         fn = filled[-1][i] -  filled[i][i]
         tp = filled[i][i]
-        error[0][i] =  (fp + fn)/(fp + fn + 2*tp) # error
-        error[1][i] = tp / (tp + fp) # precision
-        error[2][i] = tp / (tp + fn) # recall
+        error[0][i] =  (fp + fn)/(fp + fn + 2*tp) # error. This is the first row in printed for each call
+        error[1][i] = tp / (tp + fp) # precision. This is the second row printed for each call
+        error[2][i] = tp / (tp + fn) # recall. This is the final row printed for each call
     return error 
 
 

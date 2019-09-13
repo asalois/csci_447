@@ -71,18 +71,18 @@ def cross_validate(dataset, scramBool):
         # array_printer_2d(to_test)
         # print('learner')
         nb.train(to_learn)
-        array_printer_3d(nb.freqTable)
+        #array_printer_3d(nb.freqTable)
         # array_printer_2d(to_learn)
         to_test = nb.classify(to_test)
         #test_results.append(to_test)
-        print("classified data")
-        array_printer_2d(to_test)
+        # print("classified data")
+        # array_printer_2d(to_test)
         stats.append(analyze(backup_data[i], to_test, num_classes))
         # print(len(to_learn))
         # learn(temp) # this will call the learner algo
         # test_results.append(test(to_test, dataset[i])) # This tests our model with the current tenth of the dataset
     array_printer_2d(stats)
-    array_printer_3d(test_results)
+    # array_printer_3d(test_results)
 
 '''
 This function discretizes the data for sets sent in with do_this having a value of 'True'. Discretization is done by way 
@@ -113,7 +113,8 @@ def discretize_data(dataset,num_classes):
 Efficiency is overrated, so I implemented this function to do what could instead be done with an 'if' statement
 '''
 def tenP_scrambled_cv(dataset):
-    dataset = ten_percent_scrambler(dataset)
+    random.shuffle(dataset) # Scrambles order of dataset so the modified 10% will be in a random order
+    #dataset = ten_percent_scrambler(dataset)
     cross_validate(dataset, True)
 
 '''
@@ -134,7 +135,7 @@ def analyze(dat_old, dat_learned, num_classes):
     # print(confusion)
     conf_with_totals = sa.totals(confusion)
     print(conf_with_totals)
-    stats = sa.calcError(conf_with_totals, num_classes)
+    stats = sa.calcError(conf_with_totals)
     #print(sa.clacError(conf_with_totals))
     return stats
 
@@ -162,9 +163,9 @@ This serves as the driver for our program
 def work_it():
     global num_classes
     set_to_use = '2'
-    data = get_list(set_to_use, '?')
+    data = get_list(set_to_use, '?') # We don't have any way of programatically finding the number of classes 
     if set_to_use == '1':
-        num_classes = 2
+        num_classes = 6
     elif set_to_use == '2':
         num_classes = 7
     elif set_to_use == '3':
@@ -181,8 +182,10 @@ def work_it():
     # new_data = randomizer(new_data)
     # new_data = splitter(og_data)
     # print(new_data)
-    cross_validate(unscrambled_data, False) # does 10fold CV with the original dataset, no scrambled attributes
-    # tenP_scrambled_cv(unscrambled_data) # Does 10fold cv with 10% (rounded up) of the data scrambled within its row
+    '''Uncomment this line to perform cross-validation on the base data'''
+    #cross_validate(unscrambled_data, False) # does 10fold CV with the original dataset, no scrambled attributes
+    '''Uncomment the next line to perform cross-validation on the dataset with a scrambled segment of data'''
+    tenP_scrambled_cv(unscrambled_data) # Does 10fold cv with 10% (rounded up) of the data scrambled within its row
 
 
 
