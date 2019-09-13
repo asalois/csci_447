@@ -63,14 +63,14 @@ Learning Repositoryto test the accuracy of the algorithm\\
 \section{Introduction}
 
 The goal of this experiment is to validate the efficacy of the Naïve Bayes 
-algorithm. given 5 predetermined datasets from the UCI Machine Learning Repository.
+algorithm. given 5 predetermined datasets from the UCI Machine Learning Repository.\citep{Cancer,Glass,Iris,Soybean,Vote}
 To do so, we will employ ten-fold cross-validation on each set, with the order of 
 entries in the data scrambled prior to being split and passed through Naïve Bayes.
 To further examine the capabiities of Naïve Bayes, we will then pass a modified 
 version of the original data, this time with the attributes of 10\% (rounded up) of 
 classes scrambled within their entries. For this experiment, we have kept our 
 statistical analysis simple, building a confusion matrix with the results of each run,
-and using that to calculate our error, \citep{knuthwebsite} precision, and recall values for the model 
+and using that to calculate our error, \citep{Project, Precision} precision, and recall values for the model 
 generated in that run.\\
 
 
@@ -88,7 +88,7 @@ When scrambling data, we expect there to be a measurable increase in error for e
 
 This section will discuss the design choices made in the development of each major 
 python file in the project, in addition to a description of the functionality of 
-the file
+the associated file(s).
 
 \subsection{File Input}
 The file input of our system preprocessed the data in order to optimize it for Naive Bayes. 
@@ -114,7 +114,8 @@ split the datasetinto ten (mostly) equally-sized arrays, then sequentially feed 
 into the learner function within the algorithm, followed by feeding the remaining array, 
 now with class attributes removed, into the classifier function. The results given by 
 the classifer are then fed into our statistical analysis functions along with the original 
-segment of the reclassified data for comparison.
+segment of the reclassified data for comparison.\\
+The next pass will run a dataset with 10\% of its entries changed.
 
 \subsection{Naïve Bayes Implementation}
 
