@@ -52,7 +52,7 @@ attribute of a given class, then classifies an input by finding the class it
 most closely matches. In this experiement, we run ten-fold cross-validation 
 on our models which are built using 5 different datasets acquired from the UCI Machine 
 Learning Repositoryto test the accuracy of the algorithm\\
-(this needs to also briefly describe our results)
+The algorithm turned out to be very accurate, even when data was scrambled.
 
 \end{abstract}
 
@@ -80,7 +80,6 @@ generated in that run.\\
 For each unmodified set, we assume the null hypothesis. That is, we assume that there will be no 
 significant change between the original values and reclassified values for any given test
 set sent into our model.\\
-
 For modified sets we expect there to be a measurable increase in the error between the original data and data with scrambled values.
 
 \section{Implementation Decisions}
@@ -91,25 +90,25 @@ the associated file(s).
 
 \subsection{File Input}
 The file input of our system preprocessed the data in order to optimize it for Naïve Bayes. 
-The incoming data was fed into 2 dimensional lists then checked for the missing value indicator
+The incoming data was fed into two-dimensional lists then checked for the missing value indicator
 listed in the data's corresponding .names file. Then, the data was formatted to the appropriate 
 type i.e. integers and floats. Then, a string detecter will parse through the data to find
-non numerical data. The parser would then make a list of all unique strings. The unique strings 
-were then alphabatized and given integer values to represent them. By alphabatizing the list
-before hand we found that similar vaules in different columns would be assigned the same integer
-value making the data much easier to understand. After processing the full data set the two 
-dimensional list was then passed to our ten-fold cross-validation methods.  
+non numerical data. The parser will then make a list of all unique strings. The unique strings 
+are then alphabatized and given integer values to represent them. By alphabatizing the list
+beforehand we found that similar vaules in different columns would be assigned the same integer
+value making the data much easier to understand. After processing the full data set the two-dimensional
+ list was then passed to our ten-fold cross-validation method.  
 \subsection{Ten-fold Cross-Validation}
 
 The implementation of the ten-fold cross-validation was intended to be straightforward. 
 Due to the nature of this function involving calls to each other python file in our 
 project, it was determined that the TenFCV python file would also serve as our driver. 
 There are several functions performed within this file. In addition to performing 
-ten-fold cross-validation of our It supports functionalityfor scrambling values for 
-10\%(rounded up) of rows within a given dataset, scrambling of thed overall order of 
+ten-fold cross-validation of our data, it supports functionality for scrambling values for 
+10\% (rounded up) of rows within a given dataset, scrambling of the overall order of 
 rows within the dataset.\\
 The first pass of this function for any given dataset will scramble the order of rows, 
-split the datasetinto ten (mostly) equally-sized arrays, then sequentially feed 9 arrays 
+split the data set into ten (mostly) equally-sized arrays, then sequentially feed 9 arrays 
 into the learner function within the algorithm, followed by feeding the remaining array, 
 now with class attributes removed, into the classifier function. The results given by 
 the classifer are then fed into our statistical analysis functions along with the original 
@@ -119,10 +118,10 @@ The next pass will run a dataset with 10\% of its entries changed.
 \subsection{Naïve Bayes Implementation}
 
 The Naïve Bayes algorithm was implemented with two major components: train and classify. 
-During the training part of the algorithm a 2 dimensional list of training data is passed in.
+During the training part of the algorithm a two-dimensional list of training data is passed in.
 From this data a frequency table is constructed that holds the frequency of each attribute value for each attribute for each class, and the frequency of each class. 
 This table used to calculate the probability of each attribute value for each class, and the probability of each individual class.\\
-To classify a 2 dimensional list of data is passed in, but without the last column, which would normally hold the class.
+To classify a two-dimensional list of data is passed in, but without the last column, which would normally hold the class.
 The probility of each possible class is calculated for each example in the data to be classified, 
 and the most likely class is appended to each example (row).
  If all classes have a probability of 0, meaning there were attributes that didn't have a match in any class, then a random class is assigned.
