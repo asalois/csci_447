@@ -3,6 +3,8 @@
 #--- add resources/cited where needed
 #This file was programmed by Sage Acteson
 
+import random
+
 numExamples = 0 # the total number of examples/observations in the training set
 freqTable = [] # a table of all classes and the frequencies of all possible values of their attributes
 
@@ -105,8 +107,9 @@ def classify(dataList): # classifies data which is passed in without classes, li
             classChances.append(chanceC) # add the chance of this class before moving on to testing the next one
         # find and the most likely class and append it to the end of the row of data
         ma = max(classChances)
-        if ma == 0 :
-            dataList[row].append("@")
+        if ma == 0 : # then equal (0%) chance of any given class
+            rc = random.randint(0,len(freqTable)-1) # pick a class and add it
+            dataList[row].append(freqTable[rc][len(freqTable[rc])-2]) 
         else:
             for c in range(len(classChances)):
                 if classChances[c] == ma :
