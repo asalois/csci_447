@@ -16,7 +16,7 @@
 
 % Heading arguments are {volume}{year}{pages}{date submitted}{date published}{paper id}{author-full-names}
 
-\jmlrheading{1}{2019}{1-7}{9/19}{9/19}{meila00a}{names}
+\jmlrheading{1}{2019}{1-7}{9/19}{9/19}{meila00a}{Ethan Fison, Zan Monteith, Alex Salois, Sage Acteson}
 
 % Short headings should be running head and authors last names
 
@@ -45,8 +45,9 @@ This paper describes the Na{\"i}ve Bayes algorithm, used for classification
 of data. This algorithm builds its model by finding the average value for each
 attribute of a given class, then classifies an input by finding the class it 
 most closely matches. In this experiement, we run ten-fold cross-validation 
-of our models built using 5 different datasets acquired from the UCI Machine Learning Repository
-to test the accuracy of the algorithm
+of our models built using 5 different datasets acquired from the UCI Machine 
+Learning Repositoryto test the accuracy of the algorithm\\
+(this needs to also briefly describe our results)
 
 \end{abstract}
 
@@ -56,32 +57,48 @@ to test the accuracy of the algorithm
 
 \section{Introduction}
 
-Naïve Bayes is simple classification algorithm using 
+The goal of this experiment is to validate the efficacy of the Naïve Bayes 
+algorithm. given 5 predetermined datasets from the UCI Machine Learning Repository.
+To do so, we will employ ten-fold cross-validation on each set, with the order of 
+entries in the data scrambled prior to being split and passed through Naïve Bayes.
+To further examine the capabiities of Naïve Bayes, we will then pass a modified 
+version of the original data, this time with the attributes of 10\% (rounded up) of 
+classes scrambled within their entries. For this experiment, we have kept our 
+statistical analysis simple, building a confusion matrix with the results of each run,
+and using that to calculate our error, precision, and recall values for the model 
+generated in that run.\\
 
-\{Probabilistic inference has become a core technology in AI,
-largely due to developments in graph-theoretic methods for the 
-representation and manipulation of complex probability 
-distributions~\citep{pearl:88}.  Whether in their guise as 
-directed graphs (Bayesian networks) or as undirected graphs (Markov 
-random fields), \emph{probabilistic graphical models} have a number 
-of virtues as representations of uncertainty and as inference engines.  
-Graphical models allow a separation between qualitative, structural
-aspects of uncertain knowledge and the quantitative, parametric aspects 
-of uncertainty...\}\\
-
-{\noindent \em Remainder omitted in this sample. See http://www.jmlr.org/papers/ for full paper.}
 
 \section{Hypotheses}
 
+For each set, we assume the null hypothesis. That is, we assume that there will be no 
+significant change between the original values and reclassified values for any given test
+set sent into our model.
 
+\emph{this needs better wording. pls help}\\
 \section{Implementation Decisions}
+
+This section will discuss the design choices made in the development of each major 
+python file in the project, in addition to a description of the functionality of 
+the file
 
 \subsection{File Input}
 
 \subsection{Ten-fold Cross-Validation}
 
-The implementation of the ten-fold cross-validation was intended to be straightforward. Due to the nature of this function,
-it was decided that
+The implementation of the ten-fold cross-validation was intended to be straightforward. 
+Due to the nature of this function involving calls to each other python file in our 
+project, it was determined that the TenFCV python file would also serve as our driver. 
+There are several functions performed within this file. In addition to performing 
+ten-fold cross-validation of our It supports functionalityfor scrambling values for 
+10\%(rounded up) of rows within a given dataset, scrambling of the overall order of 
+rows within the dataset.\\
+The first pass of this function for any given dataset will scramble the order of rows, 
+split the datasetinto ten (mostly) equally-sized arrays, then sequentially feed 9 arrays 
+into the learner function within the algorithm, followed by feeding the remaining array, 
+now with class attributes removed, into the classifier function. The results given by 
+the classifer are then fed into our statistical analysis functions along with the original 
+segment of the reclassified data for comparison.
 
 \subsection{Naïve Bayes Implementation}
 
@@ -93,10 +110,7 @@ it was decided that
 
 % Acknowledgements should go at the end, before appendices and references
 
-\acks{We would like to acknowledge support for this project
-from the National Science Foundation (NSF grant IIS-9988642)
-and the Multidisciplinary Research Program of the Department
-of Defense (MURI N00014-00-1-0637). }
+\acks{\emph{we should probably put something. Maybe thank Dr. Sheppard for offering this class or something? I dunno}}
 
 % Manual newpage inserted to improve layout of sample file - not
 % needed in general before appendices/bibliography.

@@ -79,19 +79,22 @@ def tenP_scrambled_cv(dataset):
     cross_validate(dataset, True)
 
 '''
-This removes a dimension from an input list. This is used before sending data into Naive Bayes so the algorithm 
+This removes a dimension from an input three-dimensional (or greater) list. This is used before sending data into Naive Bayes so the algorithm 
 can read from a continuous 2d list, as opposed to the list of 2d lists created by the splitter() function
 '''
 def flatten_list(three_dim_list):
     flattened = []
-    for two_dim_list in three_dim_list:
-        for list in two_dim_list:
+    for two_dim_list in three_dim_list: # the list being iterated through here is the one being removed
+        for list in two_dim_list: # this list is appended to the 'flattened' list, thus removing a layer of lists
             flattened.append(list)
             # print(list)
     return flattened
 
 
-
+'''
+The following two functions should be fairly self-explanatory. They were implemented to show
+consistent formatting between lists being printed. Primarily for debugging purposes
+'''
 def array_printer_3d(ls):
     for i in ls:
         for j in i:
