@@ -91,7 +91,15 @@ python file in the project, in addition to a description of the functionality of
 the file
 
 \subsection{File Input}
-
+The file input of our system preprocessed the data in order to optimize it for Naive Bayes. 
+The incoming data was fed into 2 dimensional lists then checked for the missing value indicator
+listed in the data's corresponding .names file. after this data was formatted to the appropriate 
+type i.e. integers and floats. After this a string detecter would parse through the data to find
+non numerical data. The parser would then make a list of all unique strings. The unique strings 
+were then alphabatized and given integer values to represent them. By alphabatizing the list
+before hand we found that similar vaules in different columns would be assigned the same integer
+value making the data much easier to understand. After processing the full data set the two 
+dimensional list was then passed to our ten-fold cross-validation methods.  
 \subsection{Ten-fold Cross-Validation}
 
 The implementation of the ten-fold cross-validation was intended to be straightforward. 
