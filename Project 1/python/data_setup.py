@@ -57,6 +57,9 @@ def readInCom(fileNum, remove):
     elif fileNum == '5':
         for z in arr:
             z.insert(17,z.pop(0))
+    elif fileNum == '2':
+        for z in arr:
+            z[-1] = z[-1] -1 # subtracts the class attribute by 1, so there aren't any conflicts in the stat_analysis function
     for z in range(len(arr)):                       # print out the data set
         print(arr[z])
 

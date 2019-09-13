@@ -134,7 +134,7 @@ def analyze(dat_old, dat_learned, num_classes):
     # print(confusion)
     conf_with_totals = sa.totals(confusion)
     print(conf_with_totals)
-    stats = sa.calcError(conf_with_totals)
+    stats = sa.calcError(conf_with_totals, num_classes)
     #print(sa.clacError(conf_with_totals))
     return stats
 
@@ -181,8 +181,8 @@ def work_it():
     # new_data = randomizer(new_data)
     # new_data = splitter(og_data)
     # print(new_data)
-    #cross_validate(unscrambled_data, False) # does 10fold CV with the original dataset, no scrambled attributes
-    tenP_scrambled_cv(unscrambled_data) # Does 10fold cv with 10% (rounded up) of the data scrambled within its row
+    cross_validate(unscrambled_data, False) # does 10fold CV with the original dataset, no scrambled attributes
+    # tenP_scrambled_cv(unscrambled_data) # Does 10fold cv with 10% (rounded up) of the data scrambled within its row
 
 
 
