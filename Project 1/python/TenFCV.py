@@ -88,7 +88,7 @@ def cross_validate(dataset, scramBool):
 This function discretizes the data for sets sent in with do_this having a value of 'True'. Discretization is done by way 
 of equal-width mean binning with 10 intervals. This choice of intervals was entirely arbitrary
 Method for binning retrieved from: https://www.geeksforgeeks.org/ml-binning-or-discretization/
-Method of sorting 2d array by column retrieved from: chttps://stackoverflow.com/questions/18563680/sorting-2d-list-python
+Method of sorting 2d array by column retrieved from: https://stackoverflow.com/questions/18563680/sorting-2d-list-python
 '''
 def discretize_data(dataset,num_classes):
     interval = 10
@@ -180,8 +180,8 @@ def work_it():
     # new_data = randomizer(new_data)
     # new_data = splitter(og_data)
     # print(new_data)
-    cross_validate(unscrambled_data, False) # does 10fold CV with the original dataset, no scrambled attributes
-    # tenP_scrambled_cv(unscrambled_data) # Does 10fold cv with 10% (rounded up) of the data scrambled within its row
+    #cross_validate(unscrambled_data, False) # does 10fold CV with the original dataset, no scrambled attributes
+    tenP_scrambled_cv(unscrambled_data) # Does 10fold cv with 10% (rounded up) of the data scrambled within its row
 
 
 
