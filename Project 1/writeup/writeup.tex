@@ -10,7 +10,7 @@
 \usepackage{jmlr2e}
 %\usepackage{utf8}{inputenc}
 \usepackage{natbib}
-\bibliographystyle{plainnat}
+
 
 
 % Definitions of handy macros can go here
@@ -63,15 +63,16 @@ Learning Repositoryto test the accuracy of the algorithm\\
 \section{Introduction}
 
 The goal of this experiment is to validate the efficacy of the Naïve Bayes 
-algorithm. given 5 predetermined datasets from the UCI Machine Learning Repository.
+algorithm. given 5 predetermined datasets from the UCI Machine Learning Repository.\citep{Cancer,Glass,Iris,Soybean,Vote}
 To do so, we will employ ten-fold cross-validation on each set, with the order of 
 entries in the data scrambled prior to being split and passed through Naïve Bayes.
 To further examine the capabiities of Naïve Bayes, we will then pass a modified 
 version of the original data, this time with the attributes of 10\% (rounded up) of 
 classes scrambled within their entries. For this experiment, we have kept our 
 statistical analysis simple, building a confusion matrix with the results of each run,
-and using that to calculate our error, precision, and recall values for the model 
+and using that to calculate our error, \citep{Project, Precision} precision, and recall values for the model 
 generated in that run.\\
+
 
 
 \section{Hypotheses}
@@ -87,10 +88,18 @@ When scrambling data, we expect there to be a measurable increase in error for e
 
 This section will discuss the design choices made in the development of each major 
 python file in the project, in addition to a description of the functionality of 
-the file
+the associated file(s).
 
 \subsection{File Input}
-
+The file input of our system preprocessed the data in order to optimize it for Naive Bayes. 
+The incoming data was fed into 2 dimensional lists then checked for the missing value indicator
+listed in the data's corresponding .names file. after this data was formatted to the appropriate 
+type i.e. integers and floats. After this a string detecter would parse through the data to find
+non numerical data. The parser would then make a list of all unique strings. The unique strings 
+were then alphabatized and given integer values to represent them. By alphabatizing the list
+before hand we found that similar vaules in different columns would be assigned the same integer
+value making the data much easier to understand. After processing the full data set the two 
+dimensional list was then passed to our ten-fold cross-validation methods.  
 \subsection{Ten-fold Cross-Validation}
 
 The implementation of the ten-fold cross-validation was intended to be straightforward. 
@@ -105,7 +114,8 @@ split the datasetinto ten (mostly) equally-sized arrays, then sequentially feed 
 into the learner function within the algorithm, followed by feeding the remaining array, 
 now with class attributes removed, into the classifier function. The results given by 
 the classifer are then fed into our statistical analysis functions along with the original 
-segment of the reclassified data for comparison.
+segment of the reclassified data for comparison.\\
+The next pass will run a dataset with 10\% of its entries changed.
 
 \subsection{Naïve Bayes Implementation}
 
@@ -167,6 +177,6 @@ by $H$. We aim to show that $\fracpartial{I_{uv}}{P_{v0}} < 0$....\\
 
 
 \vskip 0.2in
-\bibliography{}
+\bibliography{cite}
 
 \end{document}
