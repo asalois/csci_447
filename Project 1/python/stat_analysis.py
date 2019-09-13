@@ -34,11 +34,11 @@ def totals(confMatrix):
 def makeConfMatrix(actual, predicted, numClasses):
     conf = numpy.full((numClasses, numClasses),0)
     for i in range(len(actual)):
-            conf[actual[i][-1]][predicted[i][-1]] += 1
+            conf[int(actual[i][-1])][int(predicted[i][-1])] += 1 # This casts the class attribute to int, since some sets are float by default
     return conf
 
 
-
+'''
 irisData0 = data_setup.readInCom('3', '?')
 irisData1 = data_setup.readInCom('3', '?')
 irisData2 = copy.copy(irisData1)
@@ -64,3 +64,4 @@ print(clacError(totals0))
 print(clacError(totals1))
 print(clacError(totals2))
 print(clacError(totals3))
+'''

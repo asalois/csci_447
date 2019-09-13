@@ -5,6 +5,7 @@ import random
 import data_setup
 import copy
 import naive_bayes as nb
+import stat_analysis as sa
 
 ''' 
 Takes a dataset, scrambles the values of 10% (rounded up) of the rows 
@@ -54,22 +55,29 @@ def make_test_set(input):
 def cross_validate(dataset, scramBool):
     backup_data = copy.copy(dataset)
     test_results = []
+    stats = []
     if scramBool:
         dataset = ten_percent_scrambler(dataset)
-    dataset = splitter(dataset)
+    backup_data = splitter(backup_data)
     for i in range(10): # iterates through passing each of the 10 subsets of our now scrambled and split dataset
-        to_learn = copy.copy(dataset) # Grabs a fresh copy of the dataset each time, since the to_learn list pops deletes a tenth of the data in each loop
+        nb.freqTable = []
+        to_learn = copy.copy(backup_data) # Grabs a fresh copy of the dataset each time, since the to_learn list pops deletes a tenth of the data in each loop
         to_test = make_test_set(to_learn.pop(i))
         to_learn = flatten_list(to_learn)
         # print('tester')
-        array_printer_2d(to_test)
+        # array_printer_2d(to_test)
         # print('learner')
         nb.train(to_learn)
         array_printer_3d(nb.freqTable)
-        array_printer_2d(to_learn)
+        # array_printer_2d(to_learn)
+        to_test = nb.classify(to_test)
+        array_printer_2d(to_test)
+        # stats.append(analyze(backup_data[i], to_test))
         # print(len(to_learn))
         # learn(temp) # this will call the learner algo
         # test_results.append(test(to_test, dataset[i])) # This tests our model with the current tenth of the dataset
+    array_printer_2d(stats)
+
 
 '''
 Efficiency is overrated, so I implemented this function to do what could instead be done with an 'if' statement
@@ -91,6 +99,17 @@ def flatten_list(three_dim_list):
     return flattened
 
 
+def analyze(dat_old, dat_learned):
+    confusion = sa.makeConfMatrix(dat_old, dat_learned, 3)
+    print(confusion)
+    conf_with_totals = sa.totals(confusion)
+    print(conf_with_totals)
+    stats = sa.clacError(conf_with_totals)
+    #print(sa.clacError(conf_with_totals))
+    return stats
+
+
+
 '''
 The following two functions should be fairly self-explanatory. They were implemented to show
 consistent formatting between lists being printed. Primarily for debugging purposes
@@ -107,8 +126,11 @@ def array_printer_2d(ls):
         print(i)
 
 
+'''
+This serves as the driver for our program
+'''
 def work_it():
-    data = get_list('3', '?')
+    data = get_list('4', '?')
     unscrambled_data = copy.copy(data)
     # new_data = numpy.asarray(og_data)      This converts the list to an array so it can be properly
     # new_data = randomizer(new_data)
