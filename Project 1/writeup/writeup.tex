@@ -20,11 +20,11 @@
 
 % Heading arguments are {volume}{year}{pages}{date submitted}{date published}{paper id}{author-full-names}
 
-\jmlrheading{1}{2019}{1-7}{9/19}{9/19}{meila00a}{Ethan Fison, Zan Monteith, Alex Salois, Sage Acteson}
+\jmlrheading{1}{2019}{1-7}{9/19}{9/19}{meila00a}{Ethan Fison, Zan Montieth, Alex Salois, Sage Acteson}
 
 % Short headings should be running head and authors last names
 
-\ShortHeadings{Simple Validation of the Naïve Bayes Algorithm}{Fison, Monteith, Salois, Acteson}
+\ShortHeadings{Simple Validation of the Naïve Bayes Algorithm}{Fison, Montieth, Salois, Acteson}
 \firstpageno{1}
 
 \begin{document}
@@ -33,15 +33,15 @@
 \title{Simple Validation of the Naïve Bayes Algorithm}
 
 \author{\name Ethan Fison \email ethanfison@gmail.com \\
-        \name Zan Monteith \email email \\
-        \name Alex Salois \email email \\ 
+        \name Zan Montieth \email zan.montieth@gmail.com \\
+        \name Alex Salois \email asalois.scholar@gmail.com \\ 
         \name Sage Acteson \email sage.acteson@gmail.com \\ 
        \addr Gianforte School of Computing\\
        Montana State University\\
        Bozeman, MT 59715, USA}
 
 
-\editor{Ethan, Zan, Alex, Sage}
+\editor{Ethan Fison, Zan Montieth, Alex Salois, Sage Acteson}
 
 \maketitle
 
@@ -50,7 +50,7 @@ This paper describes the Na{\"i}ve Bayes algorithm, used for classification
 of data. This algorithm builds its model by finding the average value for each
 attribute of a given class, then classifies an input by finding the class it 
 most closely matches. In this experiement, we run ten-fold cross-validation 
-of our models built using 5 different datasets acquired from the UCI Machine 
+on our models which are built using 5 different datasets acquired from the UCI Machine 
 Learning Repositoryto test the accuracy of the algorithm\\
 (this needs to also briefly describe our results)
 
@@ -63,7 +63,7 @@ Learning Repositoryto test the accuracy of the algorithm\\
 \section{Introduction}
 
 The goal of this experiment is to validate the efficacy of the Naïve Bayes 
-algorithm. given 5 predetermined datasets from the UCI Machine Learning Repository.\citep{Cancer,Glass,Iris,Soybean,Vote}
+algorithm. given 5 preselected datasets from the UCI Machine Learning Repository.\citep{Cancer,Glass,Iris,Soybean,Vote}
 To do so, we will employ ten-fold cross-validation on each set, with the order of 
 entries in the data scrambled prior to being split and passed through Naïve Bayes.
 To further examine the capabiities of Naïve Bayes, we will then pass a modified 
@@ -77,13 +77,12 @@ generated in that run.\\
 
 \section{Hypotheses}
 
-For each set, we assume the null hypothesis. That is, we assume that there will be no 
+For each unmodified set, we assume the null hypothesis. That is, we assume that there will be no 
 significant change between the original values and reclassified values for any given test
 set sent into our model.\\
 
-When scrambling data, we expect there to be a measurable increase in error for each classification.
+For modified sets we expect there to be a measurable increase in the error between the original data and data with scrambled values.
 
-\emph{this needs better wording. pls help}\\
 \section{Implementation Decisions}
 
 This section will discuss the design choices made in the development of each major 
@@ -91,10 +90,10 @@ python file in the project, in addition to a description of the functionality of
 the associated file(s).
 
 \subsection{File Input}
-The file input of our system preprocessed the data in order to optimize it for Naive Bayes. 
+The file input of our system preprocessed the data in order to optimize it for Naïve Bayes. 
 The incoming data was fed into 2 dimensional lists then checked for the missing value indicator
-listed in the data's corresponding .names file. after this data was formatted to the appropriate 
-type i.e. integers and floats. After this a string detecter would parse through the data to find
+listed in the data's corresponding .names file. Then, the data was formatted to the appropriate 
+type i.e. integers and floats. Then, a string detecter will parse through the data to find
 non numerical data. The parser would then make a list of all unique strings. The unique strings 
 were then alphabatized and given integer values to represent them. By alphabatizing the list
 before hand we found that similar vaules in different columns would be assigned the same integer
@@ -125,7 +124,8 @@ From this data a frequency table is constructed that holds the frequency of each
 This table used to calculate the probability of each attribute value for each class, and the probability of each individual class.\\
 To classify a 2 dimensional list of data is passed in, but without the last column, which would normally hold the class.
 The probility of each possible class is calculated for each example in the data to be classified, 
-and the most likely class is appended to each example (row). 
+and the most likely class is appended to each example (row).
+ If all classes have a probability of 0, meaning there were attributes that didn't have a match in any class, then a random class is assigned.
 The classified data is then returned for statistical analysis of its accuracy.
 
 \subsection{Statistical Analysis}
