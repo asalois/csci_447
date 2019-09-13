@@ -83,8 +83,8 @@ def cross_validate(dataset, scramBool):
         # learn(temp) # this will call the learner algo
         # test_results.append(test(to_test, dataset[i])) # This tests our model with the current tenth of the dataset
     array_printer_2d(stats)
-    full_set_stats = analyze(flatten_list(backup_data), flatten_list(test_results), num_classes)
-    array_printer_2d(full_set_stats,)
+    full_set_stats = analyze(flatten_list(backup_data), flatten_list(test_results), num_classes) # Performs analysis on the entire classified set compared to the original data
+    array_printer_2d(full_set_stats)
     #array_printer_3d(test_results)
 
 '''
