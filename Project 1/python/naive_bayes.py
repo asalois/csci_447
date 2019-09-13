@@ -81,17 +81,38 @@ def calculateF(): # calculates the relative percentages for each attribute
                 
 
 
-def classify(dataList): # classifies data which is passed in without classes, likely class appended, data returned
-    print("No classifying yet")
+def classify(dataList): # classifies data which is passed in without classes, likely class is appended, data returned
     global freqTable
 
+    for row in range(len(dataList)): # go through every row in the input
+        classChances = [] # to hold percent chance of any given class
+        for rowClass in range(len(freqTable)): # calculate the likelihood of it being any particular class
+            chanceC = freqTable[rowClass][len(freqTable[rowClass])-1][0] # start by getting Q - the chance of the class
+            for attr in range(len(dataList[row])): # for each attribute of this row of the data being classified
+                if "@" == dataList[row][attr]: # if the data is missing
+                    continue # skip to the next attribute
+                # if the data isn't missing :
+                for aVal in range(len(freqTable[rowClass][attr])) : # for each possible value of the attribute
+                    if dataList[row][attr] == freqTable[rowClass][attr][aVal][0] : # if a match is found
+                        chanceC *= freqTable[rowClass][attr][aVal][1] # update the class probability by multiplying by the probability of the attribute
+                        break # move on to the next attribute
+                    # TODO if a matching aVal isn't found it inherently moves on to the next attribute without changing the probability
+            classChances.append(chanceC) # add the chance of this class before moving on to testing the next one
+        # find and the most likely class and append it to the end of the row of data
+        ma = max(classChances)
+        for c in range(len(classChances)):
+            if classChances[c] == ma :
+                dataList[row].append(freqTable[c][len(freqTable[c])-2])
 
-a = [[4, 0, 3], [1, 2, 4], [6,1,3], [0,3,4]]
-b = [[5,2],[2,3]]
-c = [[[[2.5,1]],"c1"]]
-d = 90
+    return dataList
 
+"""
+# some small lists to test aspects of the program
 e=[["@",6,9,49],[1,8,3,50],[1,9,1,50],[3,"@",9,49]]
+f=[[3,9,9],[1,20,1],[1,"@",1]]
+
 train(e)
 print(freqTable)
-#print(numExamples)
+ret = classify(f)
+print(ret)
+"""
