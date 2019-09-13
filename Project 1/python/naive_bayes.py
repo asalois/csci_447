@@ -102,7 +102,7 @@ def classify(dataList): # classifies data which is passed in without classes, li
                 if aValFound == False :
                     chanceC = 0 
                     break # move on to the next class and append 0
-            classChances.append(chanceC+1) # add the chance of this class before moving on to testing the next one. Adding 1 ensures that the algorithm can always classify
+            classChances.append(chanceC) # add the chance of this class before moving on to testing the next one.
         # find and the most likely class and append it to the end of the row of data
         ma = max(classChances)
         if ma == 0 :
