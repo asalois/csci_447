@@ -73,7 +73,7 @@ def cross_validate(dataset, scramBool):
         to_test = nb.classify(to_test)
         print("classified data")
         array_printer_2d(to_test)
-        # stats.append(analyze(backup_data[i], to_test))
+        stats.append(analyze(backup_data[i], to_test, 6))
         # print(len(to_learn))
         # learn(temp) # this will call the learner algo
         # test_results.append(test(to_test, dataset[i])) # This tests our model with the current tenth of the dataset
@@ -100,8 +100,8 @@ def flatten_list(three_dim_list):
     return flattened
 
 
-def analyze(dat_old, dat_learned):
-    confusion = sa.makeConfMatrix(dat_old, dat_learned, 3)
+def analyze(dat_old, dat_learned, num_classes):
+    confusion = sa.makeConfMatrix(dat_old, dat_learned, num_classes)
     print(confusion)
     conf_with_totals = sa.totals(confusion)
     print(conf_with_totals)
@@ -131,7 +131,7 @@ def array_printer_2d(ls):
 This serves as the driver for our program
 '''
 def work_it():
-    data = get_list('4', '?')
+    data = get_list('2', '?')
     unscrambled_data = copy.copy(data)
     # new_data = numpy.asarray(og_data)      This converts the list to an array so it can be properly
     # new_data = randomizer(new_data)
