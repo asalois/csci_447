@@ -19,7 +19,7 @@ def readInCom(fileNum, remove):
             for z in line.split(","):                   # split the data entries
                 z = z.rstrip()                          # remove \n from the end of lines 
                 if z == remove:
-                    print("bad news bears")
+                    print("missing value replaced")
                     arr[-1].append("@")
                 elif z.isdigit():                         # if data entry is a number convert it to an integer
                     arr[-1].append(int(z.rstrip()))     
