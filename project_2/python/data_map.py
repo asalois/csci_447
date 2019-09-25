@@ -1,9 +1,9 @@
-from recycled_code import *
+from recycled_code import data_setup
 from DataPoint import data_point
 import math
 import numpy
 
-class map():
+class d_map():
 
     '''Dataset is an intteger value sent into the data_setup file to retrieve a specific set'''
     def __init__(self, in_k, dataset):
@@ -12,10 +12,10 @@ class map():
         self.points = []
 
 
-    def generate(self, dataset):
-        temp_data = data_setup.readInCom(dataset,'')
-        for line in dataset:
-            points.append(data_point(line[:-1], line[-1]))
+    def generate(self):
+        # temp_data = data_setup.readInCom(dataset,'')
+        for line in self.d_set:
+            self.points.append(data_point(line[:-1], line[-1]))
 
     '''p_1  is the point to be classified, p_2 is the current point in the training set to find p_1s distance from'''
     def euclidian(self, p_1, p_2):
@@ -40,9 +40,9 @@ class map():
         nearest = []
         occurrence_counter = []
         for line in data_to_classify:
-            points_to_classify.append(line[:], '')
+            points_to_classify.append(data_point(line[:], ''))
 
-        for point in points:
+        for point in points_to_classify:
             nearest = self.get_k_nearest(point)
             nearest = sorted(nearest, key= lambda l:l[1], reverse=True)
             occurence_length = nearest[0][1]
@@ -51,3 +51,5 @@ class map():
                 occurence_counter[nearest[i][1] - 1] += 1
             max_occurrence = numpy.argmax(occurence_counter)
             point.class_type = max_occurrence
+
+        return points_to_classify
