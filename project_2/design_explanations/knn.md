@@ -1,5 +1,7 @@
 # K Nearest Neighbors 
 
+## Base KNN
+
 ### DataPoint - an element/instance from the input data set, put into an object
 data: float[] - values of features  
 classType: int -  the class of the data
@@ -30,4 +32,5 @@ TODO: Remove questions for tomorrow
 
 > is our uml correct
 
-> 
+> Some of the descriptions aren't entirely clear on the assignment. Does traning set mean the 9/10ths of the data that we get from running 10fcv, or is it actually *all* of the data?
+
