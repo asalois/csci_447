@@ -34,3 +34,4 @@ TODO: Remove questions for tomorrow
 
 > Some of the descriptions aren't entirely clear on the assignment. Does traning set mean the 9/10ths of the data that we get from running 10fcv, or is it actually *all* of the data?
 
+> As none of us understand how math works, being philosophy majors, how would we plot the points in our datasets?
