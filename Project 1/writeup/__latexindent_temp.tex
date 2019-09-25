@@ -1,0 +1,165 @@
+\documentclass[twoside,11pt]{article}
+% Any additional packages needed should be included after jmlr2e.
+% Note that jmlr2e.sty includes epsfig, amssymb, natbib and graphicx,
+% and defines many common macros, such as 'proof' and 'example'.
+%
+% It also sets the bibliographystyle to plainnat; for more information on
+% natbib citation styles, see the natbib documentation, a copy of which
+% is archived at http://www.jmlr.org/format/natbib.pdf
+
+\usepackage{jmlr2e}
+
+% Definitions of handy macros can go here
+
+\newcommand{\dataset}{{\cal D}}
+\newcommand{\fracpartial}[2]{\frac{\partial #1}{\partial  #2}}
+
+% Heading arguments are {volume}{year}{pages}{date submitted}{date published}{paper id}{author-full-names}
+
+\jmlrheading{1}{2019}{1-7}{9/19}{9/19}{meila00a}{Ethan Fison, Zan Monteith, Alex Salois, Sage Acteson}
+
+% Short headings should be running head and authors last names
+
+\ShortHeadings{Simple Validation of the Naïve Bayes Algorithm}{Fison, Monteith, Salois, Acteson}
+\firstpageno{1}
+
+\begin{document}
+
+\title{Simple Validation of the Naïve Bayes Algorithm}
+
+\author{\name Ethan Fison \email ethanfison@gmail.com \\
+        \name Zan Monteith \email email \\
+        \name Alex Salois \email email \\ 
+        \name Sage Acteson \email email \\ 
+       \addr Gianforte School of Computing\\
+       Montana State University\\
+       Bozeman, MT 59715, USA}
+
+
+\editor{Ethan, Zan, Alex, Sage}
+
+\maketitle
+
+\begin{abstract}%   <- trailing '%' for backward compatibility of .sty file
+This paper describes the Na{\"i}ve Bayes algorithm, used for classification
+of data. This algorithm builds its model by finding the average value for each
+attribute of a given class, then classifies an input by finding the class it 
+most closely matches. In this experiement, we run ten-fold cross-validation 
+of our models built using 5 different datasets acquired from the UCI Machine 
+Learning Repositoryto test the accuracy of the algorithm\\
+(this needs to also briefly describe our results)
+
+\end{abstract}
+
+\begin{keywords}
+  Na{\"i}ve Bayes, Classification, Validation
+\end{keywords}
+
+\section{Introduction}
+
+The goal of this experiment is to validate the efficacy of the Naïve Bayes 
+algorithm. given 5 predetermined datasets from the UCI Machine Learning Repository.
+To do so, we will employ ten-fold cross-validation on each set, with the order of 
+entries in the data scrambled prior to being split and passed through Naïve Bayes.
+To further examine the capabiities of Naïve Bayes, we will then pass a modified 
+version of the original data, this time with the attributes of 10\% (rounded up) of 
+classes scrambled within their entries. For this experiment, we have kept our 
+statistical analysis simple, building a confusion matrix with the results of each run,
+and using that to calculate our error, precision, and recall values for the model 
+generated in that run.\\
+
+
+\section{Hypotheses}
+
+For each set, we assume the null hypothesis. That is, we assume that there will be no 
+significant change between the original values and reclassified values for any given test
+set sent into our model.
+
+\emph{this needs better wording. pls help}\\
+\section{Implementation Decisions}
+
+This section will discuss the design choices made in the development of each major 
+python file in the project, in addition to a description of the functionality of 
+the file
+
+\subsection{File Input}
+
+\subsection{Ten-fold Cross-Validation}
+
+The implementation of the ten-fold cross-validation was intended to be straightforward. 
+Due to the nature of this function involving calls to each other python file in our 
+project, it was determined that the TenFCV python file would also serve as our driver. 
+There are several functions performed within this file. In addition to performing 
+ten-fold cross-validation of our It supports functionalityfor scrambling values for 
+10\%(rounded up) of rows within a given dataset, scrambling of the overall order of 
+rows within the dataset.\\
+The first pass of this function for any given dataset will scramble the order of rows, 
+split the datasetinto ten (mostly) equally-sized arrays, then sequentially feed 9 arrays 
+into the learner function within the algorithm, followed by feeding the remaining array, 
+now with class attributes removed, into the classifier function. The results given by 
+the classifer are then fed into our statistical analysis functions along with the original 
+segment of the reclassified data for comparison.
+
+\subsection{Naïve Bayes Implementation}
+
+\subsection{Statistical Analysis}
+
+
+\section{Results}
+
+\emph{this could use things like data from a sample run, i.e. a confusion matrix, the error/precision/recall, etc.}
+
+
+% Acknowledgements should go at the end, before appendices and references
+
+\acks{\emph{we should probably put something. Maybe thank Dr. Sheppard for offering this class or something? I dunno}}
+
+% Manual newpage inserted to improve layout of sample file - not
+% needed in general before appendices/bibliography.
+
+\newpage
+
+\appendix
+\section*{Appendix A.}
+\label{app:theorem}
+
+% Note: in this sample, the section number is hard-coded in. Following
+% proper LaTeX conventions, it should properly be coded as a reference:
+
+%In this appendix we prove the following theorem from
+%Section~\ref{sec:textree-generalization}:
+
+In this appendix we prove the following theorem from
+Section~6.2:
+
+\noindent
+{\bf Theorem} {\it Let $u,v,w$ be discrete variables such that $v, w$ do
+not co-occur with $u$ (i.e., $u\neq0\;\Rightarrow \;v=w=0$ in a given
+dataset $\dataset$). Let $N_{v0},N_{w0}$ be the number of data points for
+which $v=0, w=0$ respectively, and let $I_{uv},I_{uw}$ be the
+respective empirical mutual information values based on the sample
+$\dataset$. Then
+\[
+	N_{v0} \;>\; N_{w0}\;\;\Rightarrow\;\;I_{uv} \;\leq\;I_{uw}
+\]
+with equality only if $u$ is identically 0.} \hfill\BlackBox
+
+\noindent
+{\bf Proof}. We use the notation:
+\[
+P_v(i) \;=\;\frac{N_v^i}{N},\;\;\;i \neq 0;\;\;\;
+P_{v0}\;\equiv\;P_v(0)\; = \;1 - \sum_{i\neq 0}P_v(i).
+\]
+These values represent the (empirical) probabilities of $v$
+taking value $i\neq 0$ and 0 respectively.  Entropies will be denoted
+by $H$. We aim to show that $\fracpartial{I_{uv}}{P_{v0}} < 0$....\\
+
+{\noindent \em Remainder omitted in this sample. See http://www.jmlr.org/papers/ for full paper.}
+
+
+
+
+\vskip 0.2in
+\bibliography{sample}
+
+\end{document}
