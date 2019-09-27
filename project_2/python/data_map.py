@@ -21,7 +21,7 @@ class d_map():
     def euclidian(self, p_1, p_2):
         dist = 0
         for i in range(len(p_1.data)):
-            dist += (p_1.data[i] - p_2.data[i])**2
+            dist += pow((p_1.data[i] - p_2.data[i]),2)
 
         return math.sqrt(dist)
 
@@ -45,10 +45,10 @@ class d_map():
         for point in points_to_classify:
             nearest = self.get_k_nearest(point)
             nearest = sorted(nearest, key= lambda l:l[1], reverse=True)
-            occurence_length = nearest[0][1]
+            occurence_length = int(nearest[0][1])
             occurence_counter = [0 for i in range(occurence_length)]
-            for i in range(k):
-                occurence_counter[nearest[i][1] - 1] += 1
+            for i in range(self.k):
+                occurence_counter[int(nearest[i][1] - 1)] += 1 # We cast htis particular index to int, since no classes in these sets are of float value
             max_occurrence = numpy.argmax(occurence_counter)
             point.class_type = max_occurrence
 

@@ -2,26 +2,22 @@
 # This file programmed by Zan Rost-Montieth
 import os                                               # used to set filepaths dynamically
 dirname = os.path.dirname(__file__)                     # finds current folder
-filepath = os.path.join(dirname, '../Datasets/')        # navigate to datasets folder
+filepath = os.path.join(dirname, '../../Datasets/')        # navigate to datasets folder
 
-def readInCom(fileNum, remove):
+def readInCom(fileNum):
     arr = []                                            # list to hold all out data
-    files = ["breast-cancer-wisconsin.data","glass.data","iris.data","soybean-small.data","house-votes-84.data"] # list of data files so they can be chosen dynamically
+    files = ["abalone.data","car.data","segmentation.data","machine.data","forestfires.data","winequality-red.csv","winequality-white.csv"] # list of data files so they can be chosen dynamically
 
     fileToOpen = filepath + files[int(fileNum)-1]         # creates file path to numbered data file numbered naturally 1-5 
 
-    fileIn = open (fileToOpen,"r")  
-    numRemoved = 0
+    fileIn = open (fileToOpen,"r")
 
     for line in fileIn.readlines():                     
         if line != "":                                  # if line is not empty
             arr.append([])                              # start a new list for a new data entry
             for z in line.split(","):                   # split the data entries
                 z = z.rstrip()                          # remove \n from the end of lines 
-                if z == remove:
-                    print("missing value replaced")
-                    arr[-1].append("@")
-                elif z.isdigit():                         # if data entry is a number convert it to an integer
+                if z.isdigit():                         # if data entry is a number convert it to an integer
                     arr[-1].append(int(z.rstrip()))     
                 else:
                     try:
@@ -62,8 +58,6 @@ def readInCom(fileNum, remove):
             z[-1] = z[-1] -1 # subtracts the class attribute by 1, so there aren't any conflicts in the stat_analysis function
     for z in range(len(arr)):                       # print out the data set
         print(arr[z])
-
-    print("removed ", numRemoved, "data points")
 
     return arr                      #return the data set
 
