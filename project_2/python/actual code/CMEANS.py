@@ -1,9 +1,9 @@
 import numpy as np 
 import random as rd 
 import math
-from EKNN import edited_knn
+import EKNN
 
-class c_means():
+class c_means(EKNN.edited_knn):
     def __init__(self, kNum, numCentroids, dataMap):
         self.kNum = kNum
         self.numC = numCentroids
@@ -27,4 +27,3 @@ class c_means():
                     l[-1] = index
                     unique = True
         return l
-c = c_means()
