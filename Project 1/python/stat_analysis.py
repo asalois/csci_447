@@ -50,12 +50,12 @@ def makeConfMatrix(actual, predicted, numClasses):
 def mse(actual, predicted): # mean sqaure errror
     mse = 0
     for i in range(len(predicted)):
-        mse += (actual - predicted)^2
-    mse / range(predicted)
+        mse += pow((float(actual[i][-1]) - float(predicted[i][-1])),2)
+    mse / len(predicted)
     return mse
 
 def abs_error(actual, predicted): #  absoulute error
     abs_error = 0
     for i in range(len(predicted)):
-        abs_error += abs(actual - predicted)
+        abs_error += abs(float(actual[i][-1]) - float(predicted[i][-1]))
     return abs_error

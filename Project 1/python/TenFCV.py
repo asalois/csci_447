@@ -139,6 +139,10 @@ def analyze(dat_old, dat_learned, num_classes):
     conf_with_totals = sa.totals(confusion)
     print(conf_with_totals)
     stats = sa.calcError(conf_with_totals)
+    abserror =  sa.abs_error(dat_old, dat_learned)
+    mse = sa.mse(dat_old, dat_learned)
+    print(abserror)
+    print(mse)
     #print(sa.clacError(conf_with_totals))
     return stats
 
