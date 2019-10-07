@@ -9,6 +9,7 @@ class k_nearest_neighbors():
         self.k = in_k
         self.d_set = dataset
         self.d_map = ''
+        self.generate()
 
 
     def generate(self):
@@ -28,8 +29,8 @@ class k_nearest_neighbors():
     def get_k_nearest(self, unclass_point):
         neighbors_and_distances = []
         k_nearest = []
-        for point in self.d_map:
-            neighbors_and_distances.append([self.euclidian(unclass_point,point),point.class_type])
+        for point in self.d_map.points:
+            neighbors_and_distances.append([self.euclidian(unclass_point,point),point.class_num])
         neighbors_and_distances = sorted(neighbors_and_distances, key= lambda l:l[0])
         k_nearest = neighbors_and_distances[:self.k]
         return k_nearest

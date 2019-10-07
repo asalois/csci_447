@@ -1,6 +1,3 @@
-
-
-
 class data_point():
     def __init__(self, data, class_num):
         self.data = data
