@@ -19,11 +19,12 @@ class c_means(EKNN.edited_knn):
         
     def uniqueRdmPnts(self, numToMake):
         l = []
-        for z in range(0,numToMake):
+        for x in range(0,numToMake):
             unique = False
             while not unique:
                 index = rd.randint(0,len(self.data_Map))
                 if index not in l:
-                    l[-1] = index
+                    l[x] = index
                     unique = True
         return l
+
