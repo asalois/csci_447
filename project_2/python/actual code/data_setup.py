@@ -29,7 +29,7 @@ def readInCom(fileNum):
     for z in range(0,len(arr[0])):                  # go through the file to edit data
         strings = []                                # list to hold all unique strings in a column
         for y in range(0,len(arr)):
-            if isinstance(arr[y][z],str) and arr[y][z]!="@":           
+            if isinstance(arr[y][z],str) and arr[y][z]!="":           
                 repeat = False
                 for x in range(0,len(strings)):
                     if arr[y][z] == strings[x]:

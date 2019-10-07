@@ -15,6 +15,7 @@ class c_means(EKNN.edited_knn):
         self.ttr = 100
         for x in range(0,100):
             self.calcCentoids()
+        return self.c_means_map
     
     def placeInitialC (self, numC, indexes, dataMap):
         point_map = []
