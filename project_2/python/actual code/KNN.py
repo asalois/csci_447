@@ -8,14 +8,14 @@ class k_nearest_neighbors():
     def __init__(self, in_k, dataset):
         self.k = in_k
         self.d_set = dataset
-        self.map = ''
+        self.d_map = ''
 
 
     def generate(self):
         point_list = []
         for line in self.d_set:
             point_list.append(data_point(line[:-1], line[-1]))
-        self.map = point_map(point_list)
+        self.d_map = point_map(point_list)
 
     '''p_1  is the point to be classified, p_2 is the current point in the training set to find p_1s distance from'''
     def euclidian(self, p_1, p_2):
@@ -28,7 +28,7 @@ class k_nearest_neighbors():
     def get_k_nearest(self, unclass_point):
         neighbors_and_distances = []
         k_nearest = []
-        for point in self.points:
+        for point in self.d_map:
             neighbors_and_distances.append([self.euclidian(unclass_point,point),point.class_type])
         neighbors_and_distances = sorted(neighbors_and_distances, key= lambda l:l[0])
         k_nearest = neighbors_and_distances[:self.k]
@@ -49,7 +49,7 @@ class k_nearest_neighbors():
             occurence_counter = [0 for i in range(occurence_length)]
             for i in range(self.k):
                 occurence_counter[int(nearest[i][1] - 1)] += 1 # We cast this particular index to int, since no classes in these sets are of float value
-            max_occurrence = numpy.argmax(occurence_counter)
+            max_occurrence = np.argmax(occurence_counter)
             point.class_type = max_occurrence
 
         return points_to_classify
