@@ -27,7 +27,7 @@ def calcError(filled):
 # make totals around the Confusion Matrix
 def totals(confMatrix):
     classNum = len(confMatrix)
-    totals = numpy.full((classNum + 1, classNum +1),0)
+    totals = numpy.full((classNum + 1, classNum + 1),0)
     for i in range(classNum):
         for j in range(classNum):
             totals[i][j] = confMatrix[i][j]
@@ -45,30 +45,17 @@ def makeConfMatrix(actual, predicted, numClasses):
     return conf
 
 
-'''
-irisData0 = data_setup.readInCom('3', '?')
-irisData1 = data_setup.readInCom('3', '?')
-irisData2 = copy.copy(irisData1)
-irisData2.reverse()
-irisData3 = copy.copy(irisData2)
-random.shuffle(irisData3)
-x = [[0],[0],[0],[0],[0],[1],[1],[1],[1],[0]]
-y = [[0],[1],[0],[1],[0],[1],[0],[1],[1],[0]]
-matrix0 = makeConfMatrix(irisData0, irisData1, 3)
-matrix1 = makeConfMatrix(irisData0, irisData2, 3)
-matrix2 = makeConfMatrix(irisData0, irisData3, 3)
-matrix3 = makeConfMatrix(x, y, 2)
-totals0 = totals(matrix0)
-totals1 = totals(matrix1)
-totals2 = totals(matrix2)
-totals3 = totals(matrix3)
-print('The Confusion  Matrix is ')
-print(totals0)
-print(totals1)
-print(totals2)
-print(totals3)
-print(clacError(totals0))
-print(clacError(totals1))
-print(clacError(totals2))
-print(clacError(totals3))
-'''
+# functions to use with regression
+
+def mse(actual, predicted): # mean sqaure errror
+    mse = 0
+    for i in range(len(predicted)):
+        mse += (actual - predicted)^2
+    mse / range(predicted)
+    return mse
+
+def abs_error(actual, predicted): #  absoulute error
+    abs_error = 0
+    for i in range(len(predicted)):
+        abs_error += abs(actual - predicted)
+    return abs_error
