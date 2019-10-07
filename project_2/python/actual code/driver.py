@@ -12,7 +12,7 @@ from POINTMAP import point_map
 from KNN import k_nearest_neighbors
 from EKNN import edited_knn
 #from CKNN import condensed_knn
-#from CMEANS import c
+from CMEANS import c_means
 
 
 '''
@@ -51,7 +51,7 @@ def make_test_set(input):
 
 
 def cross_validate_classify(dataset, variant, in_k):
-    methods = {1: k_nearest_neighbors, 2: edited_knn, 3: "put cknn here", 4: "put cmeans here", 5: "put pam here"}
+    methods = {1: k_nearest_neighbors, 2: edited_knn, 3: "put cknn here", 4: c_means, 5: "put pam here"}
     # global num_classes
     backup_data = copy.copy(dataset)
     test_results = []
