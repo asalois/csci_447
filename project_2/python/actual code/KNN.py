@@ -53,3 +53,22 @@ class k_nearest_neighbors():
             point.class_type = max_occurrence
 
         return points_to_classify
+
+
+    def regression(self, data_to_regress):
+        points_to_regress = []
+        nearest = []
+        occurrence_counter = []
+        for line in data_to_regress:
+            points_to_regress.append(data_point(line[:], ''))
+
+        for point in points_to_regress:
+            nearest = self.get_k_nearest(point)
+            nearest = sorted(nearest, key= lambda l:l[1], reverse=True)
+            average =  0
+            for i in range(self.k):
+                average +=  nearest[i][-1]
+            average = average / self.k
+            point.class_type = average
+
+        return points_to_regress
