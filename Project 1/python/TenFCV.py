@@ -82,7 +82,7 @@ def cross_validate(dataset, scramBool):
         # print(len(to_learn))
         # learn(temp) # this will call the learner algo
         # test_results.append(test(to_test, dataset[i])) # This tests our model with the current tenth of the dataset
-    array_printer_2d(stats)
+    #array_printer_2d(stats)
     full_set_stats = analyze(flatten_list(backup_data), flatten_list(test_results), num_classes) # Performs analysis on the entire classified set compared to the original data
     array_printer_2d(full_set_stats)
     #array_printer_3d(test_results)
@@ -135,7 +135,7 @@ def flatten_list(three_dim_list):
 
 def analyze(dat_old, dat_learned, num_classes):
     confusion = sa.makeConfMatrix(dat_old, dat_learned, num_classes)
-    # print(confusion)
+    #print(confusion)
     conf_with_totals = sa.totals(confusion)
     print(conf_with_totals)
     stats = sa.calcError(conf_with_totals)
@@ -165,9 +165,8 @@ This serves as the driver for our program
 '''
 def work_it():
     global num_classes
-    sets = ['1','2','3','4','5'] # List of sets for easy iteration when running tests.
     data = get_list('1', '?') # We don't have any way of programatically finding the number of classes 
-    data = discretize_data(data, 7)
+    num_classes = 6
     unscrambled_data = copy.copy(data)
     '''Uncomment this line to perform cross-validation on the base data'''
     print("Tests with unscrambled data")

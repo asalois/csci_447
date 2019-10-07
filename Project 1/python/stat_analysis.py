@@ -8,21 +8,24 @@ import random
 # calculates the error base upon a confusion matrix
 # Note that when 'nan' is returned, this is due to a lack of either false positives or false negatives for that particular class
 def calcError(filled):
-    error =  numpy.full((3,len(filled)),0.0)
+    error =  numpy.full((3,len(filled) -1),0.0)
     for i in range(len(filled) -1):
         fp = filled[i][-1] -  filled[i][i]
         fn = filled[-1][i] -  filled[i][i]
         tp = filled[i][i]
-        error[0][i] =  (fp + fn)/(fp + fn + 2*tp) # error. This is the first row in printed for each call
-        error[1][i] = tp / (tp + fp) # precision. This is the second row printed for each call
-        error[2][i] = tp / (tp + fn) # recall. This is the final row printed for each call
+        if (fp + fn + 2*tp) != 0.0:
+            error[0][i] =  (fp + fn)/(fp + fn + 2*tp) # error. This is the first row in printed for each call
+        if (tp + fp)  != 0.0:
+            error[1][i] = tp / (tp + fp) # precision. This is the second row printed for each call
+        if (tp + fn)  != 0.0:
+            error[2][i] = tp / (tp + fn) # recall. This is the final row printed for each call
     return error 
 
 
 # make totals around the Confusion Matrix
 def totals(confMatrix):
     classNum = len(confMatrix)
-    totals = numpy.full((classNum + 1, classNum + 1),0)
+    totals = numpy.full((classNum + 1, classNum +1),0)
     for i in range(classNum):
         for j in range(classNum):
             totals[i][j] = confMatrix[i][j]
@@ -32,7 +35,7 @@ def totals(confMatrix):
     return totals
 
 
-# simple binary confusion Matrix builder
+# simple confusion Matrix builder
 def makeConfMatrix(actual, predicted, numClasses):
     conf = numpy.full((numClasses, numClasses),0)
     for i in range(len(actual)):
