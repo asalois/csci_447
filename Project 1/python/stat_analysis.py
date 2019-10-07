@@ -8,11 +8,13 @@ import random
 # calculates the error base upon a confusion matrix
 # Note that when 'nan' is returned, this is due to a lack of either false positives or false negatives for that particular class
 def calcError(filled):
-    error =  numpy.full((3,len(filled) -1),0.0)
+    error =  numpy.full((5,len(filled) -1),0.0)
     for i in range(len(filled) -1):
         fp = filled[i][-1] -  filled[i][i]
         fn = filled[-1][i] -  filled[i][i]
         tp = filled[i][i]
+        error[3][i] = tp # values that are right
+        error[4][i] = fn + fp # values that are wrong
         if (fp + fn + 2*tp) != 0.0:
             error[0][i] =  (fp + fn)/(fp + fn + 2*tp) # error. This is the first row in printed for each call
         if (tp + fp)  != 0.0:
