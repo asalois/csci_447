@@ -28,29 +28,28 @@ class k_nearest_neighbors():
 
     def get_k_nearest(self, unclass_point):
         neighbors_and_distances = []
-        k_nearest = []
         for point in self.d_map.points:
             neighbors_and_distances.append([self.euclidian(unclass_point,point),point.class_num])
         neighbors_and_distances = sorted(neighbors_and_distances, key= lambda l:l[0])
-        k_nearest = neighbors_and_distances[:self.k]
-        return k_nearest
+        return neighbors_and_distances
 
 
     def classify(self, data_to_classify):
         points_to_classify = []
         nearest = []
-        occurrence_counter = []
+        
         for line in data_to_classify:
             points_to_classify.append(data_point(line[:], ''))
 
         for point in points_to_classify:
             nearest = self.get_k_nearest(point)
             nearest = sorted(nearest, key= lambda l:l[1], reverse=True)
-            occurence_length = int(nearest[0][1])
-            occurence_counter = [0 for i in range(occurence_length)]
+            #occurence_length = int(nearest[0][1])
+            #occurence_counter = [0 for i in range(occurence_length)]
+            occurrence_counter = np.full(50,0) # This is declared ahead of time to avoid any potential issues with out of bounds errors that might occur if dynamically declaring
             for i in range(self.k):
-                occurence_counter[int(nearest[i][1] - 1)] += 1 # We cast this particular index to int, since no classes in these sets are of float value
-            max_occurrence = np.argmax(occurence_counter)
+                occurrence_counter[int(nearest[i][-1])] += 1 # We cast this particular index to int, since no classes in these sets are of float value
+            max_occurrence = np.argmax(occurrence_counter)
             point.class_type = max_occurrence
 
         return points_to_classify
