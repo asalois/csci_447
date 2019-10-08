@@ -37,11 +37,12 @@ class k_nearest_neighbors():
     def classify(self, data_to_classify):
         points_to_classify = []
         nearest = []
-        
+        count = 0
         for line in data_to_classify:
             points_to_classify.append(data_point(line[:], ''))
 
         for point in points_to_classify:
+            count += 1
             nearest = self.get_k_nearest(point)
             nearest = sorted(nearest, key= lambda l:l[1], reverse=True)
             #occurence_length = int(nearest[0][1])
@@ -50,7 +51,8 @@ class k_nearest_neighbors():
             for i in range(self.k):
                 occurrence_counter[int(nearest[i][-1])] += 1 # We cast this particular index to int, since no classes in these sets are of float value
             max_occurrence = np.argmax(occurrence_counter)
-            point.class_type = max_occurrence
+            point.class_num = max_occurrence
+            # print("point " + str(count) + " classified")
 
         return points_to_classify
 
