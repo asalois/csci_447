@@ -52,6 +52,8 @@ class c_means(EKNN.edited_knn):
     
     def find_average(self,points):
         new_data = []
+        new_class = []
+        z = 0
         if points is None:
             return None
         for x in range(len(points[0].data)):
@@ -61,4 +63,12 @@ class c_means(EKNN.edited_knn):
                 avg.append(point.data[0])
             value = sum(avg)/len(avg)
             new_data[x] = value
+        for x in points:
+            new_class.append(0)
+            avg = []
+            for point in points:
+                avg.append(point.class_num)
+            value = sum(avg)/len(avg)
+            new_class[z] = value
+            z += 1
         return new_data
