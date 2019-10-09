@@ -5,8 +5,9 @@ from POINTMAP import point_map
 
 class edited_knn(KNN.k_nearest_neighbors):
 
-    def __init__(self, in_k, dataset):
-        KNN.k_nearest_neighbors.__init__(self,in_k,dataset)
+    def __init__(self, in_k, dataset, alg):
+        KNN.k_nearest_neighbors.__init__(self,in_k,dataset,alg)
+        self.alg = alg # This is only used for clustering, but we declare it everywhere so the driver can handle everything
         # edited_set = self.edit_data_set(self.d_map.points)
         self.edit_two()
         

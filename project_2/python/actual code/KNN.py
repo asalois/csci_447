@@ -5,7 +5,8 @@ from POINTMAP import point_map
 from DATAPOINT import data_point
 
 class k_nearest_neighbors():
-    def __init__(self, in_k, dataset):
+    def __init__(self, in_k, dataset,alg):
+        self.alg = alg # This is only used for clustering, but we declare it everywhere so the driver can handle everything
         self.k = in_k
         self.d_set = dataset
         self.d_map = ''
@@ -47,7 +48,7 @@ class k_nearest_neighbors():
             nearest = sorted(nearest, key= lambda l:l[1], reverse=True)
             #occurence_length = int(nearest[0][1])
             #occurence_counter = [0 for i in range(occurence_length)]
-            occurrence_counter = np.full(50,0) # This is declared ahead of time to avoid any potential issues with out of bounds errors that might occur if dynamically declaring
+            occurrence_counter = np.full(2000,0) # This is declared ahead of time to avoid any potential issues with out of bounds errors that might occur if dynamically declaring. It's huge because of the machine dataset
             for i in range(self.k):
                 occurrence_counter[int(nearest[i][-1])] += 1 # We cast this particular index to int, since no classes in these sets are of float value
             max_occurrence = np.argmax(occurrence_counter)
@@ -60,7 +61,6 @@ class k_nearest_neighbors():
     def regression(self, data_to_regress):
         points_to_regress = []
         nearest = []
-        occurrence_counter = []
         for line in data_to_regress:
             points_to_regress.append(data_point(line[:], ''))
 

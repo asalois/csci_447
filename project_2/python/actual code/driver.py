@@ -64,7 +64,7 @@ def cross_validate_classify(dataset, variant, in_k):
         to_learn = copy.copy(backup_data) # Grabs a fresh copy of the dataset each time, since the to_learn list deletes a tenth of the data in each loop
         to_test = make_test_set(to_learn.pop(i))
         to_learn = flatten_list(to_learn)
-        algo = methods[variant](in_k,to_learn)
+        algo = methods[variant](in_k,to_learn,0)
         # algo.generate()
         test_results = algo.classify(to_test)
         # p_map = point_map(to_learn)
@@ -93,7 +93,45 @@ def cross_validate_classify(dataset, variant, in_k):
 
 
 def cross_validate_regression(dataset, variant, in_k):
-    print('not yet')
+    methods = {1: k_nearest_neighbors, 2: edited_knn, 3: "put cknn here", 4: c_means, 5: "put pam here"}
+    # global num_classes
+    backup_data = copy.copy(dataset)
+    test_results = []
+    stats = []
+    full_set_stats = []
+    backup_data = splitter(backup_data)
+    algo = ''
+    for i in range(10): # iterates through passing each of the 10 subsets of our now scrambled and split dataset
+        p_map = ''
+        to_learn = copy.copy(backup_data) # Grabs a fresh copy of the dataset each time, since the to_learn list deletes a tenth of the data in each loop
+        to_test = make_test_set(to_learn.pop(i))
+        to_learn = flatten_list(to_learn)
+        algo = methods[variant](in_k,to_learn,1)
+        # algo.generate()
+        test_results = algo.regression(to_test)
+        # p_map = point_map(to_learn)
+        # p_map.generate()
+        # test_results = p_map.classify(to_test)
+        # to_learn = flatten_list(to_learn)
+        # print('tester')
+        # array_printer_2d(to_test)
+        # print('learner')
+        # nb.train(to_learn)
+        #array_printer_3d(nb.freqTable)
+        # array_printer_2d(to_learn)
+        # to_test = nb.classify(to_test)
+        # test_results.append(to_test)
+        # print("classified data")
+        # array_printer_2d(to_test)
+        # stats.append(analyze(backup_data[i], to_test, num_classes))
+        # print(len(to_learn))
+        # learn(temp) # this will call the learner algo
+        # test_results.append(test(to_test, dataset[i])) # This tests our model with the current tenth of the dataset
+    # array_printer_2d(stats)
+    # full_set_stats = analyze(flatten_list(backup_data), flatten_list(test_results), num_classes) # Performs analysis on the entire classified set compared to the original data
+    # array_printer_2d(full_set_stats)
+    print('done!')
+    #array_printer_3d(test_results)
 
 
 
