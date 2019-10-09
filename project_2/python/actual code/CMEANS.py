@@ -54,7 +54,7 @@ class c_means(EKNN.edited_knn):
         new_data = []
         new_class = []
         z = 0
-        if points is None:
+        if(len(points) == 0):
             return None
         for x in range(len(points[0].data)):
             new_data.append(0)

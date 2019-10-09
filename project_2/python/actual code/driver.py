@@ -11,6 +11,7 @@ import copy
 from POINTMAP import point_map
 from KNN import k_nearest_neighbors
 from EKNN import edited_knn
+import STATANALYSIS as sa
 #from CKNN import condensed_knn
 from CMEANS import c_means
 
@@ -67,6 +68,8 @@ def cross_validate_classify(dataset, variant, in_k):
         algo = methods[variant](in_k,to_learn,0)
         # algo.generate()
         test_results = algo.classify(to_test)
+        full_set_stats.append(test_results)
+        
         # p_map = point_map(to_learn)
         # p_map.generate()
         # test_results = p_map.classify(to_test)
@@ -88,6 +91,8 @@ def cross_validate_classify(dataset, variant, in_k):
     # array_printer_2d(stats)
     # full_set_stats = analyze(flatten_list(backup_data), flatten_list(test_results), num_classes) # Performs analysis on the entire classified set compared to the original data
     # array_printer_2d(full_set_stats)
+    flatten_list(test_results)
+
     print('done!')
     #array_printer_3d(test_results)
 
@@ -109,6 +114,9 @@ def cross_validate_regression(dataset, variant, in_k):
         algo = methods[variant](in_k,to_learn,1)
         # algo.generate()
         test_results = algo.regression(to_test)
+        full_set_stats.append(test_results)
+        print(sa.mse(backup_data[i],test_results))
+        print(sa.abs_error(backup_data[i],test_results))
         # p_map = point_map(to_learn)
         # p_map.generate()
         # test_results = p_map.classify(to_test)
@@ -130,6 +138,9 @@ def cross_validate_regression(dataset, variant, in_k):
     # array_printer_2d(stats)
     # full_set_stats = analyze(flatten_list(backup_data), flatten_list(test_results), num_classes) # Performs analysis on the entire classified set compared to the original data
     # array_printer_2d(full_set_stats)
+    backup_data = flatten_list(backup_data)
+    full_set_stats = flatten_list(full_set_stats)
+    print(sa.mse(backup_data,full_set_stats))
     print('done!')
     #array_printer_3d(test_results)
 
