@@ -2,7 +2,7 @@
 # This file programmed by Zan Rost-Montieth
 import os                                               # used to set filepaths dynamically
 dirname = os.path.dirname(__file__)                     # finds current folder
-filepath = os.path.join(dirname, '../../datasets/')        # navigate to datasets folder
+filepath = os.path.join(dirname, '../../Datasets/')        # navigate to datasets folder
 
 def readInCom(fileNum):
     arr = []                                            # list to hold all out data
@@ -45,6 +45,10 @@ def readInCom(fileNum):
             print("column ", z + 1, "has been normalized")      # print out what numers represnt what
             for y in range(0,len(strings)):                     
                 print(y, " = ", strings[y])
+
+    if fileNum == 3:
+        for i in arr:
+            i.append(i.pop(i.index(0)))
 
     print(fileNum)
     if fileNum == '1':

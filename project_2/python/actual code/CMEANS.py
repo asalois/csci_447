@@ -3,64 +3,62 @@ import random as rd
 import math
 import EKNN
 from DATAPOINT import data_point
+from POINTMAP import point_map
 
 class c_means(EKNN.edited_knn):
-    def __init__(self, k, dataMap):
-        self.kNum = k
-        EKNN.edited_knn(k, dataMap)
-        self.d_set = dataMap
-        self.c_means_map = ''
-        self.numC = len(self.d_map)
-        self.placeInitialC(self.numC,self.uniqueRdmPnts(self.numC),self.d_set)
-        self.ttr = 100
-        for x in range(0,100):
-            self.calcCentoids()
-        return self.c_means_map
     
-    def placeInitialC (self, numC, indexes, dataMap):
-        point_map = []
-        for z in range (0,numC):
-            point_map.append(dataMap[indexes[z]])
-        self.c_means_map = point_map
-        
-    def uniqueRdmPnts(self, numToMake):
-        l = []
-        for x in range(0,numToMake):
-            unique = False
-            while not unique:
-                index = rd.randint(0,len(self.d_map))
-                if index not in l:
-                    l.append(index)
-                    unique = True
-        return l
+    def __init__(self,in_k,data_set,alg):
+        EKNN.edited_knn.__init__(self,in_k,data_set,alg)
+        self.d_set = data_set
+        self.c_clusters = ''
+        self.k = in_k
+        if alg == 1:
+            self.numC = int(round(len(data_set)/4))
+        elif alg == 0:
+            self.numC = len(self.d_map.points)
+        self.c_clusters = self.mini_gen(rd.sample(data_set,self.numC))
+        self.data_points = self.mini_gen(data_set)
+        for x in range(0,100):
+            self.calculate_centroids()
+        self.d_map = self.c_clusters
 
-    def calcCentoids(self):
+
+    def mini_gen(self, data_in):
+        point_list = []
+        for line in self.d_set:
+            point_list.append(data_point(line[:-1], line[-1]))
+        return point_list
+
+
+    def calculate_centroids(self):
         children = []
-        for k in self.d_set:
-            pointBelongsToo = data_point('','')
-            shortestDist = 9223372036854775807
-            for i in self.c_means_map:
-                if(self.euclidian(k.data,i.data) < shortestDist):
-                    pointBelongsToo = i
-            children.append([k, pointBelongsToo])
+        for point in self.data_points:
+            point_belongs_to = ''
+            shortest_dist = np.inf
+            for i in self.c_clusters:
+                temp_dist = self.euclidian(point.data,i.data)
+                if (temp_dist<shortest_dist):
+                    shortest_dist = temp_dist
+                    point_belongs_to = i
+            children.append([point,point_belongs_to])
 
-        for cluster in self.c_means_map:    
+        for cluster in self.c_clusters:
             points = []
             for point in children:
-                if(point[1] == cluster):
+                if point[1] == cluster:
                     points.append(point[0])
-            ind = self.c_means_map.index(cluster)
-            self.c_means_map[ind].data = self.findAverage(points)
-
-    def findAverage(self,points):
-        newData = []
-        for x in range (0,len(points[0].data)):
-            newData.append(0)
+            ind = self.c_clusters.index(cluster)
+            self.c_clusters[ind].data = self.find_average(points)
+    
+    def find_average(self,points):
+        new_data = []
+        if points is None:
+            return None
+        for x in range(len(points[0].data)):
+            new_data.append(0)
             avg = []
             for point in points:
                 avg.append(point.data[0])
-            value = sum(avg) /len(avg)
-            newData[x] = value
-        return newData
-
-    
+            value = sum(avg)/len(avg)
+            new_data[x] = value
+        return new_data

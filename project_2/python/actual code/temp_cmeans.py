@@ -16,8 +16,11 @@ class c_means(EKNN.edited_knn):
             self.numC = int(round(len(dataSet)/4))
         elif alg == 0:
             self.numC = len(self.d_map.points)
-        first_points = self.mini_gen(rd.sample(data_set,numC))
-        first_points
+        self.c_clusters = self.mini_gen(rd.sample(data_set,numC))
+        self.data_points = self.mini_gen(data_set)
+        for x in range(0,100):
+            self.calculate_centroids()
+        self.d_map = self.c_clusters
 
 
     def mini_gen(self, data_in):
@@ -26,9 +29,34 @@ class c_means(EKNN.edited_knn):
             point_list.append(data_point(line[:-1], line[-1]))
         return point_list
 
-    def calculate_centroids(self, points_in):
+
+    def calculate_centroids(self):
         children = []
-        for point in points_in:
+        for point in self.data_points:
             point_belongs_to = ''
             shortest_dist = np.inf()
-            for i in self.
+            for i in self.c_clusters:
+                temp_dist = self.euclidian(point.data,i.data)
+                if (temp_dist<shortest_dist):
+                    shortest_dist = temp_dist
+                    point_belongs_to = i
+            children.append([point,point_belongs_to])
+
+        for cluster in self.c_clusters:
+            points = []
+            for point in children:
+                if point[1] == cluster:
+                    points.append(point[0])
+            ind = self.c_clusters.index(cluster)
+            self.c_clusters[ind].data = self.find_average(points)
+    
+    def find_average(self,points):
+        new_data = []
+        for x in range(=,len(points[0].data)):
+            new_data.append(0)
+            avg = []
+            for point in points:
+                avg.append(point.data[0])
+            value = sum(avg)/len(avg)
+            new_data[x] = value
+        return new_data

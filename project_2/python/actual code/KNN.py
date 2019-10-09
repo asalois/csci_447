@@ -71,6 +71,6 @@ class k_nearest_neighbors():
             for i in range(self.k):
                 average +=  nearest[i][-1]
             average = average / self.k
-            point.class_type = average
+            point.class_type = int(round(average))
 
         return points_to_regress
