@@ -8,14 +8,19 @@ import random
 # calculates the error base upon a confusion matrix
 # Note that when 'nan' is returned, this is due to a lack of either false positives or false negatives for that particular class
 def calcError(filled):
-    error =  numpy.full((3,len(filled)),0.0)
+    error =  numpy.full((5,len(filled) -1),0.0)
     for i in range(len(filled) -1):
         fp = filled[i][-1] -  filled[i][i]
         fn = filled[-1][i] -  filled[i][i]
         tp = filled[i][i]
-        error[0][i] =  (fp + fn)/(fp + fn + 2*tp) # error. This is the first row in printed for each call
-        error[1][i] = tp / (tp + fp) # precision. This is the second row printed for each call
-        error[2][i] = tp / (tp + fn) # recall. This is the final row printed for each call
+        error[3][i] = tp # values that are right
+        error[4][i] = fn + fp # values that are wrong
+        if (fp + fn + 2*tp) != 0.0:
+            error[0][i] =  (fp + fn)/(fp + fn + 2*tp) # error. This is the first row in printed for each call
+        if (tp + fp)  != 0.0:
+            error[1][i] = tp / (tp + fp) # precision. This is the second row printed for each call
+        if (tp + fn)  != 0.0:
+            error[2][i] = tp / (tp + fn) # recall. This is the final row printed for each call
     return error 
 
 
@@ -32,7 +37,7 @@ def totals(confMatrix):
     return totals
 
 
-# simple binary confusion Matrix builder
+# simple confusion Matrix builder
 def makeConfMatrix(actual, predicted, numClasses):
     conf = numpy.full((numClasses, numClasses),0)
     for i in range(len(actual)):
@@ -40,30 +45,17 @@ def makeConfMatrix(actual, predicted, numClasses):
     return conf
 
 
-'''
-irisData0 = data_setup.readInCom('3', '?')
-irisData1 = data_setup.readInCom('3', '?')
-irisData2 = copy.copy(irisData1)
-irisData2.reverse()
-irisData3 = copy.copy(irisData2)
-random.shuffle(irisData3)
-x = [[0],[0],[0],[0],[0],[1],[1],[1],[1],[0]]
-y = [[0],[1],[0],[1],[0],[1],[0],[1],[1],[0]]
-matrix0 = makeConfMatrix(irisData0, irisData1, 3)
-matrix1 = makeConfMatrix(irisData0, irisData2, 3)
-matrix2 = makeConfMatrix(irisData0, irisData3, 3)
-matrix3 = makeConfMatrix(x, y, 2)
-totals0 = totals(matrix0)
-totals1 = totals(matrix1)
-totals2 = totals(matrix2)
-totals3 = totals(matrix3)
-print('The Confusion  Matrix is ')
-print(totals0)
-print(totals1)
-print(totals2)
-print(totals3)
-print(clacError(totals0))
-print(clacError(totals1))
-print(clacError(totals2))
-print(clacError(totals3))
-'''
+# functions to use with regression
+
+def mse(actual, predicted): # mean sqaure errror
+    mse = 0
+    for i in range(len(predicted)):
+        mse += pow((float(actual[i][-1]) - float(predicted[i][-1])),2)
+    mse / len(predicted)
+    return mse
+
+def abs_error(actual, predicted): #  absoulute error
+    abs_error = 0
+    for i in range(len(predicted)):
+        abs_error += abs(float(actual[i][-1]) - float(predicted[i][-1]))
+    return abs_error

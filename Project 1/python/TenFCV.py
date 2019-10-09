@@ -82,7 +82,7 @@ def cross_validate(dataset, scramBool):
         # print(len(to_learn))
         # learn(temp) # this will call the learner algo
         # test_results.append(test(to_test, dataset[i])) # This tests our model with the current tenth of the dataset
-    array_printer_2d(stats)
+    #array_printer_2d(stats)
     full_set_stats = analyze(flatten_list(backup_data), flatten_list(test_results), num_classes) # Performs analysis on the entire classified set compared to the original data
     array_printer_2d(full_set_stats)
     #array_printer_3d(test_results)
@@ -135,10 +135,14 @@ def flatten_list(three_dim_list):
 
 def analyze(dat_old, dat_learned, num_classes):
     confusion = sa.makeConfMatrix(dat_old, dat_learned, num_classes)
-    # print(confusion)
+    #print(confusion)
     conf_with_totals = sa.totals(confusion)
     print(conf_with_totals)
     stats = sa.calcError(conf_with_totals)
+    abserror =  sa.abs_error(dat_old, dat_learned)
+    mse = sa.mse(dat_old, dat_learned)
+    print(abserror)
+    print(mse)
     #print(sa.clacError(conf_with_totals))
     return stats
 
@@ -165,28 +169,15 @@ This serves as the driver for our program
 '''
 def work_it():
     global num_classes
-    sets = ['1','2','3','4','5'] # List of sets for easy iteration when running tests.
-    for set_to_use in sets:
-        data = get_list(set_to_use, '?') # We don't have any way of programatically finding the number of classes 
-        if set_to_use == '1':
-            num_classes = 6
-        elif set_to_use == '2':
-            num_classes = 7
-        elif set_to_use == '3':
-            num_classes = 3
-        elif set_to_use == '4':
-            num_classes = 4
-        elif set_to_use == '5':
-            num_classes = 2
-        if set_to_use == '2' or set_to_use == '3' or set_to_use == '4':
-            data = discretize_data(data, num_classes)
-        unscrambled_data = copy.copy(data)
-        '''Uncomment this line to perform cross-validation on the base data'''
-        print("Tests with unscrambled data")
-        cross_validate(unscrambled_data, False) # does 10fold CV with the original dataset, no scrambled attributes
-        '''Uncomment the next line to perform cross-validation on the dataset with a scrambled segment of data'''
-        print("Tests with scrambled data")
-        tenP_scrambled_cv(unscrambled_data) # Does 10fold cv with 10% (rounded up) of the data scrambled within its row
+    data = get_list('1', '?') # We don't have any way of programatically finding the number of classes 
+    num_classes = 6
+    unscrambled_data = copy.copy(data)
+    '''Uncomment this line to perform cross-validation on the base data'''
+    print("Tests with unscrambled data")
+    cross_validate(unscrambled_data, False) # does 10fold CV with the original dataset, no scrambled attributes
+    '''Uncomment the next line to perform cross-validation on the dataset with a scrambled segment of data'''
+    print("Tests with scrambled data")
+    tenP_scrambled_cv(unscrambled_data) # Does 10fold cv with 10% (rounded up) of the data scrambled within its row
 
 
 
