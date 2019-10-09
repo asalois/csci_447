@@ -37,8 +37,7 @@ class edited_knn(KNN.k_nearest_neighbors):
                     map_to_return.points.remove(map_to_return.points[i]) # This function got nastier and nastier as I tried to fix bugs. Sorry if it's horrible.
             
 
-        self.d_map = cur_map
-
+        self.d_map = map_to_return
 
     def edit_data_set(self,data_to_edit):
         points_to_classify = []

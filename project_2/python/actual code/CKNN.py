@@ -5,8 +5,8 @@ from DATAPOINT import data_point
 from POINTMAP import point_map
 
 class condensed_knn(KNN.k_nearest_neighbors):
-    def __init__(self, in_k, dataset):
-        KNN.k_nearest_neighbors.__init__(self,in_k,dataset)
+    def __init__(self, in_k, dataset, alg):
+        KNN.k_nearest_neighbors.__init__(self,in_k,dataset,alg)
         self.condense_set()
 
 
@@ -25,5 +25,14 @@ class condensed_knn(KNN.k_nearest_neighbors):
         new_points.append(first_point)
         adding = True
         while adding:
-            for i, point in enumerate(rd.shuffle(old_points))
-            
+            adding = False
+            rd.shuffle(old_points)
+            for i, point in enumerate(old_points):
+                point = self.edited_class_remover(point_map([point]))
+                self.classify([point])
+                if point.class_type != old_points[i].class_type:
+                    new_points.append(point)
+                    old_points.remove(point)
+                    adding = True
+
+        self.d_map = point_map(new_points)

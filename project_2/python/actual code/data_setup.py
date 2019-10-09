@@ -48,7 +48,7 @@ def readInCom(fileNum):
 
     if fileNum == 3:
         for i in arr:
-            i.append(i.pop(i.index(0)))
+            i.append(i.pop(0))
 
     print(fileNum)
     if fileNum == '1':
