@@ -35,7 +35,12 @@ This doesn't need its own function, but we're lazy people here at 'Team'
 Calls the data read function from data_setup.py
 '''
 def get_list(input):
-    base_data = data_setup.readInCom(input)
+    if input == 6:
+        partOne = data_setup.readInCom(input)
+        partTwo = data_setup.readInCom(7)
+        base_data = partOne + partTwo
+    else:
+        base_data = data_setup.readInCom(input)
     return base_data
 
 

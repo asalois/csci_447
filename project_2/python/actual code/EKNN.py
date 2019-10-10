@@ -25,7 +25,7 @@ class edited_knn(KNN.k_nearest_neighbors):
         cur_map = self.d_map
         cur_iter = 0
         map_to_return = self.d_map
-        while (abs(len(cur_map.points)-len(prev_map.points)) > int(round(len(self.d_map.points) * .4))): # This is maybe a little bit hacky, but basically it stops looping if the change in size between the previous and current runs are less than 4% of the size of the original set
+        while (abs(len(cur_map.points)-len(prev_map.points)) > int(round(len(self.d_map.points) * .04))): # This is maybe a little bit hacky, but basically it stops looping if the change in size between the previous and current runs are less than 4% of the size of the original set
             cur_iter += 1
             print("Iteration " + str(cur_iter))
             prev_map = cur_map
@@ -35,7 +35,6 @@ class edited_knn(KNN.k_nearest_neighbors):
                 if point.class_type != map_to_return.points[i].class_type: # This is also maybe a little hacky, but it prevents out of bounds errors after we start to remove points
                     cur_map.points.remove(point)
                     map_to_return.points.remove(map_to_return.points[i]) # This function got nastier and nastier as I tried to fix bugs. Sorry if it's horrible.
-            
 
         self.d_map = map_to_return
 

@@ -62,3 +62,5 @@ class c_means(EKNN.edited_knn):
             new_class += points[i].class_type
         new_class = int(round(new_class/len(points)))
         return data_point(new_data,new_class)
+
+print('bad news bears')
