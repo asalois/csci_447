@@ -1,0 +1,13 @@
+bad news bears
+1
+Regression Datasets
+Image Segmentation
+column  1 has been normalized
+0  =  BRICKFACE
+1  =  SKY
+2  =  FOLIAGE
+3  =  CEMENT
+4  =  WINDOW
+5  =  PATH
+6  =  GRASS
+3

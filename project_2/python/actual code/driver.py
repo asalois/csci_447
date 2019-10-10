@@ -210,8 +210,8 @@ def run_everything():
             for j in range(10):
                 to_learn = copy.copy(split_data) # Grabs a fresh copy of the dataset each time, since the to_learn list deletes a tenth of the data in each loop
                 to_test = make_test_set(to_learn.pop(j))
-                spare_test = to_learn
                 to_learn = flatten_list(to_learn)
+                spare_test = to_learn
                 knn = k_nearest_neighbors(18,to_learn,0)
                 eknn = edited_knn(18,to_learn,0)
                 cknn = condensed_knn(18,to_learn,0)
@@ -254,9 +254,8 @@ def run_everything():
             for j in range(10):
                 to_learn = copy.copy(split_data) # Grabs a fresh copy of the dataset each time, since the to_learn list deletes a tenth of the data in each loop
                 to_test = make_test_set(to_learn.pop(j))
+                to_learn = flatten_list(to_learn)
                 spare_test = to_learn
-                to_learn = flatten_list(to_learn)
-                to_learn = flatten_list(to_learn)
                 knn = k_nearest_neighbors(18,to_learn,1)
                 cmean = c_means(18,to_learn,1)
                 alg_pam = pam(18,to_learn,1)
@@ -266,7 +265,7 @@ def run_everything():
                 to_test = spare_test
                 pam_results.append(alg_pam.regression(to_test))
             unsplit_data = flatten_list(split_data)
-            for i in range(len(results[0])):
+            for i in range():
                 print(regresssion[0])
                 temp  = flatten_list(base_results)
                 print(sa.mse(unsplit_data,temp))
