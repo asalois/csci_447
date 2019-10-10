@@ -211,13 +211,13 @@ def run_everything():
                 to_learn = copy.copy(split_data) # Grabs a fresh copy of the dataset each time, since the to_learn list deletes a tenth of the data in each loop
                 to_test = make_test_set(to_learn.pop(j))
                 to_learn = flatten_list(to_learn)
-                spare_test = to_learn
+                spare_test = to_test
                 knn = k_nearest_neighbors(18,to_learn,0)
                 eknn = edited_knn(18,to_learn,0)
                 cknn = condensed_knn(18,to_learn,0)
                 cmean = c_means(18,to_learn,0)
                 alg_pam = pam(18,to_learn,0)
-                base_results.append(knn.classify(to_test))
+                # base_results.append(knn.classify(to_test))
                 to_test = spare_test
                 e_results.append(eknn.classify(to_test))
                 to_test = spare_test
@@ -255,7 +255,7 @@ def run_everything():
                 to_learn = copy.copy(split_data) # Grabs a fresh copy of the dataset each time, since the to_learn list deletes a tenth of the data in each loop
                 to_test = make_test_set(to_learn.pop(j))
                 to_learn = flatten_list(to_learn)
-                spare_test = to_learn
+                spare_test = to_test
                 knn = k_nearest_neighbors(18,to_learn,1)
                 cmean = c_means(18,to_learn,1)
                 alg_pam = pam(18,to_learn,1)
