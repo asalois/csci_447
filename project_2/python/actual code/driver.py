@@ -217,7 +217,7 @@ def run_everything():
                 cknn = condensed_knn(18,to_learn,0)
                 cmean = c_means(18,to_learn,0)
                 alg_pam = pam(18,to_learn,0)
-                # base_results.append(knn.classify(to_test))
+                base_results.append(knn.classify(to_test))
                 to_test = spare_test
                 e_results.append(eknn.classify(to_test))
                 to_test = spare_test
