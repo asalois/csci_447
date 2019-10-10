@@ -165,6 +165,8 @@ def analyze(dat_old, dat_learned, num_classes):
     print(stats[2])
     print("Correct classifications by class:")
     print(stats[3])
+    print("Incorrect classifications by class")
+    print(stats[4])
     #print(sa.clacError(conf_with_totals))
 
 
