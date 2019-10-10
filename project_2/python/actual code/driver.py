@@ -93,6 +93,7 @@ def cross_validate_classify(dataset, variant, in_k):
     # array_printer_2d(full_set_stats)
     backup_data = flatten_list(backup_data)
     full_set_stats = flatten_list(full_set_stats)
+    print("full set")
     analyze(backup_data, full_set_stats, 30)
     print('done!')
     #array_printer_3d(test_results)
@@ -156,8 +157,14 @@ def analyze(dat_old, dat_learned, num_classes):
     conf_with_totals = sa.totals(confusion)
     # print(conf_with_totals)
     stats = sa.calcError(conf_with_totals)
-    for row in stats:
-        print(row)
+    print("Error:")
+    print(stats[0])
+    print("Precision:")
+    print(stats[1])
+    print("Recall:")
+    print(stats[2])
+    print("Correct classifications by class:")
+    print(stats[3])
     #print(sa.clacError(conf_with_totals))
 
 

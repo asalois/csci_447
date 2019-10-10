@@ -22,7 +22,10 @@ class k_nearest_neighbors():
     '''p_1  is the point to be classified, p_2 is the current point in the training set to find p_1s distance from'''
     def euclidian(self, p_1, p_2):
         dist = 0
+        # if (len(p_1.data) != len(p_2.data)):
+        #     print("Different lengths",len(p_1.data),len(p_2.data))
         for i in range(len(p_1.data)):
+            #print(p_1.data[i],p_2.data[i])
             dist += pow((p_1.data[i] - p_2.data[i]),2)
 
         return dist
@@ -30,7 +33,7 @@ class k_nearest_neighbors():
     def get_k_nearest(self, unclass_point):
         neighbors_and_distances = []
         for point in self.d_map.points:
-            neighbors_and_distances.append([self.euclidian(unclass_point,point),point.class_num])
+            neighbors_and_distances.append([self.euclidian(unclass_point,point),point.class_type])
         neighbors_and_distances = sorted(neighbors_and_distances, key= lambda l:l[0])
         return neighbors_and_distances
 
@@ -45,7 +48,7 @@ class k_nearest_neighbors():
         for point in points_to_classify:
             count += 1
             nearest = self.get_k_nearest(point)
-            nearest = sorted(nearest, key= lambda l:l[1], reverse=True)
+            #nearest = sorted(nearest, key= lambda l:l[1], reverse=True)
             #occurence_length = int(nearest[0][1])
             #occurence_counter = [0 for i in range(occurence_length)]
             occurrence_counter = np.full(2000,0) # This is declared ahead of time to avoid any potential issues with out of bounds errors that might occur if dynamically declaring. It's huge because of the machine dataset
