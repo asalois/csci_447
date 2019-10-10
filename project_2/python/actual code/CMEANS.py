@@ -20,7 +20,7 @@ class c_means(EKNN.edited_knn):
         self.data_points = self.mini_gen(data_set)
         for x in range(0,100):
             self.calculate_centroids()
-        self.d_map = self.c_clusters
+        self.d_map = point_map(self.c_clusters)
 
 
     def mini_gen(self, data_in):
@@ -37,7 +37,7 @@ class c_means(EKNN.edited_knn):
             shortest_dist = np.inf
             for i in self.c_clusters:
                 temp_dist = self.euclidian(point.data,i.data)
-                if (temp_dist<shortest_dist):
+                if (temp_dist < shortest_dist):
                     shortest_dist = temp_dist
                     point_belongs_to = i
             children.append([point,point_belongs_to])
@@ -48,27 +48,17 @@ class c_means(EKNN.edited_knn):
                 if point[1] == cluster:
                     points.append(point[0])
             ind = self.c_clusters.index(cluster)
-            self.c_clusters[ind].data = self.find_average(points)
+            if len(points) > 0:
+                self.c_clusters[ind] = self.find_average(points)
     
     def find_average(self,points):
-        new_data = []
-        new_class = []
-        z = 0
-        if(len(points) == 0):
-            return None
-        for x in range(len(points[0].data)):
-            new_data.append(0)
-            avg = []
-            for point in points:
-                avg.append(point.data[0])
-            value = sum(avg)/len(avg)
-            new_data[x] = value
-        for x in points:
-            new_class.append(0)
-            avg = []
-            for point in points:
-                avg.append(point.class_num)
-            value = sum(avg)/len(avg)
-            new_class[z] = value
-            z += 1
-        return new_data
+        new_data = np.full(len(points[0].data),0)
+        new_class = 0
+        for i in range(len(points[0].data)):
+            for row in range(len(points)):
+                new_data[i] += points[row].data[i]
+            new_data[i] = int(round(new_data[i]/len(points)))
+        for i in range(len(points)):
+            new_class += points[i].class_type
+        new_class = int(round(new_class/len(points)))
+        return data_point(new_data,new_class)

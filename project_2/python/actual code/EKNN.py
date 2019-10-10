@@ -32,13 +32,12 @@ class edited_knn(KNN.k_nearest_neighbors):
             temp_points = self.edited_class_remover(cur_map)
             cur_map = point_map(self.classify(temp_points))
             for i, point in enumerate(cur_map.points):
-                if point.class_num != map_to_return.points[i].class_num: # This is also maybe a little hacky, but it prevents out of bounds errors after we start to remove points
+                if point.class_type != map_to_return.points[i].class_type: # This is also maybe a little hacky, but it prevents out of bounds errors after we start to remove points
                     cur_map.points.remove(point)
                     map_to_return.points.remove(map_to_return.points[i]) # This function got nastier and nastier as I tried to fix bugs. Sorry if it's horrible.
             
 
-        self.d_map = cur_map
-
+        self.d_map = map_to_return
 
     def edit_data_set(self,data_to_edit):
         points_to_classify = []
@@ -56,8 +55,8 @@ class edited_knn(KNN.k_nearest_neighbors):
             for i in range(len(self.d_map.points)):
                 occurrence_counter[int(nearest[i][-1])] += 1 # We cast this particular index to int, since no classes in these sets are of float value
             max_occurrence = np.argmax(occurrence_counter)
-            points_to_classify[i].class_num = max_occurrence
-            if data_to_edit[i].class_num != points_to_classify[i].class_num:
+            points_to_classify[i].class_type = max_occurrence
+            if data_to_edit[i].class_type != points_to_classify[i].class_type:
                 points_to_classify.remove(points_to_classify[i])
 
         print(len(points_to_classify))

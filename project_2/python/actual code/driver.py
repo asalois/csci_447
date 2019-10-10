@@ -12,7 +12,7 @@ from POINTMAP import point_map
 from KNN import k_nearest_neighbors
 from EKNN import edited_knn
 import STATANALYSIS as sa
-#from CKNN import condensed_knn
+from CKNN import condensed_knn
 from CMEANS import c_means
 
 
@@ -52,7 +52,7 @@ def make_test_set(input):
 
 
 def cross_validate_classify(dataset, variant, in_k):
-    methods = {1: k_nearest_neighbors, 2: edited_knn, 3: "put cknn here", 4: c_means, 5: "put pam here"}
+    methods = {1: k_nearest_neighbors, 2: edited_knn, 3: condensed_knn, 4: c_means, 5: "put pam here"}
     # global num_classes
     backup_data = copy.copy(dataset)
     test_results = []
@@ -69,7 +69,7 @@ def cross_validate_classify(dataset, variant, in_k):
         # algo.generate()
         test_results = algo.classify(to_test)
         full_set_stats.append(test_results)
-        
+        analyze(backup_data[i],test_results,30)
         # p_map = point_map(to_learn)
         # p_map.generate()
         # test_results = p_map.classify(to_test)
@@ -91,14 +91,16 @@ def cross_validate_classify(dataset, variant, in_k):
     # array_printer_2d(stats)
     # full_set_stats = analyze(flatten_list(backup_data), flatten_list(test_results), num_classes) # Performs analysis on the entire classified set compared to the original data
     # array_printer_2d(full_set_stats)
-    flatten_list(test_results)
-
+    backup_data = flatten_list(backup_data)
+    full_set_stats = flatten_list(full_set_stats)
+    print("full set")
+    analyze(backup_data, full_set_stats, 30)
     print('done!')
     #array_printer_3d(test_results)
 
 
 def cross_validate_regression(dataset, variant, in_k):
-    methods = {1: k_nearest_neighbors, 2: edited_knn, 3: "put cknn here", 4: c_means, 5: "put pam here"}
+    methods = {1: k_nearest_neighbors, 2: edited_knn, 3: condensed_knn, 4: c_means, 5: "put pam here"}
     # global num_classes
     backup_data = copy.copy(dataset)
     test_results = []
@@ -117,27 +119,7 @@ def cross_validate_regression(dataset, variant, in_k):
         full_set_stats.append(test_results)
         print(sa.mse(backup_data[i],test_results))
         print(sa.abs_error(backup_data[i],test_results))
-        # p_map = point_map(to_learn)
-        # p_map.generate()
-        # test_results = p_map.classify(to_test)
-        # to_learn = flatten_list(to_learn)
-        # print('tester')
-        # array_printer_2d(to_test)
-        # print('learner')
-        # nb.train(to_learn)
-        #array_printer_3d(nb.freqTable)
-        # array_printer_2d(to_learn)
-        # to_test = nb.classify(to_test)
-        # test_results.append(to_test)
-        # print("classified data")
-        # array_printer_2d(to_test)
-        # stats.append(analyze(backup_data[i], to_test, num_classes))
-        # print(len(to_learn))
-        # learn(temp) # this will call the learner algo
-        # test_results.append(test(to_test, dataset[i])) # This tests our model with the current tenth of the dataset
-    # array_printer_2d(stats)
-    # full_set_stats = analyze(flatten_list(backup_data), flatten_list(test_results), num_classes) # Performs analysis on the entire classified set compared to the original data
-    # array_printer_2d(full_set_stats)
+        
     backup_data = flatten_list(backup_data)
     full_set_stats = flatten_list(full_set_stats)
     print(sa.mse(backup_data,full_set_stats))
@@ -173,10 +155,19 @@ def analyze(dat_old, dat_learned, num_classes):
     confusion = sa.makeConfMatrix(dat_old, dat_learned, num_classes)
     # print(confusion)
     conf_with_totals = sa.totals(confusion)
-    print(conf_with_totals)
+    # print(conf_with_totals)
     stats = sa.calcError(conf_with_totals)
+    print("Error:")
+    print(stats[0])
+    print("Precision:")
+    print(stats[1])
+    print("Recall:")
+    print(stats[2])
+    print("Correct classifications by class:")
+    print(stats[3])
+    print("Incorrect classifications by class")
+    print(stats[4])
     #print(sa.clacError(conf_with_totals))
-    return stats
 
 
 

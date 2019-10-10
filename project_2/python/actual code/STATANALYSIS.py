@@ -1,6 +1,6 @@
 """ Functions for performing statistical analysis of our data and results """
 # make a function that checks from an orginal data set
-# Programmed by Alex, cleared up by Ethan
+# Programmed by Alex
 import numpy
 import data_setup
 import copy
@@ -28,7 +28,8 @@ def calcError(filled):
 
 # make totals around the Confusion Matrix
 def totals(confMatrix):
-    print(matrix)
+    for row in confMatrix:
+        print(row)
     classNum = len(confMatrix)
     totals = numpy.full((classNum + 1, classNum + 1),0)
     for i in range(classNum):
