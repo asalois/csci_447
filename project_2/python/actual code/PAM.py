@@ -49,3 +49,4 @@ class pam(EKNN.edited_knn) :
                 # TODO TODO possibly make the indixes of the medoids part of the class so it can be edited and checked (swapped points cannot be medoids)
             #----
             max_passes -= 1
+            # Testing
