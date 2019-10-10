@@ -1,0 +1,18 @@
+bad news bears
+Wine Quality
+
+Base KNN:
+mse
+42342559790.0
+abs
+14796132.0
+C Means:
+mse
+42342559790.0
+abs
+14796132.0
+PAM
+mse
+42342559790.0
+abs
+14796132.0

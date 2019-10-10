@@ -1,0 +1,39 @@
+bad news bears
+Forest Fires
+column  3 has been normalized
+0  =  mar
+1  =  oct
+2  =  aug
+3  =  sep
+4  =  apr
+5  =  jun
+6  =  jul
+7  =  feb
+8  =  jan
+9  =  dec
+10  =  may
+11  =  nov
+column  4 has been normalized
+0  =  fri
+1  =  tue
+2  =  sat
+3  =  sun
+4  =  mon
+5  =  wed
+6  =  thu
+5
+Base KNN:
+mse
+222328298.0003
+abs
+334215.1899999999
+C Means:
+mse
+222380851.18030003
+abs
+334265.1899999999
+PAM
+mse
+222328298.0003
+abs
+334215.1899999999
