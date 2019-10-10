@@ -5,17 +5,18 @@ from DATAPOINT import data_point
 class pam(EKNN.edited_knn) : 
     def __init__(self, in_k, data_set, alg):
         EKNN.edited_knn.__init__(self,in_k,data_set,alg)
-        self.pam_map =''
+        self.pam_map ='' # THIS ISN'T actually a MAP, its a list of points
         if alg == 1: # doing regression so use 1/4 the size of the dataset
             self.num_medoids = int(round(len(data_set)/4))
         else : # otherwise use the size of the map (the final number of points left over from EKNN)
             self.num_medoids = len(self.d_map.points)
+        self.generate() # remake the map of all points (instead of using what was made in EKNN)
     
     # randomly set the positions of the initial medoids given an array of the indexes
     def place_initial_medoids (self, indexes):
         med_map = []
         for x in range (0,len(indexes)):
-            med_map.append(self.d_map[indexes[x]])
+            med_map.append(self.d_map.points.pop([indexes[x]]))
         self.pam_map = med_map
         
     # find the random points to use for the starting points ensuring no repetition
@@ -32,21 +33,46 @@ class pam(EKNN.edited_knn) :
 
     # the main loop of the algorithm 
     def recompute(self):
-        max_passes = int(0.1 * len(self.d_set)) # max passes (if the medoids don't stop changing) to kick out equal to 10% the dataset (tuneable)
+        max_passes = int(0.1 * len(self.d_set)) # max passes (if the medoids don't stop changing) to kick out equal to 10% the dataset (tunable)
+        distortion = 9223372036854775807
+        distortion_prime = 9223372036854775807
+        old_distortion = 9223372036854775807
 
-        while(max_passes > 0): # TODO include a way to break out when the distortion levels off
-            data_distort_med = [] # TODO this is just a placeholder for now, it will also hold the datapoint and the medoid it belongs to
+        while(max_passes > 0):
+            data_distort_med = []
             # assign points to medoids
-            for x in self.d_map: # TODO ensure this actually goes through all the points in the orginal dataset (in the form of datapoints), not the map from EKNN
+            for x in self.d_map.points: 
                 medoid_assigned_to = data_point('','')
                 shortest_distance = 9223372036854775807
                 for m in self.pam_map: # find which medoid the datapoint is closest to
-                    dist = self.euclidian(x.data,m.data)
+                    dist = self.euclidian(x,m)
                     if(dist < shortest_distance):
                         medoid_assigned_to = m
                         shortest_distance = dist
-                # TODO TODO track the assigned point and calculate and track its distortion(square of the shortest distance)
-                # TODO TODO possibly make the indixes of the medoids part of the class so it can be edited and checked (swapped points cannot be medoids)
-            #----
+                data_distort_med.append([x,shortest_distance,medoid_assigned_to])
+                distortion += shortest_distance # calculate the distortion while finding closest (distances are unsquared)
+            # swap-a-roo
+            for m in range(len(self.pam_map)):
+                for x in range(len(data_distort_med)):
+                    #swap points
+                    temp_point = self.pam_map[m]
+                    self.pam_map[m] = data_distort_med[x][0]
+                    data_distort_med[x][0] = temp_point
+                    #calc distortion
+                    for i in data_distort_med:
+                        if(i[-1] != temp_point): # if the medoid wasn't changed then the distance hasn't changed
+                            distortion_prime += i[1]
+                        else:
+                            distortion_prime += self.euclidian(self.pam_map[m],i[0])
+                    #if distortion is not decreased then swap back
+                    if distortion <= distortion_prime:
+                        temp_point = self.pam_map[m]
+                        self.pam_map[m] = data_distort_med[x][0]
+                        data_distort_med[x][0] = temp_point
+                    else:
+                        distortion = distortion_prime
+            
+            if ((old_distortion-distortion)/distortion) < 0.01 :
+                break
             max_passes -= 1
-            # Testing
+            old_distortion = distortion

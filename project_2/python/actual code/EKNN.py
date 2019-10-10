@@ -36,7 +36,6 @@ class edited_knn(KNN.k_nearest_neighbors):
                 if point.class_type != map_to_return.points[i].class_type: # This is also maybe a little hacky, but it prevents out of bounds errors after we start to remove points
                     cur_map.points.remove(point)
                     map_to_return.points.remove(map_to_return.points[i]) # This function got nastier and nastier as I tried to fix bugs. Sorry if it's horrible.
-            
 
         self.d_map = map_to_return
 
