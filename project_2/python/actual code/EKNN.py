@@ -9,7 +9,8 @@ class edited_knn(KNN.k_nearest_neighbors):
         KNN.k_nearest_neighbors.__init__(self,in_k,dataset,alg)
         self.alg = alg # This is only used for clustering, but we declare it everywhere so the driver can handle everything
         # edited_set = self.edit_data_set(self.d_map.points)
-        self.edit_two()
+        if alg==0:
+            self.edit_two()
         
 
 
@@ -25,7 +26,7 @@ class edited_knn(KNN.k_nearest_neighbors):
         cur_map = self.d_map
         cur_iter = 0
         map_to_return = self.d_map
-        while (abs(len(cur_map.points)-len(prev_map.points)) > int(round(len(self.d_map.points) * .4))): # This is maybe a little bit hacky, but basically it stops looping if the change in size between the previous and current runs are less than 4% of the size of the original set
+        while (abs(len(cur_map.points)-len(prev_map.points)) > int(round(len(self.d_map.points) * .04))): # This is maybe a little bit hacky, but basically it stops looping if the change in size between the previous and current runs are less than 4% of the size of the original set
             cur_iter += 1
             print("Iteration " + str(cur_iter))
             prev_map = cur_map
