@@ -88,7 +88,7 @@ ten-fold cross-validation on each applicable algorithm (all algorithms for
 classification, base KNN and both clustering algorithms for regression) using the same
 pseudorandomly scrambled version of the dataset to ensure accurate comparisons of performance.
 Statistical analysis for this experiment consisted of the use of error, precision, 
-recall, and correct classification tally for classification, and mean squared error and 
+recall, and correct classification tally for classification, then mean squared error and 
 absolute error for regression.\\
 
 
@@ -131,11 +131,6 @@ now with class attributes removed, into the classifier function. The results giv
 the classifer are then fed into our statistical analysis functions along with the original 
 segment of the reclassified data for comparison.\\
 The next pass will run a dataset with 10\% of its entries changed.\\
-Also contained within the python file is handling of discretization for the Glass, Iris, and Soybean datasets.
-This is accomplished through 10-interval mean binning of each attribute, excluding the class attribute. The choice 
-of interval was entirely arbitrary in this case. To bin the attributes, each column is sorted, then
-divided into 10 segments. The values within that segment's current attribute are then replaced with the mean
-value for that particular attribute. This process is then repeated for all other non-class attributes within the data.
 
 \subsection{Naïve Bayes Implementation}
 
