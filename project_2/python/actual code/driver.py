@@ -265,19 +265,18 @@ def run_everything():
                 to_test = spare_test
                 pam_results.append(alg_pam.regression(to_test))
             unsplit_data = flatten_list(split_data)
-            for i in range():
-                print(regresssion[0])
-                temp  = flatten_list(base_results)
-                print(sa.mse(unsplit_data,temp))
-                print(sa.abs_error(unsplit_data,temp))
-                print(regresssion[1])
-                temp  = flatten_list(mean_results)
-                print(sa.mse(unsplit_data,temp))
-                print(sa.abs_error(unsplit_data,temp))
-                print(regresssion[2])
-                temp  = flatten_list(pam_results)
-                print(sa.mse(unsplit_data,temp))
-                print(sa.abs_error(unsplit_data,temp))
+            print(regresssion[0])
+            temp  = flatten_list(base_results)
+            print(sa.mse(unsplit_data,temp))
+            print(sa.abs_error(unsplit_data,temp))
+            print(regresssion[1])
+            temp  = flatten_list(mean_results)
+            print(sa.mse(unsplit_data,temp))
+            print(sa.abs_error(unsplit_data,temp))
+            print(regresssion[2])
+            temp  = flatten_list(pam_results)
+            print(sa.mse(unsplit_data,temp))
+            print(sa.abs_error(unsplit_data,temp))
     
 
 
