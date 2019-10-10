@@ -26,6 +26,9 @@ def readInCom(fileNum):
                         if z != '':                     # otherwise as long as it is not empty add it as a string    
                             arr[-1].append(z)
     arr = [z for z in arr if z != []]                           # removes last list in the array in case input has new line at the end 
+    if fileNum == 4:
+        for z in arr:
+            del z[1]
     for z in range(0,len(arr[0])):                  # go through the file to edit data
         strings = []                                # list to hold all unique strings in a column
         for y in range(0,len(arr)):
@@ -49,9 +52,7 @@ def readInCom(fileNum):
     if fileNum == 3:
         for i in arr:
             i.append(i.pop(0)) # this shifts the class value to the end of each row for simplifying the classification process
-    if fileNum == 4:
-        for z in arr:
-            del z[1]
+
 
     print(fileNum)
     
