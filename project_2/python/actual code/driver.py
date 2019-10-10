@@ -245,7 +245,7 @@ def run_everything():
             print(analyze(unsplit_data,temp,30))
     if variant == 1:
         print("Regression Datasets")
-        for i in range(3,7):
+        for i in range(4,7):
             print(files[i-1])
             dataset = get_list(i)
             split_data = splitter(dataset)
@@ -257,7 +257,7 @@ def run_everything():
                 to_test = make_test_set(to_learn.pop(j))
                 to_learn = flatten_list(to_learn)
                 spare_test = to_test
-                knn = k_nearest_neighbors(ks[i]-1,to_learn,1)
+                knn = k_nearest_neighbors(ks[i-1],to_learn,1)
                 cmean = c_means(ks[i-1],to_learn,1)
                 alg_pam = pam(ks[i-1],to_learn,1)
                 base_results.append(knn.regression(to_test))
