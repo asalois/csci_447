@@ -22,9 +22,10 @@ Splits the input list into 10 (mostly) equal-sized sublists to be fed into the 1
 also scrambles the list before splitting
 '''
 def splitter(samples):
-    samples = np.asarray(samples) # temporarily converts the list to a numpy array so it can be run through the splitter
+    
     OG = copy.copy(samples)
     rd.shuffle(samples) # Scrambles the order of all rows in the sample array
+    samples = np.asarray(samples) # temporarily converts the list to a numpy array so it can be run through the splitter
     samples = np.array_split(samples, 10) # Splits the input array of samples into a list of 10 subarrays. Why does the function return a list when the input was an array? no idea, but it makes my job easier
     # print(type(samples))
     # array_printer(samples)
@@ -56,7 +57,7 @@ def make_test_set(input):
     return input
 
 
-
+'''This performs tenfold cross-validation on a given classification dataset, then performs statistical analysis on the results'''
 def cross_validate_classify(dataset, variant, in_k):
     methods = {1: k_nearest_neighbors, 2: edited_knn, 3: condensed_knn, 4: c_means, 5: pam}
     # global num_classes
@@ -84,7 +85,7 @@ def cross_validate_classify(dataset, variant, in_k):
     print('done!')
     #array_printer_3d(test_results)
 
-
+'''This performs effectively the same thing as the classification cross-validation function, but instead for the regression sets'''
 def cross_validate_regression(dataset, variant, in_k):
     methods = {1: k_nearest_neighbors, 2: edited_knn, 3: condensed_knn, 4: c_means, 5: pam}
     # global num_classes
@@ -113,18 +114,6 @@ def cross_validate_regression(dataset, variant, in_k):
     print('done!')
     #array_printer_3d(test_results)
 
-'''
-# This takes in a 2d list of datapoints and normalizes each column to be a percentage of the difference between the maximum and minimum values for each column
-def normalize_data(dataset):
-    in_set = dataset
-    for i in range(len(in_set[0])):
-        min_value = min(in_set[:][i])
-        max_value = max(in_set[:][i])
-        to_div = max_value - min_value
-        in_set[:][i] = in_set[:][i]/to_div
-    return in_set
-'''
-
 
 '''
 This removes a dimension from an input three-dimensional (or greater) list. This is used before sending data into Naive Bayes so the algorithm 
@@ -139,7 +128,7 @@ def flatten_list(three_dim_list):
     return flattened
 
 
-
+'''Pretty simple function to make calls to our stat analysis functions. This is only used for classification sets'''
 def analyze(dat_old, dat_learned, num_classes):
     confusion = sa.makeConfMatrix(dat_old, dat_learned, num_classes)
     # print(confusion)
@@ -165,19 +154,19 @@ def retrieve_data(set_number):
     return data_setup.readInCom(set_number)
 
 
-
+'''Primarily used for debugging. Runs one set on one algorithm with a user-defined k from command line args'''
 def work_it():
     # global num_classes
     # sets = ['1','2','3','4','5'] # List of sets for easy iteration when running tests.
     # methods = {'1': k_nearest_neighbors, '2': edited_knn, '3': "put cknn here", '4': "put cmeans here", '5': "put pam here"}
-    '''
+    
     set_to_test = int(input("Which set do you want to test?\n1 for Abalone (Classification)\n2 for Car Evaluation (Classification)\n3 for Image Segmentation (Classification)\n4 for Computer Hardware (Regression)\n5 for Forest Fires (Regression)\n6 for Wine Quality (Regression)\n"))
     method_to_use = int(input("Which method do you want to use for testing these sets?\n1 for base KNN\n2 for edited KNN (Note: not available for regression datasets)\n3 for condensed KNN (Note: not available for regression datasets)\n4 for edited KNN using K Means Clustering\n5 for edited KNN using PAM Clustering\n"))
     k_to_use = int(input("Pick a k, any k\n"))
     '''
     set_to_test = int(sys.argv[1])
     method_to_use = int(sys.argv[2])
-    k_to_use = int(sys.argv[3])
+    k_to_use = int(sys.argv[3])'''
     unscrambled_data = get_list(set_to_test)
     if set_to_test < 4:
         cross_validate_classify(unscrambled_data,method_to_use,k_to_use)
@@ -283,6 +272,6 @@ def run_everything():
 
 
 
-# work_it()
+#work_it()
 run_everything()
 

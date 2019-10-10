@@ -1,3 +1,4 @@
+'''Base K nearest neighbors algorithm'''
 import numpy as np 
 import random as rd 
 import math
@@ -30,6 +31,7 @@ class k_nearest_neighbors():
 
         return dist
 
+    '''makes calls to the euclidean function to find the distancd between the unclassified point and all others in the set'''
     def get_k_nearest(self, unclass_point):
         neighbors_and_distances = []
         for point in self.d_map.points:
