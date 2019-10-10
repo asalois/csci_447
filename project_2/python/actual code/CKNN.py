@@ -1,5 +1,5 @@
 import KNN
-import numpy as numpy
+import numpy as np
 import random as rd
 from DATAPOINT import data_point
 from POINTMAP import point_map
@@ -29,10 +29,10 @@ class condensed_knn(KNN.k_nearest_neighbors):
             rd.shuffle(old_points)
             for i, point in enumerate(old_points):
                 point = self.edited_class_remover(point_map([point]))
-                self.classify([point])
+                point =  self.classify(point)[0]
                 if point.class_type != old_points[i].class_type:
                     new_points.append(point)
-                    old_points.remove(point)
+                    old_points.remove(old_points[i])
                     adding = True
 
         self.d_map = point_map(new_points)
