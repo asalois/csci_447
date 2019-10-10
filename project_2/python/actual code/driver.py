@@ -196,6 +196,7 @@ def run_everything():
     classification = {0:"Base KNN:",1:"Edited KNN:",2:"Condensed KNN:",3:"C Means:",4:"PAM:"}
     regresssion = {0:"Base KNN:", 1: "C Means:",2:"PAM"}
     files = ["Abalone","Cars","Image Segmentation","Computer Hardware","Forest Fires","Wine Quality"] 
+    ks = [3,1,1,3,3,3]
     if variant == 0:
         print("Classification Datasets:")
         for i in range(1,4):
@@ -212,11 +213,11 @@ def run_everything():
                 to_test = make_test_set(to_learn.pop(j))
                 to_learn = flatten_list(to_learn)
                 spare_test = to_test
-                knn = k_nearest_neighbors(18,to_learn,0)
-                eknn = edited_knn(18,to_learn,0)
-                cknn = condensed_knn(18,to_learn,0)
-                cmean = c_means(18,to_learn,0)
-                alg_pam = pam(18,to_learn,0)
+                knn = k_nearest_neighbors(ks[i-1],to_learn,0)
+                eknn = edited_knn(ks[i-1],to_learn,0)
+                cknn = condensed_knn(ks[i-1],to_learn,0)
+                cmean = c_means(ks[i-1],to_learn,0)
+                alg_pam = pam(ks[i-1],to_learn,0)
                 base_results.append(knn.classify(to_test))
                 to_test = spare_test
                 e_results.append(eknn.classify(to_test))
@@ -256,9 +257,9 @@ def run_everything():
                 to_test = make_test_set(to_learn.pop(j))
                 to_learn = flatten_list(to_learn)
                 spare_test = to_test
-                knn = k_nearest_neighbors(18,to_learn,1)
-                cmean = c_means(18,to_learn,1)
-                alg_pam = pam(18,to_learn,1)
+                knn = k_nearest_neighbors(ks[i]-1,to_learn,1)
+                cmean = c_means(ks[i-1],to_learn,1)
+                alg_pam = pam(ks[i-1],to_learn,1)
                 base_results.append(knn.regression(to_test))
                 to_test = spare_test
                 mean_results.append(cmean.regression(to_test))
