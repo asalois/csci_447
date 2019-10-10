@@ -18,9 +18,9 @@ class c_means(EKNN.edited_knn):
             self.numC = len(self.d_map.points)
         self.c_clusters = self.mini_gen(rd.sample(data_set,self.numC))
         self.data_points = self.mini_gen(data_set)
-        for x in range(0,100):
+        for x in range(0,1):
             self.calculate_centroids()
-        self.d_map = self.c_clusters
+        self.d_map = point_map(self.c_clusters)
 
 
     def mini_gen(self, data_in):
@@ -48,16 +48,19 @@ class c_means(EKNN.edited_knn):
                 if point[1] == cluster:
                     points.append(point[0])
             ind = self.c_clusters.index(cluster)
-            self.c_clusters[ind].data = self.find_average(points)
+            if len(points) > 0:
+                self.c_clusters[ind] = self.find_average(points)
     
     def find_average(self,points):
         new_data = np.full(len(points[0].data),0)
         new_class = 0
         for i in range(len(points[0].data)):
             for row in range(len(points)):
-                new_data[i] += points[row][i]
+                new_data[i] += points[row].data[i]
             new_data[i] = int(round(new_data[i]/len(points)))
         for i in range(len(points)):
             new_class += points[i].class_type
         new_class = int(round(new_class/len(points)))
         return data_point(new_data,new_class)
+
+print('bad news bears')
