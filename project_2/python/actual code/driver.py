@@ -199,7 +199,11 @@ def run_everything():
         print(files[i-1])
         dataset = get_list(i)
         split_data = splitter(dataset)
-        results = []
+        base_results = []
+        e_results = []
+        c_results = []
+        mean_results = []
+        pam_results = []
         for j in range(10):
             to_learn = copy.copy(split_data) # Grabs a fresh copy of the dataset each time, since the to_learn list deletes a tenth of the data in each loop
             to_test = make_test_set(to_learn.pop(j))
@@ -209,21 +213,34 @@ def run_everything():
             cknn = condensed_knn(18,to_learn,0)
             cmean = c_means(18,to_learn,0)
             alg_pam = pam(18,to_learn,0)
-            results[0].append(knn.classify(to_test))
-            results[1].append(eknn.classify(to_test))
-            results[2].append(cknn.classify(to_test))
-            results[3].append(cmean.classify(to_test))
-            results[4].append(alg_pam.classify(to_test))
-        unsplit_data = flatten_list(split_data)
-        for i in range(len(results[0])):
-            print(classification[i])
-            temp = flatten_list(results[i])
-            print(analyze(unsplit_data,temp,30))
+            base_results.append(knn.classify(to_test))
+            e_results.append(eknn.classify(to_test))
+            c_results.append(cknn.classify(to_test))
+            mean_results.append(cmean.classify(to_test))
+            pam_results.append(alg_pam.classify(to_test))
+        unsplit_data = flatten_list(split_data)    
+        print(classification[0]) # I was too tired to figure out how lists work, so I ended up making this hardcoded mess. Sorry. 
+        temp = flatten_list(base_results)
+        print(analyze(unsplit_data,temp,30))
+        print(classification[1])
+        temp = flatten_list(k_results)
+        print(analyze(unsplit_data,temp,30))
+        print(classification[2])
+        temp = flatten_list(c_results)
+        print(analyze(unsplit_data,temp,30))
+        print(classification[3])
+        temp = flatten_list(mean_results)
+        print(analyze(unsplit_data,temp,30))
+        print(classification[4])
+        temp = flatten_list(pam_results)
+        print(analyze(unsplit_data,temp,30))
     for i in range(3,7):
         print(files[i-1])
         dataset = get_list(i)
         split_data = splitter(dataset)
-        results = []
+        base_results = []
+        mean_results = []
+        pam_results = []
         for j in range(10):
             to_learn = copy.copy(split_data) # Grabs a fresh copy of the dataset each time, since the to_learn list deletes a tenth of the data in each loop
             to_test = make_test_set(to_learn.pop(j))
@@ -231,13 +248,21 @@ def run_everything():
             knn = k_nearest_neighbors(18,to_learn,1)
             cmean = c_means(18,to_learn,1)
             alg_pam = pam(18,to_learn,1)
-            results[0].append(knn.regression(to_test))
-            results[1].append(cmean.regression(to_test))
-            results[2].append(alg_pam.regression(to_test))
+            base_results.append(knn.regression(to_test))
+            mean_results.append(cmean.regression(to_test))
+            pam_results.append(alg_pam.regression(to_test))
         unsplit_data = flatten_list(split_data)
         for i in range(len(results[0])):
-            print(regresssion[i])
-            temp  = flatten_list(results[i])
+            print(regresssion[0])
+            temp  = flatten_list(base_results)
+            print(sa.mse(unsplit_data,temp))
+            print(sa.abs_error(unsplit_data,temp))
+            print(regresssion[1])
+            temp  = flatten_list(mean_results)
+            print(sa.mse(unsplit_data,temp))
+            print(sa.abs_error(unsplit_data,temp))
+            print(regresssion[2])
+            temp  = flatten_list(pam_results)
             print(sa.mse(unsplit_data,temp))
             print(sa.abs_error(unsplit_data,temp))
 
