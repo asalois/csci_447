@@ -51,6 +51,8 @@ def makeConfMatrix(actual, predicted, numClasses):
 
 # functions to use with regression
 
+# this function will calculte the entire error of a set given the actaul data and test data
+# the error is squared in mse to make sure there is no sign issues the value of this should be about squared of t abs_error
 def mse(actual, predicted): # mean sqaure errror
     print('mse')
     mse = 0
@@ -59,6 +61,9 @@ def mse(actual, predicted): # mean sqaure errror
     mse / len(predicted)
     return mse
 
+
+# this function will calculte the entire error of a set given the actaul data and test data
+# this time with signs included
 def abs_error(actual, predicted): #  absoulute error
     print('abs')
     abs_error = 0
