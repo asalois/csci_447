@@ -1,0 +1,7 @@
+bad news bears
+column  1 has been normalized
+0  =  M
+1  =  F
+2  =  I
+1
+Iteration 1

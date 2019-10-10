@@ -2,7 +2,7 @@
 # This file programmed by Zan Rost-Montieth
 import os                                               # used to set filepaths dynamically
 dirname = os.path.dirname(__file__)                     # finds current folder
-filepath = os.path.join(dirname, '../../Datasets/')        # navigate to datasets folder
+filepath = os.path.join(dirname, '../../datasets/')        # navigate to datasets folder
 
 def readInCom(fileNum):
     arr = []                                            # list to hold all out data

@@ -3,7 +3,7 @@ This file performs all non-instanced functions within the code, i.e. performing 
 cross validation of our model on each dataset, instancing maps for each dataset,
 running statistical analysis on runs from each model, and so on
 '''
-
+import sys
 import numpy as np
 import random as rd
 import data_setup  # This package is a set of code we are reusing from project 1, such as data setup and stat analysis, with modifications as needed
@@ -11,6 +11,7 @@ import copy
 from POINTMAP import point_map
 from KNN import k_nearest_neighbors
 from EKNN import edited_knn
+from PAM import pam
 import STATANALYSIS as sa
 from CKNN import condensed_knn
 from CMEANS import c_means
@@ -57,7 +58,7 @@ def make_test_set(input):
 
 
 def cross_validate_classify(dataset, variant, in_k):
-    methods = {1: k_nearest_neighbors, 2: edited_knn, 3: condensed_knn, 4: c_means, 5: "put pam here"}
+    methods = {1: k_nearest_neighbors, 2: edited_knn, 3: condensed_knn, 4: c_means, 5: pam}
     # global num_classes
     backup_data = copy.copy(dataset)
     test_results = []
@@ -75,27 +76,7 @@ def cross_validate_classify(dataset, variant, in_k):
         test_results = algo.classify(to_test)
         full_set_stats.append(test_results)
         analyze(backup_data[i],test_results,30)
-        # p_map = point_map(to_learn)
-        # p_map.generate()
-        # test_results = p_map.classify(to_test)
-        # to_learn = flatten_list(to_learn)
-        # print('tester')
-        # array_printer_2d(to_test)
-        # print('learner')
-        # nb.train(to_learn)
-        #array_printer_3d(nb.freqTable)
-        # array_printer_2d(to_learn)
-        # to_test = nb.classify(to_test)
-        # test_results.append(to_test)
-        # print("classified data")
-        # array_printer_2d(to_test)
-        # stats.append(analyze(backup_data[i], to_test, num_classes))
-        # print(len(to_learn))
-        # learn(temp) # this will call the learner algo
-        # test_results.append(test(to_test, dataset[i])) # This tests our model with the current tenth of the dataset
-    # array_printer_2d(stats)
-    # full_set_stats = analyze(flatten_list(backup_data), flatten_list(test_results), num_classes) # Performs analysis on the entire classified set compared to the original data
-    # array_printer_2d(full_set_stats)
+       
     backup_data = flatten_list(backup_data)
     full_set_stats = flatten_list(full_set_stats)
     print("full set")
@@ -105,12 +86,13 @@ def cross_validate_classify(dataset, variant, in_k):
 
 
 def cross_validate_regression(dataset, variant, in_k):
-    methods = {1: k_nearest_neighbors, 2: edited_knn, 3: condensed_knn, 4: c_means, 5: "put pam here"}
+    methods = {1: k_nearest_neighbors, 2: edited_knn, 3: condensed_knn, 4: c_means, 5: pam}
     # global num_classes
     backup_data = copy.copy(dataset)
     test_results = []
     stats = []
     full_set_stats = []
+    #backup_data = normalize_data(backup_data)
     backup_data = splitter(backup_data)
     algo = ''
     for i in range(10): # iterates through passing each of the 10 subsets of our now scrambled and split dataset
@@ -131,15 +113,17 @@ def cross_validate_regression(dataset, variant, in_k):
     print('done!')
     #array_printer_3d(test_results)
 
-
-
-def k_means(training_set):
-    return "clustered yeet"
-
-
-def PAM(training_set):
-    return "other clustered yeet"
-
+'''
+# This takes in a 2d list of datapoints and normalizes each column to be a percentage of the difference between the maximum and minimum values for each column
+def normalize_data(dataset):
+    in_set = dataset
+    for i in range(len(in_set[0])):
+        min_value = min(in_set[:][i])
+        max_value = max(in_set[:][i])
+        to_div = max_value - min_value
+        in_set[:][i] = in_set[:][i]/to_div
+    return in_set
+'''
 
 
 '''
@@ -186,34 +170,119 @@ def work_it():
     # global num_classes
     # sets = ['1','2','3','4','5'] # List of sets for easy iteration when running tests.
     # methods = {'1': k_nearest_neighbors, '2': edited_knn, '3': "put cknn here", '4': "put cmeans here", '5': "put pam here"}
+    '''
     set_to_test = int(input("Which set do you want to test?\n1 for Abalone (Classification)\n2 for Car Evaluation (Classification)\n3 for Image Segmentation (Classification)\n4 for Computer Hardware (Regression)\n5 for Forest Fires (Regression)\n6 for Wine Quality (Regression)\n"))
     method_to_use = int(input("Which method do you want to use for testing these sets?\n1 for base KNN\n2 for edited KNN (Note: not available for regression datasets)\n3 for condensed KNN (Note: not available for regression datasets)\n4 for edited KNN using K Means Clustering\n5 for edited KNN using PAM Clustering\n"))
     k_to_use = int(input("Pick a k, any k\n"))
+    '''
+    set_to_test = int(sys.argv[1])
+    method_to_use = int(sys.argv[2])
+    k_to_use = int(sys.argv[3])
     unscrambled_data = get_list(set_to_test)
     if set_to_test < 4:
         cross_validate_classify(unscrambled_data,method_to_use,k_to_use)
     else:
         cross_validate_regression(unscrambled_data, method_to_use,k_to_use)
-    """ 
-    for set_to_use in sets:
-        data = get_list(set_to_use, '?') # We don't have any way of programatically finding the number of classes 
-        if set_to_use == '1':
-            num_classes = 6
-        elif set_to_use == '2':
-            num_classes = 7
-        elif set_to_use == '3':
-            num_classes = 3
-        elif set_to_use == '4':
-            num_classes = 4
-        elif set_to_use == '5':
-            num_classes = 2
-        if set_to_use == '2' or set_to_use == '3' or set_to_use == '4':
-            data = discretize_data(data, num_classes)
-        unscrambled_data = copy.copy(data)
-    """
-    '''Uncomment this line to perform cross-validation on the base data'''
-    # print("Tests with unscrambled data")
-    #cross_validate(unscrambled_data, method_to_use, k_to_use) # does 10fold CV with the original dataset, no scrambled attributes
+    
+    
 
-work_it()
+'''
+I reuse a couple snippets of code in here so I can either run indivisual algorithms with the above function, or run everything sequentially for comparisons with the below
+Not gonna lie, this turned out to be a lot messier than I intended it to be, but it gets the job done, and in the end that's all I was really aiming for.
+'''
+def run_everything():
+    variant = int(sys.argv[1])
+    print(variant)
+    classification = {0:"Base KNN:",1:"Edited KNN:",2:"Condensed KNN:",3:"C Means:",4:"PAM:"}
+    regresssion = {0:"Base KNN:", 1: "C Means:",2:"PAM"}
+    files = ["Abalone","Cars","Image Segmentation","Computer Hardware","Forest Fires","Wine Quality"] 
+    if variant == 0:
+        print("Classification Datasets:")
+        for i in range(1,4):
+            print(files[i-1])
+            dataset = get_list(i)
+            split_data = splitter(dataset)
+            base_results = []
+            e_results = []
+            c_results = []
+            mean_results = []
+            pam_results = []
+            for j in range(10):
+                to_learn = copy.copy(split_data) # Grabs a fresh copy of the dataset each time, since the to_learn list deletes a tenth of the data in each loop
+                to_test = make_test_set(to_learn.pop(j))
+                to_learn = flatten_list(to_learn)
+                spare_test = to_test
+                knn = k_nearest_neighbors(18,to_learn,0)
+                eknn = edited_knn(18,to_learn,0)
+                cknn = condensed_knn(18,to_learn,0)
+                cmean = c_means(18,to_learn,0)
+                alg_pam = pam(18,to_learn,0)
+                base_results.append(knn.classify(to_test))
+                to_test = spare_test
+                e_results.append(eknn.classify(to_test))
+                to_test = spare_test
+                c_results.append(cknn.classify(to_test))
+                to_test = spare_test
+                mean_results.append(cmean.classify(to_test))
+                to_test = spare_test
+                pam_results.append(alg_pam.classify(to_test))
+            unsplit_data = flatten_list(split_data)    
+            print(classification[0]) # I was too tired to figure out how lists work, so I ended up making this hardcoded mess. Sorry. 
+            temp = flatten_list(base_results)
+            print(analyze(unsplit_data,temp,30))
+            print(classification[1])
+            temp = flatten_list(e_results)
+            print(analyze(unsplit_data,temp,30))
+            print(classification[2])
+            temp = flatten_list(c_results)
+            print(analyze(unsplit_data,temp,30))
+            print(classification[3])
+            temp = flatten_list(mean_results)
+            print(analyze(unsplit_data,temp,30))
+            print(classification[4])
+            temp = flatten_list(pam_results)
+            print(analyze(unsplit_data,temp,30))
+    if variant == 1:
+        print("Regression Datasets")
+        for i in range(3,7):
+            print(files[i-1])
+            dataset = get_list(i)
+            split_data = splitter(dataset)
+            base_results = []
+            mean_results = []
+            pam_results = []
+            for j in range(10):
+                to_learn = copy.copy(split_data) # Grabs a fresh copy of the dataset each time, since the to_learn list deletes a tenth of the data in each loop
+                to_test = make_test_set(to_learn.pop(j))
+                to_learn = flatten_list(to_learn)
+                spare_test = to_test
+                knn = k_nearest_neighbors(18,to_learn,1)
+                cmean = c_means(18,to_learn,1)
+                alg_pam = pam(18,to_learn,1)
+                base_results.append(knn.regression(to_test))
+                to_test = spare_test
+                mean_results.append(cmean.regression(to_test))
+                to_test = spare_test
+                pam_results.append(alg_pam.regression(to_test))
+            unsplit_data = flatten_list(split_data)
+            for i in range():
+                print(regresssion[0])
+                temp  = flatten_list(base_results)
+                print(sa.mse(unsplit_data,temp))
+                print(sa.abs_error(unsplit_data,temp))
+                print(regresssion[1])
+                temp  = flatten_list(mean_results)
+                print(sa.mse(unsplit_data,temp))
+                print(sa.abs_error(unsplit_data,temp))
+                print(regresssion[2])
+                temp  = flatten_list(pam_results)
+                print(sa.mse(unsplit_data,temp))
+                print(sa.abs_error(unsplit_data,temp))
+    
+
+
+
+
+# work_it()
+run_everything()
 
