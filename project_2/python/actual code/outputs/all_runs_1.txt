@@ -1,0 +1,68 @@
+bad news bears
+Classification Datasets:
+Abalone
+column  1 has been normalized
+0  =  M
+1  =  F
+2  =  I
+1
+Iteration 1
+Iteration 1
+Iteration 1
+Iteration 1
+Iteration 1
+Iteration 1
+Iteration 1
+Iteration 1
+Iteration 1
+Iteration 1
+Iteration 1
+Iteration 1
+Iteration 1
+Iteration 1
+Iteration 1
+Iteration 1
+Iteration 1
+Iteration 1
+Iteration 1
+Iteration 1
+Iteration 1
+Iteration 1
+Iteration 1
+Iteration 1
+Iteration 1
+Iteration 1
+Iteration 1
+Iteration 1
+Iteration 1
+Iteration 1
+Base KNN:
+error
+Error:
+[0.         1.         1.         0.61290323 0.40350877 0.65250965
+ 0.71566265 0.51933124 0.64179104 0.65691057 0.68058608 0.67245119
+ 0.73966942 0.72727273 0.832      0.7195122  0.66467066 0.77777778
+ 1.         1.         0.77142857 0.75       1.         1.
+ 0.         0.         1.         1.         0.         1.        ]
+Precision:
+[0.         0.         0.         0.3        0.65384615 0.32846715
+ 0.27830189 0.55825243 0.35714286 0.37147887 0.3615257  0.32969432
+ 0.23247232 0.2278481  0.15       0.27058824 0.31111111 0.15189873
+ 0.         0.         0.15384615 0.22727273 0.         0.
+ 0.         0.         0.         0.         0.         0.        ]
+Recall:
+[0.         0.         0.         0.54545455 0.5483871  0.36885246
+ 0.29064039 0.42201835 0.35928144 0.31873112 0.28608924 0.32543103
+ 0.29577465 0.33962264 0.19090909 0.29113924 0.36363636 0.4137931
+ 0.         0.         0.44444444 0.27777778 0.         0.
+ 0.         0.         0.         0.         0.         0.        ]
+Correct classifications by class:
+[  0.   0.   0.   6.  51.  45.  59. 230. 180. 211. 218. 151.  63.  54.
+  21.  46.  28.  12.   0.   0.   8.   5.   0.   0.   0.   0.   0.   0.
+   0.   0.]
+Incorrect classifications by class
+[  0.   2.   2.  19.  69. 169. 297. 497. 645. 808. 929. 620. 358. 288.
+ 208. 236. 111.  84.  50.  62.  54.  30.  18.  17.   0.   0.   2.   2.
+   0.   1.]
+None
+Edited KNN:

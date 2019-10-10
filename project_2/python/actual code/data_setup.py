@@ -6,9 +6,9 @@ filepath = os.path.join(dirname, '../../datasets/')        # navigate to dataset
 
 def readInCom(fileNum):
     arr = []                                            # list to hold all out data
-    files = ["abalone.data","car.data","segmentation.data","machine.data","forestfires.data","winequality-red.csv","winequality-white.csv"] # list of data files so they can be chosen dynamically
+    files = ["abalone.data","car.data","segmentation.data","machine.data","forestfires.data","winequality-red.csv","winequality-white.csv","test.data"] # list of data files so they can be chosen dynamically
 
-    fileToOpen = filepath + files[int(fileNum)-1]         # creates file path to numbered data file numbered naturally 1-5 
+    fileToOpen = filepath + files[fileNum-1]         # creates file path to numbered data file numbered naturally 1-5 
 
     fileIn = open (fileToOpen,"r")
 
@@ -26,6 +26,9 @@ def readInCom(fileNum):
                         if z != '':                     # otherwise as long as it is not empty add it as a string    
                             arr[-1].append(z)
     arr = [z for z in arr if z != []]                           # removes last list in the array in case input has new line at the end 
+    if fileNum == 4:
+        for z in arr:
+            del z[1]
     for z in range(0,len(arr[0])):                  # go through the file to edit data
         strings = []                                # list to hold all unique strings in a column
         for y in range(0,len(arr)):
@@ -36,7 +39,7 @@ def readInCom(fileNum):
                         repeat = True
                 if repeat == False:
                     strings.append(arr[y][z])       # if it is a new unique string add is to the reference list
-        strings.sort()
+        # strings.sort()    not using for better results
         if len(strings) > 0:                        # if we have a list of strings this will assign numerical values
             for y in range(0,len(arr)):
                 for x in range(0,len(strings)):
@@ -50,18 +53,9 @@ def readInCom(fileNum):
         for i in arr:
             i.append(i.pop(0)) # this shifts the class value to the end of each row for simplifying the classification process
 
+
     print(fileNum)
-    if fileNum == '1':
-        for z in arr:
-            del z[0]
-    elif fileNum == '5':
-        for z in arr:
-            z.insert(17,z.pop(0))
-    elif fileNum == '2':
-        for z in arr:
-            z[-1] = z[-1] -1 # subtracts the class attribute by 1, so there aren't any conflicts in the stat_analysis function
-    for z in range(len(arr)):                       # print out the data set
-        print(arr[z])
+    
 
     return arr                      #return the data set
 

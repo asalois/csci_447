@@ -28,8 +28,8 @@ def calcError(filled):
 
 # make totals around the Confusion Matrix
 def totals(confMatrix):
-    for row in confMatrix:
-        print(row)
+    # for row in confMatrix:
+    #     print(row)
     classNum = len(confMatrix)
     totals = numpy.full((classNum + 1, classNum + 1),0)
     for i in range(classNum):

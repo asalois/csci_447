@@ -1,0 +1,182 @@
+\documentclass[twoside,11pt]{article}
+% Any additional packages needed should be included after jmlr2e.
+% Note that jmlr2e.sty includes epsfig, amssymb, natbib and graphicx,
+% and defines many common macros, such as 'proof' and 'example'.
+%
+% It also sets the bibliographystyle to plainnat; for more information on
+% natbib citation styles, see the natbib documentation, a copy of which
+% is archived at http://www.jmlr.org/format/natbib.pdf
+
+\usepackage{jmlr2e}
+%\usepackage{utf8}{inputenc}
+\usepackage{natbib}
+
+
+
+% Definitions of handy macros can go here
+
+\newcommand{\dataset}{{\cal D}}
+\newcommand{\fracpartial}[2]{\frac{\partial #1}{\partial  #2}}
+
+% Heading arguments are {volume}{year}{pages}{date submitted}{date published}{paper id}{author-full-names}
+
+\jmlrheading{1}{2019}{1-7}{9/19}{10/9}{meila00a}{Ethan Fison, Zan Montieth, Alex Salois, Sage Acteson}
+
+% Short headings should be running head and authors last names
+
+\ShortHeadings{Simple Validation of the Naïve Bayes Algorithm}{Fison, Montieth, Salois, Acteson}
+\firstpageno{1}
+
+\begin{document}
+
+
+\title{Simple Validation of the Naïve Bayes Algorithm}
+
+\author{\name Ethan Fison \email ethanfison@gmail.com \\
+        \name Zan Montieth \email zan.montieth@gmail.com \\
+        \name Alex Salois \email asalois.scholar@gmail.com \\ 
+        \name Sage Acteson \email sage.acteson@gmail.com \\ 
+       \addr Gianforte School of Computing\\
+       Montana State University\\
+       Bozeman, MT 59715, USA}
+
+
+\editor{Ethan Fison, Zan Montieth, Alex Salois, Sage Acteson}
+
+\maketitle
+
+\begin{abstract}%   <- trailing '%' for backward compatibility of .sty file
+
+This paper describes the use of the K Nearest Neighbors algorithm and several of 
+its variants for classification and regression of various UCI datasets. These
+algorithms are considered lazy learners, as all calculations are performed after
+test data is supplied. The general concept behind these algorithms is to find 
+the 'distances' between all points in the training set and the input test data, then
+find the mean or mode (depending on whether regression or classification are desired)
+of the K (K being an experimentally determined hyperparameterclosest points, then 
+assign that to the class or output value of the test data. Additional methods used include 
+Edited K Nearest Neighbors, in which points are removed from the test set if classification
+using KNN incorrect. Next was Condensed K Nearest Neighbors, a method in which points are
+added to the traning set from zero, if they are incorrectly classified using KNN. The 
+clustering methods used were C-Means Clustering and Partitioning Around Medoids.
+
+The results from this experiment were rather surprising, as KNN, despite being less computationally
+intense, and not removing noisy data from the training set, was the clear winner in terms of 
+overall performance.
+
+This paper describes the Na{\"i}ve Bayes algorithm, used for classification
+of data. This algorithm builds its model by finding the average value for each
+attribute of a given class, then classifies an input by finding the class it 
+most closely matches. In this experiement, we run ten-fold cross-validation 
+on our models which are built using 5 different datasets acquired from the UCI Machine 
+Learning Repositoryto test the accuracy of the algorithm\\
+The algorithm turned out to be very accurate, even when data was scrambled.
+
+\end{abstract}
+
+\begin{keywords}
+  Nearest Neighbor, K Nearest Neighbors, Edited K Nearest Neighbors, Condensed Nearest Neighbors, C Means Clustering, Partitioning Around Medoids, Classification, Validation, Regression
+\end{keywords}
+
+\section{Introduction}
+
+The goal of this experiment is to compare the efficacy of the K Nearest Neighbors 
+algorithm against methods aimed to reduce the size of the training set, using 6 
+preselected datasets form the UCI Machine Learning Repository.
+\citep{Abalone,Cars,Segmentation,Machine,ForestFires,Wine} To do so, we will employ
+ten-fold cross-validation on each applicable algorithm (all algorithms for 
+classification, base KNN and both clustering algorithms for regression) using the same
+pseudorandomly scrambled version of the dataset to ensure accurate comparisons of performance.
+Statistical analysis for this experiment consisted of the use of error, precision, 
+recall, and correct classification tally for classification, and mean squared error and 
+absolute error for regression.\\
+
+
+\section{Hypotheses}
+
+For each unmodified set, we assume the null hypothesis. That is, we assume that there will be no 
+significant change between the original values and reclassified values for any given test
+set sent into our model.\\
+For modified sets we expect there to be a measurable increase in the error between the original data and data with scrambled values.
+
+\section{Implementation Decisions}
+
+This section will discuss the design choices made in the development of each major 
+python file in the project, in addition to a description of the functionality of 
+the associated file(s).
+
+\subsection{File Input}
+The file input of our system preprocessed the data in order to optimize it for Naïve Bayes. 
+The incoming data was fed into two-dimensional lists then checked for the missing value indicator
+listed in the data's corresponding .names file. Then, the data was formatted to the appropriate 
+type i.e. integers and floats. Then, a string detecter will parse through the data to find
+non numerical data. The parser will then make a list of all unique strings. The unique strings 
+are then alphabatized and given integer values to represent them. By alphabatizing the list
+beforehand we found that similar vaules in different columns would be assigned the same integer
+value making the data much easier to understand. After processing the full data set the two-dimensional
+ list was then passed to our ten-fold cross-validation method.  
+\subsection{Ten-fold Cross-Validation}
+
+The implementation of the ten-fold cross-validation was intended to be straightforward. 
+Due to the nature of this function involving calls to each other python file in our 
+project, it was determined that the TenFCV python file would also serve as our driver. 
+There are several functions performed within this file. In addition to performing 
+ten-fold cross-validation of our data, it supports functionality for scrambling values for 
+10\% (rounded up) of rows within a given dataset, scrambling of the overall order of 
+rows within the dataset.\\
+The first pass of this function for any given dataset will scramble the order of rows, 
+split the data set into ten (mostly) equally-sized arrays, then sequentially feed 9 arrays 
+into the learner function within the algorithm, followed by feeding the remaining array, 
+now with class attributes removed, into the classifier function. The results given by 
+the classifer are then fed into our statistical analysis functions along with the original 
+segment of the reclassified data for comparison.\\
+The next pass will run a dataset with 10\% of its entries changed.\\
+Also contained within the python file is handling of discretization for the Glass, Iris, and Soybean datasets.
+This is accomplished through 10-interval mean binning of each attribute, excluding the class attribute. The choice 
+of interval was entirely arbitrary in this case. To bin the attributes, each column is sorted, then
+divided into 10 segments. The values within that segment's current attribute are then replaced with the mean
+value for that particular attribute. This process is then repeated for all other non-class attributes within the data.
+
+\subsection{Naïve Bayes Implementation}
+
+The Naïve Bayes algorithm was implemented with two major components: train and classify. 
+During the training part of the algorithm a two-dimensional list of training data is passed in.
+From this data a frequency table is constructed that holds the frequency of each attribute value for each attribute for each class, and the frequency of each class. 
+This table used to calculate the probability of each attribute value for each class, and the probability of each individual class.\\
+To classify a two-dimensional list of data is passed in, but without the last column, which would normally hold the class.
+The probility of each possible class is calculated for each example in the data to be classified, 
+and the most likely class is appended to each example (row).
+ If all classes have a probability of 0, meaning there were attributes that didn't have a match in any class, then a random class is assigned.
+The classified data is then returned for statistical analysis of its accuracy.
+
+\subsection{Statistical Analysis}
+Using the document given \citep{Precision} error was calculated using confusion matrixes.
+Using this method allowed the error, precision, recall to be calculceted easily by simply
+itterating thorugh the confusion matrix and finding the true postives, false postives and the 
+false negatives.
+
+
+\section{Results}
+Overall this  alogorithm had little error even when the data was scrambled.  
+This was shown by by the Votes data set \citep{Vote}. The alogorithm had an error of 0.19688109, precision of 0.77735849
+and reacall of 0.83064516 while when the data was scrambled the alogorithm had an error of 0.28291317, precision 
+of 0.75294118 and reacall of 0.68449198.  Looking at the this one can see that the alogorithm is indeed working accurately
+and the stats are a worse when part fo the data is scrambled which makes sense and also shows that the data is not just 
+random. 
+
+
+% Acknowledgements should go at the end, before appendices and references
+
+% Manual newpage inserted to improve layout of sample file - not
+% needed in general before appendices/bibliography.
+
+\newpage
+
+
+
+
+
+\vskip 0.2in
+\bibliography{cite}
+
+\end{document}
