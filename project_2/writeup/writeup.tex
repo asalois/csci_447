@@ -124,23 +124,19 @@ the classifer are then fed into our statistical analysis functions along with th
 segment of the reclassified data for comparison.\\
 The next pass will run a dataset with 10\% of its entries changed.\\
 
-\subsection{Naïve Bayes Implementation}
-
-The Naïve Bayes algorithm was implemented with two major components: train and classify. 
-During the training part of the algorithm a two-dimensional list of training data is passed in.
-From this data a frequency table is constructed that holds the frequency of each attribute value for each attribute for each class, and the frequency of each class. 
-This table used to calculate the probability of each attribute value for each class, and the probability of each individual class.\\
-To classify a two-dimensional list of data is passed in, but without the last column, which would normally hold the class.
-The probility of each possible class is calculated for each example in the data to be classified, 
-and the most likely class is appended to each example (row).
- If all classes have a probability of 0, meaning there were attributes that didn't have a match in any class, then a random class is assigned.
-The classified data is then returned for statistical analysis of its accuracy.
 
 \subsection{Statistical Analysis}
-Using the document given \citep{Precision} error was calculated using confusion matrixes.
-Using this method allowed the error, precision, recall to be calculceted easily by simply
-itterating thorugh the confusion matrix and finding the true postives, false postives and the 
-false negatives.
+For classicfation sets error was calculated using the document given \citep{Precision} from this error 
+was calculated using confusion matrixes. Using this method allowed the error, precision, recall to be 
+calculceted easily by simply itterating thorugh the confusion matrix and finding the true postives, 
+false postives and the false negatives. 0-1 loss which is simply findding the total number correctly and incorrectly 
+classified was also used as a metric to easily see if one algorithm variant is more accurate.
+
+For regression mean square error (MSE) and absolute error was used as regression has more of a range than classicfation so it must 
+have a more sophisicated way to measure efficacy. MSE is used as measure as it accounts for signs and so all the error will be postive
+meaning that a postive and negative error will be acounted for the same. Absolute error will not account for signs but comparing the two
+is possible as taking the square root of MSE should give you a value in the ball park of absolute error. 
+
 
 
 \section{Results}
