@@ -186,8 +186,7 @@ def run_all_algs():
     regresssion = {0:"Base KNN:", 1: "C Means:",2:"PAM"}
     files = ["Abalone","Cars","Image Segmentation","Computer Hardware","Forest Fires","Wine Quality"] 
     i = int(sys.argv[1])
-    ks = [1,1,1,3,3,3]
-    ''' 
+    ks = [1,1,1,3,3,3] 
     print("Classification Datasets:")
     print(files[i-1])
     dataset = get_list(i)
@@ -265,7 +264,7 @@ def run_all_algs():
     temp  = flatten_list(pam_results)
     print(sa.mse(unsplit_data,temp))
     print(sa.abs_error(unsplit_data,temp))
-    
+    '''
 
 
 
