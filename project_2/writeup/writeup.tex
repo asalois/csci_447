@@ -143,13 +143,17 @@ is possible as taking the square root of MSE should give you a value in the ball
 Looking at Image Segmentation set and honing in on class one error, one can see that variants of KNN performed worse as the error 0.48 with an 0-1 loss being 
 17 correct and 30 incorect for Edited KNN and an astounding error if 0.78 with an 0-1 loss being 9 correct and 75 incorect for Condensed KNN 
 comapred to base KNN with error of 0.22 0-1 loss of 24 correct and 14 incorect.  Using this one can see that the hypothesis of there being no change 
-between  variants of KNN will be rejected.  However looking at PAM and C Means there is not a statistical important differnence from base KNN with error
-of 0.22 and 0.25 and 0-1 loss of 24 correct and 14 incorect and 23 correct and 16 incorect respectively. 
+between variants of KNN will be rejected.  However looking at PAM and C Means there is not a statistical important differnence from base KNN with error
+of 0.22 and 0.25 and 0-1 loss of 24 correct and 14 incorect and 23 correct and 16 incorect respectively. Looking at table 1.1 one can see that this applys
+for the overall set.
+PAM and base KNN has the same results Looking further into the Cars set also shows that condensed KNN is the worse of the three KNN variants but 
+in this case Edited KNN and base KNN  have nearly the same error
+showing that condensed KNN will infact reject the null hypothesis while Edited KNN does not have a statistical differnce.  
 
 Looking at regression and the ForestFires set with base KNN the MSE is 222328298.0003 while the square root of MSE is 14910.6777
 and the absolute error being 334215.1899 which happens to be  the exact same for PAM this error shows that there is not a statistical differnence
 between the two.  This is not true for C Means However where the MSE is 222380851.1803 while the square root of MSE is 14912.4394 and the 
-absolute error being 334265.1899 showing that there is little to none statistical differnence in any of the algorithm variants. 
+absolute error being 334265.1899 showing that there is little to none statistical differnence in any of the algorithm variants.  
 
 
 
