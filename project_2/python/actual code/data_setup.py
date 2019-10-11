@@ -56,15 +56,4 @@ def readInCom(fileNum):
 
     print(fileNum)
     
-
     return arr                      #return the data set
-
-
-def readInPerson():
-    print("pls choose which file you would like\n 1: for Breast Cancer Data\n 2: for Glass Data\n 3: for Iris Data\n 4: for Soybean Data\n 5: for Vote Data ")
-    choice = input("your choice: ")
-
-    remove = input("please input the value used to denote a missing value: ")  
-    readInCom(choice, remove)
-
-# readInPerson()
