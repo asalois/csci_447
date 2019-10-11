@@ -140,10 +140,11 @@ is possible as taking the square root of MSE should give you a value in the ball
 
 
 \section{Results}
-Looking at Image Segmentation set run one can see that variants of KNN performed worse as the error 0.48 with an 0-1 loss being 
+Looking at Image Segmentation set and honing in on class one error, one can see that variants of KNN performed worse as the error 0.48 with an 0-1 loss being 
 17 correct and 30 incorect for Edited KNN and an astounding error if 0.78 with an 0-1 loss being 9 correct and 75 incorect for Condensed KNN 
 comapred to base KNN with error of 0.22 0-1 loss of 24 correct and 14 incorect.  Using this one can see that the hypothesis of there being no change 
-between  variants of KNN will be rejected.
+between  variants of KNN will be rejected.  However looking at PAM and C Means there is not a statistical important differnence from base KNN with error
+of 0.22 and 0.25 and 0-1 loss of 24 correct and 14 incorect and 23 correct and 16 incorect respectively.
 
 Overall this  alogorithm had little error even when the data was scrambled.  
 This was shown by by the Votes data set \citep{Vote}. The alogorithm had an error of 0.19688109, precision of 0.77735849
