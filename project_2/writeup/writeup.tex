@@ -144,14 +144,14 @@ Looking at Image Segmentation set and honing in on class one error, one can see 
 17 correct and 30 incorect for Edited KNN and an astounding error if 0.78 with an 0-1 loss being 9 correct and 75 incorect for Condensed KNN 
 comapred to base KNN with error of 0.22 0-1 loss of 24 correct and 14 incorect.  Using this one can see that the hypothesis of there being no change 
 between  variants of KNN will be rejected.  However looking at PAM and C Means there is not a statistical important differnence from base KNN with error
-of 0.22 and 0.25 and 0-1 loss of 24 correct and 14 incorect and 23 correct and 16 incorect respectively.
+of 0.22 and 0.25 and 0-1 loss of 24 correct and 14 incorect and 23 correct and 16 incorect respectively. 
 
-Overall this  alogorithm had little error even when the data was scrambled.  
-This was shown by by the Votes data set \citep{Vote}. The alogorithm had an error of 0.19688109, precision of 0.77735849
-and reacall of 0.83064516 while when the data was scrambled the alogorithm had an error of 0.28291317, precision 
-of 0.75294118 and reacall of 0.68449198.  Looking at the this one can see that the alogorithm is indeed working accurately
-and the stats are a worse when part fo the data is scrambled which makes sense and also shows that the data is not just 
-random. 
+Looking at regression and the ForestFires set with base KNN the MSE is 222328298.0003 while the square root of MSE is 14910.6777
+and the absolute error being 334215.1899 which happens to be  the exact same for PAM this error shows that there is not a statistical differnence
+between the two.  This is not true for C Means However where the MSE is 222380851.1803 while the square root of MSE is 14912.4394 and the 
+absolute error being 334265.1899 showing that there is little to none statistical differnence in any of the algorithm variants. 
+
+
 
 
 % Acknowledgements should go at the end, before appendices and references
