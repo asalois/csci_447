@@ -57,3 +57,4 @@ def readInCom(fileNum):
     print(fileNum)
     
     return arr                      #return the data set
+    # bad news bears
