@@ -1,0 +1,6 @@
+All members contributed equally to initial design docs.
+Ethan wrote the driver, KNN, EKNN, CKNN, some of C-Means, and did a significant portion of debugging.
+Zan wrote data_setup, some of C-Means, edited video.
+Sage wrote PAM, did a significant portion of debugging, and did a majority of the research.
+Alex wrote stat_analysis, and worked on running calculations on the campus Hyalite server.
+Ethan, Zan, and Alex contributed descriptions of each of their algorithms or files, Sage additionally proofread and finalized the document.
