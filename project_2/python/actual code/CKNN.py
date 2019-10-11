@@ -10,7 +10,7 @@ class condensed_knn(KNN.k_nearest_neighbors):
         self.condense_set()
 
 
-    def edited_class_remover(self,in_set):      # removes the class from set
+    def edited_class_remover(self,in_set):      # removes the class from set 
         classless_data = []
         for point in in_set.points:
             classless_data.append(point.data[:])    
