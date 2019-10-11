@@ -53,7 +53,7 @@ algorithms are considered lazy learners, as all calculations are performed after
 test data is supplied. The general concept behind these algorithms is to find 
 the 'distances' between all points in the training set and the input test data, then
 find the mean or mode (depending on whether regression or classification are desired)
-of the K (K being an experimentally determined hyperparameterclosest points, then 
+of the K (K being an experimentally determined hyperparameter closest points, then 
 assign that to the class or output value of the test data. Additional methods used include 
 Edited K Nearest Neighbors, in which points are removed from the test set if classification
 using KNN incorrect. Next was Condensed K Nearest Neighbors, a method in which points are
@@ -63,14 +63,6 @@ clustering methods used were C-Means Clustering and Partitioning Around Medoids.
 The results from this experiment were rather surprising, as KNN, despite being less computationally
 intense, and not removing noisy data from the training set, was the clear winner in terms of 
 overall performance.
-
-This paper describes the Na{\"i}ve Bayes algorithm, used for classification
-of data. This algorithm builds its model by finding the average value for each
-attribute of a given class, then classifies an input by finding the class it 
-most closely matches. In this experiement, we run ten-fold cross-validation 
-on our models which are built using 5 different datasets acquired from the UCI Machine 
-Learning Repositoryto test the accuracy of the algorithm\\
-The algorithm turned out to be very accurate, even when data was scrambled.
 
 \end{abstract}
 
