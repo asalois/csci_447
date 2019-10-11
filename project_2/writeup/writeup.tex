@@ -144,27 +144,28 @@ Looking at Image Segmentation set and honing in on class one error, one can see 
 17 correct and 30 incorect for Edited KNN and an astounding error if 0.78 with an 0-1 loss being 9 correct and 75 incorect for Condensed KNN 
 comapred to base KNN with error of 0.22 0-1 loss of 24 correct and 14 incorect.  Using this one can see that the hypothesis of there being no change 
 between variants of KNN will be rejected.  However looking at PAM and C Means there is not a statistical important differnence from base KNN with error
-of 0.22 and 0.25 and 0-1 loss of 24 correct and 14 incorect and 23 correct and 16 incorect respectively. Looking at table 1.1 one can see that this applys
+of 0.21 and 0.25 and 0-1 loss of 25 correct and 14 incorect and 23 correct and 16 incorect respectively. Looking at table 1.1 one can see that this applys
 for the overall set therefore failing to reject the null.
 
-For Abalone any variant of KNN was a diaster.  The algorithm ran with an eror of nearly one for every variant including PAM and C Means. For this set 
+For Abalone any variant of KNN the data set did not have the expected output.  The algorithm ran with an eror of nearly one for every variant including PAM and C Means. For this set 
 the null hypothesis has failed to be rejected. This set took a long time to run and the algorithm performed poor this points to perhaps that this set 
 does not adhere to the requirments of the algorithm. 
 
-
-PAM and base KNN has the same results Looking further into the Cars set also shows that condensed KNN is the worse of the three KNN variants but 
+PAM and base KNN has the similar results Looking further into the Cars set also shows that condensed KNN is the worse of the three KNN variants but 
 in this case Edited KNN and base KNN  have nearly the same error showing that condensed KNN will infact reject the null hypothesis while 
-Edited KNN does not have a statistical differnce so the null failed to be rejected.  
+Edited KNN does not have a statistical differnce so the null hypothis has beeen failed to be rejected.  
 
 Looking at regression and the ForestFires set with base KNN the MSE is 222328298.0003 while the square root of MSE is 14910.6777
-and the absolute error being 334215.1899 which happens to be  the exact same for PAM this error shows that there is not a statistical differnence
-between the two.  This is not true for C Means However where the MSE is 222380851.1803 while the square root of MSE is 14912.4394 and the 
-absolute error being 334265.1899 showing that there is little to none statistical differnence in any of the algorithm variants.  Therefore 
+and the absolute error being 334215.1899 For PAM MSE is 221847176.4003 while the square root of MSE is 14894.5351 and absolute error of 
+35564.63 that there is a statistical differnence between the two the absoulute error is nearly half for PAM showing that the null hypothesis is rejected .  
+This is not true for C Means However where the MSE is 222380851.1803 while the square root of MSE is 14912.4394 and the 
+absolute error being 334265.1899 showing that there is little to none statistical differnence in any of the algorithm variants. Therefore 
 showing the null hypothesis failed to be rejected. 
 
 Looking at regression and the Machine set with base KNN the MSE is 181545393.0 while the square root of MSE is 13473.8781
-and the absolute error being 192235.0 which happens to be the exact same for PAM and C Mean this error shows that there is not a statistical differnence
-between the thre.  Therefore showing the null hypothesis failed to be rejected. 
+and the absolute error being 192235.0 which happens to be the exact same for C Means this error shows that there is not a statistical differnence
+between the two.  Therefore showing the null hypothesis failed to be rejected. However for Pam MSE is 181692682.0 while the square root of 
+MSE is 13479.3427 and the absolute error being 17274.0 which is roughly a tenth the error meaning the null hypothesis is rejected.
 
 
 
