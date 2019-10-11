@@ -10,10 +10,10 @@ class condensed_knn(KNN.k_nearest_neighbors):
         self.condense_set()
 
 
-    def edited_class_remover(self,in_set):
+    def edited_class_remover(self,in_set):      # removes the class from set
         classless_data = []
         for point in in_set.points:
-            classless_data.append(point.data[:])
+            classless_data.append(point.data[:])    
         return classless_data
 
 
@@ -27,12 +27,12 @@ class condensed_knn(KNN.k_nearest_neighbors):
         while adding:
             adding = False
             rd.shuffle(old_points)
-            for i, point in enumerate(old_points):
+            for i, point in enumerate(old_points):              # go through all of our points         
                 point = self.edited_class_remover(point_map([point]))
                 point =  self.classify(point)[0]
-                if point.class_type != old_points[i].class_type:
+                if point.class_type != old_points[i].class_type:    # if it isn't classified right add it to the map
                     new_points.append(point)
                     old_points.remove(old_points[i])
-                    adding = True
+                    adding = True                   # we need to add more points
 
         self.d_map = point_map(new_points)
