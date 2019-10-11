@@ -32,14 +32,13 @@ class edited_knn(KNN.k_nearest_neighbors):
             cur_iter += 1
             print("Iteration " + str(cur_iter))
             prev_map = cur_map
-            # temp_points = self.edited_class_remover(cur_map)
             reclassed_points = []
-            for point in cur_map.points:
-                unclassed_point = self.edited_class_remover(point_map([point]))
-                back_map = self.d_map
-                self.d_map.points.remove(point)
-                reclassed_points.append(self.classify(unclassed_point))
-                self.d_map = back_map
+            for point in cur_map.points: # reclassifies points in the map point by point
+                unclassed_point = self.edited_class_remover(point_map([point])) # removes the class for the point to be checked
+                back_map = self.d_map # makes a backup of the main map, since we edit it a little for each loop, then restore it
+                self.d_map.points.remove(point) # removes the point that's about to be checked, so it doesn't classify itself at smaller Ks
+                reclassed_points.append(self.classify(unclassed_point)) #add the classified point to the list of points to compare
+                self.d_map = back_map # restore the main map to its original state
             for i, point in enumerate(cur_map.points):
                 if point.class_type != map_to_return.points[i].class_type: # This is also maybe a little hacky, but it prevents out of bounds errors after we start to remove points
                     cur_map.points.remove(point)
