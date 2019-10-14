@@ -1,0 +1,49 @@
+bad news bears
+Computer Hardware
+column  1 has been normalized
+0  =  adviser
+1  =  amdahl
+2  =  apollo
+3  =  basf
+4  =  bti
+5  =  burroughs
+6  =  c.r.d
+7  =  cdc
+8  =  cambex
+9  =  dec
+10  =  dg
+11  =  formation
+12  =  four-phase
+13  =  gould
+14  =  hp
+15  =  harris
+16  =  honeywell
+17  =  ibm
+18  =  ipl
+19  =  magnuson
+20  =  microdata
+21  =  nas
+22  =  ncr
+23  =  nixdorf
+24  =  perkin-elmer
+25  =  prime
+26  =  siemens
+27  =  sperry
+28  =  sratus
+29  =  wang
+4
+Base KNN:
+mse
+181545393.0
+abs
+192235.0
+C Means:
+mse
+181545393.0
+abs
+192235.0
+PAM
+mse
+181545393.0
+abs
+192235.0

@@ -1,0 +1,206 @@
+bad news bears
+Classification Datasets:
+Cars
+column  1 has been normalized
+0  =  vhigh
+1  =  high
+2  =  med
+3  =  low
+column  2 has been normalized
+0  =  vhigh
+1  =  high
+2  =  med
+3  =  low
+column  3 has been normalized
+0  =  5more
+column  4 has been normalized
+0  =  more
+column  5 has been normalized
+0  =  small
+1  =  med
+2  =  big
+column  6 has been normalized
+0  =  low
+1  =  med
+2  =  high
+column  7 has been normalized
+0  =  unacc
+1  =  acc
+2  =  vgood
+3  =  good
+2
+Iteration 1
+Iteration 1
+Iteration 1
+Iteration 1
+Iteration 1
+Iteration 1
+Iteration 1
+Iteration 1
+Iteration 1
+Iteration 1
+Iteration 1
+Iteration 1
+Iteration 1
+Iteration 1
+Iteration 1
+Iteration 1
+Iteration 1
+Iteration 1
+Iteration 1
+Iteration 1
+Iteration 1
+Iteration 1
+Iteration 1
+Iteration 1
+Iteration 1
+Iteration 1
+Iteration 1
+Iteration 1
+Iteration 1
+Iteration 1
+Base KNN:
+error
+Error:
+[0.07588533 0.30562347 0.47457627 0.66216216 0.         0.
+ 0.         0.         0.         0.         0.         0.
+ 0.         0.         0.         0.         0.         0.
+ 0.         0.         0.         0.         0.         0.
+ 0.         0.         0.         0.         0.         0.        ]
+Precision:
+[0.90578512 0.73958333 0.47692308 0.36231884 0.         0.
+ 0.         0.         0.         0.         0.         0.
+ 0.         0.         0.         0.         0.         0.
+ 0.         0.         0.         0.         0.         0.
+ 0.         0.         0.         0.         0.         0.        ]
+Recall:
+[0.94320138 0.65437788 0.58490566 0.3164557  0.         0.
+ 0.         0.         0.         0.         0.         0.
+ 0.         0.         0.         0.         0.         0.
+ 0.         0.         0.         0.         0.         0.
+ 0.         0.         0.         0.         0.         0.        ]
+Correct classifications by class:
+[1096.  284.   31.   25.    0.    0.    0.    0.    0.    0.    0.    0.
+    0.    0.    0.    0.    0.    0.    0.    0.    0.    0.    0.    0.
+    0.    0.    0.    0.    0.    0.]
+Incorrect classifications by class
+[180. 250.  56.  98.   0.   0.   0.   0.   0.   0.   0.   0.   0.   0.
+   0.   0.   0.   0.   0.   0.   0.   0.   0.   0.   0.   0.   0.   0.
+   0.   0.]
+None
+Edited KNN:
+error
+Error:
+[0.07743826 0.32178218 0.44       0.59701493 0.         0.
+ 0.         0.         0.         0.         0.         0.
+ 0.         0.         0.         0.         0.         0.
+ 0.         0.         0.         0.         0.         0.
+ 0.         0.         0.         0.         0.         0.        ]
+Precision:
+[0.9107438  0.71354167 0.53846154 0.39130435 0.         0.
+ 0.         0.         0.         0.         0.         0.
+ 0.         0.         0.         0.         0.         0.
+ 0.         0.         0.         0.         0.         0.
+ 0.         0.         0.         0.         0.         0.        ]
+Recall:
+[0.93469042 0.64622642 0.58333333 0.41538462 0.         0.
+ 0.         0.         0.         0.         0.         0.
+ 0.         0.         0.         0.         0.         0.
+ 0.         0.         0.         0.         0.         0.
+ 0.         0.         0.         0.         0.         0.        ]
+Correct classifications by class:
+[1102.  274.   35.   27.    0.    0.    0.    0.    0.    0.    0.    0.
+    0.    0.    0.    0.    0.    0.    0.    0.    0.    0.    0.    0.
+    0.    0.    0.    0.    0.    0.]
+Incorrect classifications by class
+[185. 260.  55.  80.   0.   0.   0.   0.   0.   0.   0.   0.   0.   0.
+   0.   0.   0.   0.   0.   0.   0.   0.   0.   0.   0.   0.   0.   0.
+   0.   0.]
+None
+Condensed KNN:
+error
+Error:
+[0.30082645 0.75388027 1.         1.         0.         0.
+ 0.         0.         0.         0.         0.         0.
+ 0.         0.         0.         0.         0.         0.
+ 0.         0.         0.         0.         0.         0.
+ 0.         0.         0.         0.         0.         0.        ]
+Precision:
+[0.69917355 0.2890625  0.         0.         0.         0.
+ 0.         0.         0.         0.         0.         0.
+ 0.         0.         0.         0.         0.         0.
+ 0.         0.         0.         0.         0.         0.
+ 0.         0.         0.         0.         0.         0.        ]
+Recall:
+[0.69917355 0.21428571 0.         0.         0.         0.
+ 0.         0.         0.         0.         0.         0.
+ 0.         0.         0.         0.         0.         0.
+ 0.         0.         0.         0.         0.         0.
+ 0.         0.         0.         0.         0.         0.        ]
+Correct classifications by class:
+[846. 111.   0.   0.   0.   0.   0.   0.   0.   0.   0.   0.   0.   0.
+   0.   0.   0.   0.   0.   0.   0.   0.   0.   0.   0.   0.   0.   0.
+   0.   0.]
+Incorrect classifications by class
+[728. 680.  65.  69.   0.   0.   0.   0.   0.   0.   0.   0.   0.   0.
+   0.   0.   0.   0.   0.   0.   0.   0.   0.   0.   0.   0.   0.   0.
+   0.   0.]
+None
+C Means:
+error
+Error:
+[0.07588533 0.30562347 0.47457627 0.66216216 0.         0.
+ 0.         0.         0.         0.         0.         0.
+ 0.         0.         0.         0.         0.         0.
+ 0.         0.         0.         0.         0.         0.
+ 0.         0.         0.         0.         0.         0.        ]
+Precision:
+[0.90578512 0.73958333 0.47692308 0.36231884 0.         0.
+ 0.         0.         0.         0.         0.         0.
+ 0.         0.         0.         0.         0.         0.
+ 0.         0.         0.         0.         0.         0.
+ 0.         0.         0.         0.         0.         0.        ]
+Recall:
+[0.94320138 0.65437788 0.58490566 0.3164557  0.         0.
+ 0.         0.         0.         0.         0.         0.
+ 0.         0.         0.         0.         0.         0.
+ 0.         0.         0.         0.         0.         0.
+ 0.         0.         0.         0.         0.         0.        ]
+Correct classifications by class:
+[1096.  284.   31.   25.    0.    0.    0.    0.    0.    0.    0.    0.
+    0.    0.    0.    0.    0.    0.    0.    0.    0.    0.    0.    0.
+    0.    0.    0.    0.    0.    0.]
+Incorrect classifications by class
+[180. 250.  56.  98.   0.   0.   0.   0.   0.   0.   0.   0.   0.   0.
+   0.   0.   0.   0.   0.   0.   0.   0.   0.   0.   0.   0.   0.   0.
+   0.   0.]
+None
+PAM:
+error
+Error:
+[0.07588533 0.30562347 0.47457627 0.66216216 0.         0.
+ 0.         0.         0.         0.         0.         0.
+ 0.         0.         0.         0.         0.         0.
+ 0.         0.         0.         0.         0.         0.
+ 0.         0.         0.         0.         0.         0.        ]
+Precision:
+[0.90578512 0.73958333 0.47692308 0.36231884 0.         0.
+ 0.         0.         0.         0.         0.         0.
+ 0.         0.         0.         0.         0.         0.
+ 0.         0.         0.         0.         0.         0.
+ 0.         0.         0.         0.         0.         0.        ]
+Recall:
+[0.94320138 0.65437788 0.58490566 0.3164557  0.         0.
+ 0.         0.         0.         0.         0.         0.
+ 0.         0.         0.         0.         0.         0.
+ 0.         0.         0.         0.         0.         0.
+ 0.         0.         0.         0.         0.         0.        ]
+Correct classifications by class:
+[1096.  284.   31.   25.    0.    0.    0.    0.    0.    0.    0.    0.
+    0.    0.    0.    0.    0.    0.    0.    0.    0.    0.    0.    0.
+    0.    0.    0.    0.    0.    0.]
+Incorrect classifications by class
+[180. 250.  56.  98.   0.   0.   0.   0.   0.   0.   0.   0.   0.   0.
+   0.   0.   0.   0.   0.   0.   0.   0.   0.   0.   0.   0.   0.   0.
+   0.   0.]
+None

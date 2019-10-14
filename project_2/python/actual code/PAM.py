@@ -34,7 +34,7 @@ class pam(EKNN.edited_knn) :
     # the main loop of the algorithm 
     def recompute(self):
         max_passes = int(0.1 * len(self.d_set)) # max passes (if the medoids don't stop changing) to kick out equal to 10% the dataset (tunable)
-        distortion = 9223372036854775807
+        distortion = 9223372036854775807 # this is the maximum integer value for the system, and is also used below
         distortion_prime = 9223372036854775807
         old_distortion = 9223372036854775807
 
@@ -76,3 +76,4 @@ class pam(EKNN.edited_knn) :
                 break
             max_passes -= 1
             old_distortion = distortion
+        self.d_map.points = self.pam_map

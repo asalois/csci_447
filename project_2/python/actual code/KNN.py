@@ -1,3 +1,4 @@
+'''Base K nearest neighbors algorithm'''
 import numpy as np 
 import random as rd 
 import math
@@ -30,6 +31,7 @@ class k_nearest_neighbors():
 
         return dist
 
+    '''makes calls to the euclidean function to find the distancd between the unclassified point and all others in the set'''
     def get_k_nearest(self, unclass_point):
         neighbors_and_distances = []
         for point in self.d_map.points:
@@ -43,24 +45,21 @@ class k_nearest_neighbors():
         nearest = []
         count = 0
         for line in data_to_classify:
-            points_to_classify.append(data_point(line[:], ''))
+            points_to_classify.append(data_point(line[:], '')) # turns the input dataset into a list of datapoints
 
         for point in points_to_classify:
             count += 1
             nearest = self.get_k_nearest(point)
-            #nearest = sorted(nearest, key= lambda l:l[1], reverse=True)
-            #occurence_length = int(nearest[0][1])
-            #occurence_counter = [0 for i in range(occurence_length)]
             occurrence_counter = np.full(2000,0) # This is declared ahead of time to avoid any potential issues with out of bounds errors that might occur if dynamically declaring. It's huge because of the machine dataset
             for i in range(self.k):
                 occurrence_counter[int(nearest[i][-1])] += 1 # We cast this particular index to int, since no classes in these sets are of float value
-            max_occurrence = np.argmax(occurrence_counter)
+            max_occurrence = np.argmax(occurrence_counter) # finds the index with the most common occurrence, and takes that to be the class of the current point
             point.class_type = max_occurrence
             # print("point " + str(count) + " classified")
 
         return points_to_classify
 
-
+    '''This is functionally the same as classify(), but takes the mean of the data, instead of the mode'''
     def regression(self, data_to_regress):
         points_to_regress = []
         nearest = []
@@ -74,6 +73,6 @@ class k_nearest_neighbors():
             for i in range(self.k):
                 average +=  nearest[i][-1]
             average = average / self.k
-            point.class_type = int(round(average))
+            point.class_type = int(round(average)) 
 
         return points_to_regress

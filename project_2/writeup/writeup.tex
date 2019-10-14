@@ -53,7 +53,7 @@ algorithms are considered lazy learners, as all calculations are performed after
 test data is supplied. The general concept behind these algorithms is to find 
 the 'distances' between all points in the training set and the input test data, then
 find the mean or mode (depending on whether regression or classification are desired)
-of the K (K being an experimentally determined hyperparameterclosest points, then 
+of the K (K being an experimentally determined hyperparameter closest points, then 
 assign that to the class or output value of the test data. Additional methods used include 
 Edited K Nearest Neighbors, in which points are removed from the test set if classification
 using KNN incorrect. Next was Condensed K Nearest Neighbors, a method in which points are
@@ -63,14 +63,6 @@ clustering methods used were C-Means Clustering and Partitioning Around Medoids.
 The results from this experiment were rather surprising, as KNN, despite being less computationally
 intense, and not removing noisy data from the training set, was the clear winner in terms of 
 overall performance.
-
-This paper describes the Na{\"i}ve Bayes algorithm, used for classification
-of data. This algorithm builds its model by finding the average value for each
-attribute of a given class, then classifies an input by finding the class it 
-most closely matches. In this experiement, we run ten-fold cross-validation 
-on our models which are built using 5 different datasets acquired from the UCI Machine 
-Learning Repositoryto test the accuracy of the algorithm\\
-The algorithm turned out to be very accurate, even when data was scrambled.
 
 \end{abstract}
 
@@ -88,7 +80,7 @@ ten-fold cross-validation on each applicable algorithm (all algorithms for
 classification, base KNN and both clustering algorithms for regression) using the same
 pseudorandomly scrambled version of the dataset to ensure accurate comparisons of performance.
 Statistical analysis for this experiment consisted of the use of error, precision, 
-recall, and correct classification tally for classification, and mean squared error and 
+recall, and correct classification tally for classification, then mean squared error and 
 absolute error for regression.\\
 
 
@@ -131,38 +123,51 @@ now with class attributes removed, into the classifier function. The results giv
 the classifer are then fed into our statistical analysis functions along with the original 
 segment of the reclassified data for comparison.\\
 The next pass will run a dataset with 10\% of its entries changed.\\
-Also contained within the python file is handling of discretization for the Glass, Iris, and Soybean datasets.
-This is accomplished through 10-interval mean binning of each attribute, excluding the class attribute. The choice 
-of interval was entirely arbitrary in this case. To bin the attributes, each column is sorted, then
-divided into 10 segments. The values within that segment's current attribute are then replaced with the mean
-value for that particular attribute. This process is then repeated for all other non-class attributes within the data.
 
-\subsection{Naïve Bayes Implementation}
-
-The Naïve Bayes algorithm was implemented with two major components: train and classify. 
-During the training part of the algorithm a two-dimensional list of training data is passed in.
-From this data a frequency table is constructed that holds the frequency of each attribute value for each attribute for each class, and the frequency of each class. 
-This table used to calculate the probability of each attribute value for each class, and the probability of each individual class.\\
-To classify a two-dimensional list of data is passed in, but without the last column, which would normally hold the class.
-The probility of each possible class is calculated for each example in the data to be classified, 
-and the most likely class is appended to each example (row).
- If all classes have a probability of 0, meaning there were attributes that didn't have a match in any class, then a random class is assigned.
-The classified data is then returned for statistical analysis of its accuracy.
 
 \subsection{Statistical Analysis}
-Using the document given \citep{Precision} error was calculated using confusion matrixes.
-Using this method allowed the error, precision, recall to be calculceted easily by simply
-itterating thorugh the confusion matrix and finding the true postives, false postives and the 
-false negatives.
+For classicfation sets error was calculated using the document given \citep{Precision} from this error 
+was calculated using confusion matrixes. Using this method allowed the error, precision, recall to be 
+calculceted easily by simply itterating thorugh the confusion matrix and finding the true postives, 
+false postives and the false negatives. 0-1 loss which is simply findding the total number correctly and incorrectly 
+classified was also used as a metric to easily see if one algorithm variant is more accurate.
+
+For regression mean square error (MSE) and absolute error was used as regression has more of a range than classicfation so it must 
+have a more sophisicated way to measure efficacy. MSE is used as measure as it accounts for signs and so all the error will be postive
+meaning that a postive and negative error will be acounted for the same. Absolute error will not account for signs but comparing the two
+is possible as taking the square root of MSE should give you a value in the ball park of absolute error. 
+
 
 
 \section{Results}
-Overall this  alogorithm had little error even when the data was scrambled.  
-This was shown by by the Votes data set \citep{Vote}. The alogorithm had an error of 0.19688109, precision of 0.77735849
-and reacall of 0.83064516 while when the data was scrambled the alogorithm had an error of 0.28291317, precision 
-of 0.75294118 and reacall of 0.68449198.  Looking at the this one can see that the alogorithm is indeed working accurately
-and the stats are a worse when part fo the data is scrambled which makes sense and also shows that the data is not just 
-random. 
+Looking at Image Segmentation set and honing in on class one error, one can see that variants of KNN performed worse as the error 0.48 with an 0-1 loss being 
+17 correct and 30 incorect for Edited KNN and an astounding error if 0.78 with an 0-1 loss being 9 correct and 75 incorect for Condensed KNN 
+comapred to base KNN with error of 0.22 0-1 loss of 24 correct and 14 incorect.  Using this one can see that the hypothesis of there being no change 
+between variants of KNN will be rejected.  However looking at PAM and C Means there is not a statistical important differnence from base KNN with error
+of 0.21 and 0.25 and 0-1 loss of 25 correct and 14 incorect and 23 correct and 16 incorect respectively. Looking at table 1.1 one can see that this applys
+for the overall set therefore failing to reject the null.
+
+For Abalone any variant of KNN the data set did not have the expected output.  The algorithm ran with an eror of nearly one for every variant including PAM and C Means. For this set 
+the null hypothesis has failed to be rejected. This set took a long time to run and the algorithm performed poor this points to perhaps that this set 
+does not adhere to the requirments of the algorithm. 
+
+PAM and base KNN has the similar results Looking further into the Cars set also shows that condensed KNN is the worse of the three KNN variants but 
+in this case Edited KNN and base KNN  have nearly the same error showing that condensed KNN will infact reject the null hypothesis while 
+Edited KNN does not have a statistical differnce so the null hypothis has beeen failed to be rejected.  
+
+Looking at regression and the ForestFires set with base KNN the MSE is 222328298.0003 while the square root of MSE is 14910.6777
+and the absolute error being 334215.1899 For PAM MSE is 221847176.4003 while the square root of MSE is 14894.5351 and absolute error of 
+35564.63 that there is a statistical differnence between the two the absoulute error is nearly half for PAM showing that the null hypothesis is rejected .  
+This is not true for C Means However where the MSE is 222380851.1803 while the square root of MSE is 14912.4394 and the 
+absolute error being 334265.1899 showing that there is little to none statistical differnence in any of the algorithm variants. Therefore 
+showing the null hypothesis failed to be rejected. 
+
+Looking at regression and the Machine set with base KNN the MSE is 181545393.0 while the square root of MSE is 13473.8781
+and the absolute error being 192235.0 which happens to be the exact same for C Means this error shows that there is not a statistical differnence
+between the two.  Therefore showing the null hypothesis failed to be rejected. However for Pam MSE is 181692682.0 while the square root of 
+MSE is 13479.3427 and the absolute error being 17274.0 which is roughly a tenth the error meaning the null hypothesis is rejected.
+
+
 
 
 % Acknowledgements should go at the end, before appendices and references
