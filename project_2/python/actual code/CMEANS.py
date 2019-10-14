@@ -18,7 +18,7 @@ class c_means(EKNN.edited_knn):
             self.numC = len(self.d_map.points)
         self.c_clusters = self.mini_gen(rd.sample(data_set,self.numC))
         self.data_points = self.mini_gen(data_set)
-        for x in range(0,1):
+        for x in range(0,10):
             self.calculate_centroids()
         self.d_map = point_map(self.c_clusters)
 
